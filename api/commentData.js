@@ -22,7 +22,7 @@ const getCommentsByTaskId = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// CREATE COMMENTS
+// CREATE COMMENT
 const createComment = (payload) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/comments.json`, {
     method: 'POST',
@@ -36,7 +36,7 @@ const createComment = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// UPDATE COMMENTS
+// UPDATE COMMENT
 const updateComment = (payload) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/comments/${payload.firebaseKey}.json`, {
     method: 'PATCH',
