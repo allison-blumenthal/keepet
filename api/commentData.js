@@ -22,7 +22,20 @@ const getCommentsByTaskId = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// CREATE COMMENTS
+// GET SINGLE COMMENT
+const getSingleComment = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/comments/${firebaseKey}.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve((data)))
+    .catch(reject);
+});
+
+// CREATE COMMENT
 const createComment = (payload) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/comments.json`, {
     method: 'POST',
@@ -36,7 +49,7 @@ const createComment = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// UPDATE COMMENTS
+// UPDATE COMMENT
 const updateComment = (payload) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/comments/${payload.firebaseKey}.json`, {
     method: 'PATCH',
@@ -77,6 +90,7 @@ const deleteTaskComments = (firebaseKey) => new Promise((resolve, reject) => {
 
 export {
   getCommentsByTaskId,
+  getSingleComment,
   createComment,
   updateComment,
   deleteComment,

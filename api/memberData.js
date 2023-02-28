@@ -2,8 +2,8 @@ import { clientCredentials } from '../utils/client';
 
 const endpoint = clientCredentials.databaseURL;
 
-// GET ALL MEMBERS
-const getAllMembers = () => new Promise((resolve, reject) => {
+// GET MEMBERS
+const getMembers = () => new Promise((resolve, reject) => {
   fetch(`${endpoint}/members.json`, {
     method: 'GET',
     headers: {
@@ -76,7 +76,7 @@ const deleteMember = (firebaseKey) => new Promise((resolve, reject) => {
 });
 
 export {
-  getAllMembers,
+  getMembers,
   getSingleMember,
   createMember,
   updateMember,
