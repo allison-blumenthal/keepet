@@ -1,10 +1,11 @@
 import { clientCredentials } from '../utils/client';
+import { deleteTask, getTasksByPetId } from './taskData';
 
 const endpoint = clientCredentials.databaseURL;
 
-// GET ALL TASKS
-const getAllTasks = () => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/tasks.json`, {
+// GET ALL PETS
+const getAllPets = () => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/pets.json`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -21,9 +22,9 @@ const getAllTasks = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// GET SINGLE TASK
-const getSingleTask = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/tasks/${firebaseKey}.json`, {
+// GET SINGLE PET
+const getSinglePet = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/pets/${firebaseKey}.json`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -34,9 +35,9 @@ const getSingleTask = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// CREATE TASK
-const createTask = (payload) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/tasks.json`, {
+// CREATE PET
+const createPet = (payload) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/pets.json`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -48,9 +49,9 @@ const createTask = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// UPDATE TASK
-const updateTask = (payload) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/tasks/${payload.firebaseKey}.json`, {
+// UPDATE PET
+const updatePet = (payload) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/pets/${payload.firebaseKey}.json`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -62,9 +63,9 @@ const updateTask = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// DELETE TASK
-const deleteTask = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/tasks/${firebaseKey}.json`, {
+// DELETE PET
+const deletePet = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/pets/${firebaseKey}.json`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -75,30 +76,23 @@ const deleteTask = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// GET PET TASKS
-const getTasksByPetId = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/tasks.json?orderBy="pet_id"&equalTo="${firebaseKey}"`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+// DELETE PET TASKS
+const deletePetTasks = (firebaseKey) => new Promise((resolve, reject) => {
+  getTasksByPetId(firebaseKey).then((petTasks) => {
+    const deleteTaskPromises = petTasks.map((task) => deleteTask(task.firebaseKey));
+
+    Promise.all(deleteTaskPromises).then(() => {
+      deleteTask(firebaseKey).then(resolve);
+    });
   })
-    .then((response) => response.json())
-    .then((data) => {
-      if (data) {
-        resolve(Object.values(data));
-      } else {
-        resolve([]);
-      }
-    })
     .catch(reject);
 });
 
 export {
-  getAllTasks,
-  getSingleTask,
-  createTask,
-  updateTask,
-  deleteTask,
-  getTasksByPetId,
+  getAllPets,
+  getSinglePet,
+  createPet,
+  updatePet,
+  deletePet,
+  deletePetTasks,
 };

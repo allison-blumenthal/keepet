@@ -3,7 +3,7 @@ import { deleteTask } from './taskData';
 
 const endpoint = clientCredentials.databaseURL;
 
-// GET COMMENTS
+// GET TASK COMMENTS
 const getCommentsByTaskId = (firebaseKey) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/comments.json?orderBy="task_id"&equalTo="${firebaseKey}"`, {
     method: 'GET',
