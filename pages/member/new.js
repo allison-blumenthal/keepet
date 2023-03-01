@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import MemberForm from '../../components/forms/MemberForm';
 
 export default function AddMember() {
   return (
@@ -8,7 +9,7 @@ export default function AddMember() {
         <title>New Household Member</title>
       </Head>
       <div>
-        {/* <MemberForm /> */}
+        <MemberForm />
       </div>
     </>
   );

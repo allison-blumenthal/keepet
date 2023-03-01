@@ -86,7 +86,7 @@ function MemberForm({ memberObj }) {
           <Form.Control
             type="text"
             placeholder="Member's Age"
-            name="image"
+            name="age"
             value={formInput.age}
             onChange={handleChange}
             required
@@ -111,7 +111,6 @@ function MemberForm({ memberObj }) {
             onChange={handleChange}
             className="mb-3"
             value={memberObj.memberImage}
-            required
           >
             <option value="">Select an Avatar</option>
             {/* {

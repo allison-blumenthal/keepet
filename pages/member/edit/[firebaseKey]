@@ -13,5 +13,10 @@ export default function EditDog() {
     getSingleMember(firebaseKey).then(setEditItem);
   }, [firebaseKey]);
 
-  return (<MemberForm memberObj={editItem} />);
+  return (
+    // eslint-disable-next-line react/jsx-filename-extension
+    <>
+      <MemberForm memberObj={editItem} />
+    </>
+  );
 }
