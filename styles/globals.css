@@ -28,6 +28,12 @@ body {
   justify-content: space-between
 }
 
+.navbar-bottom {
+  justify-content: center;
+}
+
+
+
 .logo {
   height: 100px;
   width: 100px;

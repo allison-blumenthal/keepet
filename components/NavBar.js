@@ -24,9 +24,8 @@ export default function NavBar() {
 
       <Navbar bg="light" variant="light" fixed="bottom">
         <Container>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
+          <Nav className="flex-grow-1 justify-content-evenly">
+            <Nav.Link href="/home">Home</Nav.Link>
             <Nav.Link href="/members">Members</Nav.Link>
             <Nav.Link href="/pets">Pets</Nav.Link>
             <Nav.Link href="/tasks">Tasks</Nav.Link>

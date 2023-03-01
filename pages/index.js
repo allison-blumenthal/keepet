@@ -1,3 +1,4 @@
+import { Button } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
 
 function Home() {
@@ -6,7 +7,11 @@ function Home() {
   return (
     <>
       <h1>Hello {user.displayName}! </h1>
-      <p>Click the button below to logout!</p>
+      <p>Choose your household, or create a new one</p>
+      <div>
+        {/* household card component  */}
+        <Button className="create-household-btn" variant="success">Create Household</Button>
+      </div>
     </>
   );
 }
