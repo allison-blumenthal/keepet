@@ -18,5 +18,26 @@ a {
 }
 
 body {
-  background-color: #88effd;
+  background-color:#4d3f82;
+}
+
+/* NAVBAR, LOGO, SIGN OUT */
+
+.navbar-top {
+  display: flex;
+  justify-content: space-between
+}
+
+.logo {
+  height: 100px;
+  width: 100px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.logout-btn {
+  height: 40px;
+  width: 80px;
+  padding: 0px;
+  margin: 10px;
 }
