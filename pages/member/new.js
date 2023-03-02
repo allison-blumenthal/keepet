@@ -6,7 +6,7 @@ export default function AddMember() {
   return (
     <>
       <Head>
-        <title>New Household Member</title>
+        <title>New Member</title>
       </Head>
       <div>
         <MemberForm />

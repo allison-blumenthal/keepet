@@ -5,7 +5,7 @@ export default function AddPet() {
   return (
     <>
       <Head>
-        <title>New Household Pet</title>
+        <title>New Pet</title>
       </Head>
       <div>
         {/* <PetForm /> */}
