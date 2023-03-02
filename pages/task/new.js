@@ -1,7 +1,13 @@
 import React from 'react';
+import Head from 'next/head';
 
 export default function AddTask() {
   return (
-    <div />
+    <>
+      <Head>
+        <title>New Task</title>
+      </Head>
+      <div />
+    </>
   );
 }

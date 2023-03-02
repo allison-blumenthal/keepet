@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 import { getSingleMember } from '../../../api/memberData';
 import MemberForm from '../../../components/forms/MemberForm';
 
-export default function EditDog() {
+export default function UpdateMember() {
   const [editItem, setEditItem] = useState({});
   const router = useRouter();
 
@@ -16,6 +17,9 @@ export default function EditDog() {
   return (
     // eslint-disable-next-line react/jsx-filename-extension
     <>
+      <Head>
+        <title>Edit Member</title>
+      </Head>
       <MemberForm memberObj={editItem} />
     </>
   );
