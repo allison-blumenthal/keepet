@@ -1,9 +1,15 @@
+/* eslint-disable @next/next/no-img-element */
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { FloatingLabel, Form, Button } from 'react-bootstrap';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import {
+  ImageList, ImageListItem, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio,
+} from '@mui/material';
 import { useAuth } from '../../utils/context/authContext';
 import { createMember, updateMember } from '../../api/memberData';
+import { memberAvatars } from '../../utils/avatars';
 
 const initialState = {
   firebaseKey: '',
@@ -104,28 +110,6 @@ function MemberForm({ memberObj }) {
           />
         </FloatingLabel>
 
-        <FloatingLabel controlId="floatingSelect" label="Member Avatar">
-          <Form.Select
-            aria-label="Member Avatar"
-            name="memberImage"
-            onChange={handleChange}
-            className="mb-3"
-            value={memberObj.memberImage}
-          >
-            <option value="">Select an Avatar</option>
-            {/* {
-            memberAvatars.map((avatar) => (
-              <option
-                key={location.firebaseKey}
-                value={location.firebaseKey}
-              >
-                {avatar.memberImage}
-              </option>
-            ))
-          } */}
-          </Form.Select>
-        </FloatingLabel>
-
         <FloatingLabel controlId="floatingTextarea" label="Description" className="mb-3">
           <Form.Control
             as="textarea"
@@ -138,10 +122,54 @@ function MemberForm({ memberObj }) {
           />
         </FloatingLabel>
 
+        <FormControl>
+          <FormLabel>Choose an avatar:</FormLabel>
+
+          <div className="image-list-container">
+            <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
+              {memberAvatars.map((avatar) => (
+                <RadioGroup
+                  aria-labelledby="avatar-radio-buttons-group"
+                  name="avatar-buttons"
+                  value={formInput.memberImage}
+                  defaultValue="1.png"
+                  checked={formInput.memberImage}
+                  onClick={(e) => {
+                    setFormInput((prevState) => ({
+                      ...prevState,
+                      memberImage: e.target.value,
+                    }));
+                  }}
+                  required
+                >
+                  <FormControlLabel
+                    value={avatar}
+                    control={<Radio />}
+                    label=""
+                  />
+                  <ImageListItem
+                    key={avatar}
+                    name="memberImage"
+                  >
+                    <img
+                      src={`/assets/images/memberAvatars/${avatar}?w=164&h=164&fit=crop&auto=format`}
+                      srcSet={`/assets/images/memberAvatars/${avatar}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                      alt={`avatar ${avatar}`}
+                      loading="lazy"
+                    />
+                  </ImageListItem>
+                </RadioGroup>
+              ))}
+            </ImageList>
+          </div>
+
+        </FormControl>
+
         <div
           style={{
             display: 'flex',
             justifyContent: 'center',
+            marginBottom: '80px',
           }}
         >
           <Button className="view-btn" type="submit">{memberObj.firebaseKey ? 'Update' : 'Add'} Member</Button>
