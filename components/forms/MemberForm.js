@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { FloatingLabel, Form, Button } from 'react-bootstrap';
-
+import Image from 'next/image';
 import { useAuth } from '../../utils/context/authContext';
 import { createMember, updateMember } from '../../api/memberData';
 import { memberAvatars } from '../../utils/avatars';
@@ -117,19 +117,16 @@ function MemberForm({ memberObj }) {
             <option value="">Select an Avatar</option>
             {
               memberAvatars.map((avatar) => (
-                // eslint-disable-next-line jsx-a11y/control-has-associated-label
                 <option
                   key={avatar}
                   value={avatar}
-                  // eslint-disable-next-line @next/next/no-img-element
-                  title={(
-                    <div className="member-avatar">
-                      <img className="member-avatar" alt="member avatar" src={`/assets/images/memberAvatars/${avatar}`} />
-                    </div>
-                  )}
-                />
+                >
+                  <div className="member-avatar">
+                    <Image src={`/assets/images/memberAvatars/${avatar}`} className="member-avatar" alt="member avatar" />
+                  </div>
+                </option>
               ))
-          }
+            }
 
           </Form.Select>
         </FloatingLabel>
