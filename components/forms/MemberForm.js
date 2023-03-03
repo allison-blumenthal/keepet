@@ -1,8 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { FloatingLabel, Form, Button } from 'react-bootstrap';
-import Image from 'next/image';
+// import Image from 'next/image';
+import { ImageList, ImageListItem } from '@mui/material';
 import { useAuth } from '../../utils/context/authContext';
 import { createMember, updateMember } from '../../api/memberData';
 import { memberAvatars } from '../../utils/avatars';
@@ -106,30 +108,30 @@ function MemberForm({ memberObj }) {
           />
         </FloatingLabel>
 
-        <FloatingLabel controlId="floatingSelect" label="Member Avatar">
-          <Form.Select
+        <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
+          {memberAvatars.map((avatar) => (
+            <ImageListItem key={avatar}>
+              <img
+                src={`../../src/assets/images/memberAvatars/${avatar}?w=164&h=164&fit=crop&auto=format`}
+                srcSet={`../../src/assets/images/memberAvatars/${avatar}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                alt="avatar option"
+                loading="lazy"
+              />
+            </ImageListItem>
+          ))}
+        </ImageList>
+
+        {/* <FloatingLabel controlId="floatingSelect" label="Member Avatar"> */}
+        {/* <Form.Select
             aria-label="Member Avatar"
             name="memberImage"
             onChange={handleChange}
             className="mb-3"
             value={memberObj.memberImage}
-          >
-            <option value="">Select an Avatar</option>
-            {
-              memberAvatars.map((avatar) => (
-                <option
-                  key={avatar}
-                  value={avatar}
-                >
-                  <div className="member-avatar">
-                    <Image src={`/assets/images/memberAvatars/${avatar}`} className="member-avatar" alt="member avatar" />
-                  </div>
-                </option>
-              ))
-            }
+          > */}
 
-          </Form.Select>
-        </FloatingLabel>
+        {/* </Form.Select> */}
+        {/* </FloatingLabel> */}
 
         <FloatingLabel controlId="floatingTextarea" label="Description" className="mb-3">
           <Form.Control
