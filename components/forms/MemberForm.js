@@ -4,7 +4,9 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { FloatingLabel, Form, Button } from 'react-bootstrap';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { ImageList, ImageListItem } from '@mui/material';
+import {
+  ImageList, ImageListItem, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio,
+} from '@mui/material';
 import { useAuth } from '../../utils/context/authContext';
 import { createMember, updateMember } from '../../api/memberData';
 import { memberAvatars } from '../../utils/avatars';
@@ -31,7 +33,7 @@ function MemberForm({ memberObj }) {
   }, [memberObj, user]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target.value;
     setFormInput((prevState) => ({
       ...prevState,
       [name]: value,
@@ -120,25 +122,48 @@ function MemberForm({ memberObj }) {
           />
         </FloatingLabel>
 
-        <div className="image-list-container">
-          <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
-            {memberAvatars.map((avatar) => (
-              <ImageListItem
-                key={avatar}
-                name="memberImage"
-                onChange={handleChange}
-                value={memberObj.memberImage}
-              >
-                <img
-                  src={`/assets/images/memberAvatars/${avatar}?w=164&h=164&fit=crop&auto=format`}
-                  srcSet={`/assets/images/memberAvatars/${avatar}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                  alt={`avatar ${avatar}`}
-                  loading="lazy"
-                />
-              </ImageListItem>
-            ))}
-          </ImageList>
-        </div>
+        <FormControl>
+          <FormLabel>Choose an avatar:</FormLabel>
+
+          <div className="image-list-container">
+            <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
+              {memberAvatars.map((avatar) => (
+                <RadioGroup
+                  aria-labelledby="avatar-radio-buttons-group"
+                  name="avatar-buttons"
+                  value={formInput.memberImage}
+                  defaultValue="1.png"
+                  checked={formInput.memberImage}
+                  onClick={(e) => {
+                    setFormInput((prevState) => ({
+                      ...prevState,
+                      memberImage: e.target.value,
+                    }));
+                  }}
+                  required
+                >
+                  <FormControlLabel
+                    value={avatar}
+                    control={<Radio />}
+                    label=""
+                  />
+                  <ImageListItem
+                    key={avatar}
+                    name="memberImage"
+                  >
+                    <img
+                      src={`/assets/images/memberAvatars/${avatar}?w=164&h=164&fit=crop&auto=format`}
+                      srcSet={`/assets/images/memberAvatars/${avatar}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                      alt={`avatar ${avatar}`}
+                      loading="lazy"
+                    />
+                  </ImageListItem>
+                </RadioGroup>
+              ))}
+            </ImageList>
+          </div>
+
+        </FormControl>
 
         <div
           style={{
