@@ -108,31 +108,6 @@ function MemberForm({ memberObj }) {
           />
         </FloatingLabel>
 
-        <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
-          {memberAvatars.map((avatar) => (
-            <ImageListItem key={avatar}>
-              <img
-                src={`/assets/images/memberAvatars/${avatar}?w=164&h=164&fit=crop&auto=format`}
-                srcSet={`/assets/images/memberAvatars/${avatar}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                alt="avatar option"
-                loading="lazy"
-              />
-            </ImageListItem>
-          ))}
-        </ImageList>
-
-        {/* <FloatingLabel controlId="floatingSelect" label="Member Avatar"> */}
-        {/* <Form.Select
-            aria-label="Member Avatar"
-            name="memberImage"
-            onChange={handleChange}
-            className="mb-3"
-            value={memberObj.memberImage}
-          > */}
-
-        {/* </Form.Select> */}
-        {/* </FloatingLabel> */}
-
         <FloatingLabel controlId="floatingTextarea" label="Description" className="mb-3">
           <Form.Control
             as="textarea"
@@ -145,10 +120,31 @@ function MemberForm({ memberObj }) {
           />
         </FloatingLabel>
 
+        <div className="image-list-container">
+          <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
+            {memberAvatars.map((avatar) => (
+              <ImageListItem
+                key={avatar}
+                name="memberImage"
+                onChange={handleChange}
+                value={memberObj.memberImage}
+              >
+                <img
+                  src={`/assets/images/memberAvatars/${avatar}?w=164&h=164&fit=crop&auto=format`}
+                  srcSet={`/assets/images/memberAvatars/${avatar}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                  alt={`avatar ${avatar}`}
+                  loading="lazy"
+                />
+              </ImageListItem>
+            ))}
+          </ImageList>
+        </div>
+
         <div
           style={{
             display: 'flex',
             justifyContent: 'center',
+            marginBottom: '80px',
           }}
         >
           <Button className="view-btn" type="submit">{memberObj.firebaseKey ? 'Update' : 'Add'} Member</Button>
