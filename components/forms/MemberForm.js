@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { FloatingLabel, Form, Button } from 'react-bootstrap';
-// import Image from 'next/image';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { ImageList, ImageListItem } from '@mui/material';
 import { useAuth } from '../../utils/context/authContext';
 import { createMember, updateMember } from '../../api/memberData';
@@ -112,8 +112,8 @@ function MemberForm({ memberObj }) {
           {memberAvatars.map((avatar) => (
             <ImageListItem key={avatar}>
               <img
-                src={`../../src/assets/images/memberAvatars/${avatar}?w=164&h=164&fit=crop&auto=format`}
-                srcSet={`../../src/assets/images/memberAvatars/${avatar}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                src={`/assets/images/memberAvatars/${avatar}?w=164&h=164&fit=crop&auto=format`}
+                srcSet={`/assets/images/memberAvatars/${avatar}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                 alt="avatar option"
                 loading="lazy"
               />
