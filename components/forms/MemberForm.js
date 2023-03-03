@@ -33,7 +33,7 @@ function MemberForm({ memberObj }) {
   }, [memberObj, user]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target.value;
+    const { name, value } = e.target;
     setFormInput((prevState) => ({
       ...prevState,
       [name]: value,
