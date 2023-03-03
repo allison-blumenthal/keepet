@@ -2,8 +2,10 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { FloatingLabel, Form, Button } from 'react-bootstrap';
+
 import { useAuth } from '../../utils/context/authContext';
 import { createMember, updateMember } from '../../api/memberData';
+import { memberAvatars } from '../../utils/avatars';
 
 const initialState = {
   firebaseKey: '',
@@ -113,16 +115,22 @@ function MemberForm({ memberObj }) {
             value={memberObj.memberImage}
           >
             <option value="">Select an Avatar</option>
-            {/* {
-            memberAvatars.map((avatar) => (
-              <option
-                key={location.firebaseKey}
-                value={location.firebaseKey}
-              >
-                {avatar.memberImage}
-              </option>
-            ))
-          } */}
+            {
+              memberAvatars.map((avatar) => (
+                // eslint-disable-next-line jsx-a11y/control-has-associated-label
+                <option
+                  key={avatar}
+                  value={avatar}
+                  // eslint-disable-next-line @next/next/no-img-element
+                  title={(
+                    <div className="member-avatar">
+                      <img className="member-avatar" alt="member avatar" src={`/assets/images/memberAvatars/${avatar}`} />
+                    </div>
+                  )}
+                />
+              ))
+          }
+
           </Form.Select>
         </FloatingLabel>
 
