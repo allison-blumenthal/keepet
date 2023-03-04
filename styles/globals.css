@@ -28,12 +28,6 @@ body {
   justify-content: space-between
 }
 
-.navbar-bottom {
-  justify-content: center;
-}
-
-
-
 .logo {
   height: 100px;
   width: 100px;
@@ -46,6 +40,13 @@ body {
   width: 80px;
   padding: 0px;
   margin: 10px;
+}
+
+.nav-icon {
+  height: 30px;
+  width: 30px;
+  margin: 0px;
+  padding: 0px;
 }
 
 /* FORMS  */
