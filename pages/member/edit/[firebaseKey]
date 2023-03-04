@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import Head from 'next/head';
 import { getSingleMember } from '../../../api/memberData';
 import MemberForm from '../../../components/forms/MemberForm';
 
-export default function UpdateMember() {
+export default function EditMember() {
   const [editItem, setEditItem] = useState({});
   const router = useRouter();
 
@@ -14,13 +13,5 @@ export default function UpdateMember() {
     getSingleMember(firebaseKey).then(setEditItem);
   }, [firebaseKey]);
 
-  return (
-    // eslint-disable-next-line react/jsx-filename-extension
-    <>
-      <Head>
-        <title>Edit Member</title>
-      </Head>
-      <MemberForm memberObj={editItem} />
-    </>
-  );
+  return (<MemberForm memberObj={editItem} />);
 }
