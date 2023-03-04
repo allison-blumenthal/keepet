@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useAuth } from '../utils/context/authContext';
 import { getHouseholds } from '../api/householdData';
-import HouseholdCard from '../components/forms/HouseholdCard';
+import HouseholdCard from '../components/ cards/HouseholdCard';
 
 export default function Households() {
   const [households, setHouseholds] = useState([]);
