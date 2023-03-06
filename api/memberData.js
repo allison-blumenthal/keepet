@@ -13,24 +13,6 @@ const getMemberByUID = (uid) => new Promise((resolve, reject) => {
     .then((response) => response.json())
     .then((data) => {
       if (data) {
-        resolve(Object.values(data)[0]);
-      } else {
-        resolve([]);
-      }
-    }).catch(reject);
-});
-
-// GET MEMBER LOGIN
-const getMemberLogin = (uid) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/members.json?orderBy="uid"&equalTo="${uid}"`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      if (data) {
         resolve(Object.values(data));
       } else {
         resolve([]);
@@ -113,7 +95,6 @@ const deleteMember = (firebaseKey) => new Promise((resolve, reject) => {
 
 export {
   getMemberByUID,
-  getMemberLogin,
   getMembers,
   getSingleMember,
   createMember,

@@ -14,7 +14,7 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
   }
 
   if (user === 'NO USER') {
-    return <MemberForm member={user} />;
+    return <MemberForm user={user} />;
   }
 
   // what the user should see if they are logged in
