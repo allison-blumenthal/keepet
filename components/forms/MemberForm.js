@@ -8,7 +8,7 @@ import {
   ImageList, ImageListItem, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio,
 } from '@mui/material';
 import { useAuth } from '../../utils/context/authContext';
-import { createMember, updateMember } from '../../api/memberData';
+import { createMember, getMemberByUID, updateMember } from '../../api/memberData';
 import { memberAvatars } from '../../utils/avatars';
 
 const initialState = {
@@ -24,13 +24,16 @@ const initialState = {
 };
 
 function MemberForm({ memberObj }) {
-  const [formInput, setFormInput] = useState(initialState);
+  const [formInput, setFormInput] = useState({
+    ...initialState,
+    uid: memberObj.uid,
+  });
   const router = useRouter();
-  const { user } = useAuth();
+  const { setUser, uid } = useAuth();
 
   useEffect(() => {
     if (memberObj.firebaseKey) setFormInput(memberObj);
-  }, [memberObj, user]);
+  }, [memberObj]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,15 +47,19 @@ function MemberForm({ memberObj }) {
     e.preventDefault();
     if (memberObj.firebaseKey) {
       updateMember(formInput)
-        .then(() => router.push('/members'));
+        .then(() => router.push('/'));
     } else {
-      const payload = { ...formInput, uid: user.uid };
+      const payload = { ...formInput, uid };
       createMember(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
 
-        updateMember(patchPayload);
-      }).then(() => {
-        router.push('/members');
+        updateMember(patchPayload).then(() => {
+          getMemberByUID(uid)
+            .then((userData) => {
+              setUser(userData);
+              router.push('/');
+            });
+        });
       });
     }
   };
@@ -62,7 +69,7 @@ function MemberForm({ memberObj }) {
       <Form onSubmit={handleSubmit}>
         <h1 className="text-white mt-5">{memberObj.firebaseKey ? 'Update' : 'New'} Member</h1>
 
-        <Form.Check
+        {/* <Form.Check
           className="mb-3"
           type="switch"
           id="isAdmin"
@@ -75,7 +82,7 @@ function MemberForm({ memberObj }) {
               isAdmin: e.target.checked,
             }));
           }}
-        />
+        /> */}
 
         <FloatingLabel controlId="floatingInput1" label="Member's Name" className="mb-3">
           <Form.Control
