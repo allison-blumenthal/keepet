@@ -62,7 +62,7 @@ function MemberForm({ memberObj }) {
       <Form onSubmit={handleSubmit}>
         <h1 className="text-white mt-5">{memberObj.firebaseKey ? 'Update' : 'New'} Member</h1>
 
-        <Form.Check
+        {/* <Form.Check
           className="mb-3"
           type="switch"
           id="isAdmin"
@@ -75,7 +75,7 @@ function MemberForm({ memberObj }) {
               isAdmin: e.target.checked,
             }));
           }}
-        />
+        /> */}
 
         <FloatingLabel controlId="floatingInput1" label="Member's Name" className="mb-3">
           <Form.Control
