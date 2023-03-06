@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import FloatingLabel, { Button, Form } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Form, FloatingLabel, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { createHousehold, updateHousehold } from '../../api/householdData';
 import { useAuth } from '../../utils/context/authContext';
@@ -10,10 +10,14 @@ const initialState = {
   nickname: '',
 };
 
-export default function HouseholdForm() {
+function HouseholdForm({ householdObj }) {
   const [formInput, setFormInput] = useState(initialState);
   const router = useRouter();
   const { user } = useAuth();
+
+  useEffect(() => {
+    if (householdObj.firebaseKey) setFormInput(householdObj);
+  }, [householdObj, user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,18 +29,19 @@ export default function HouseholdForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const payload = {
-      ...formInput,
-      uid: user.uid,
-    };
-    createHousehold(payload)
-      .then(({ name }) => {
+    if (householdObj.firebaseKey) {
+      updateHousehold(formInput)
+        .then(() => router.push('/'));
+    } else {
+      const payload = { ...formInput, uid: user.uid };
+      createHousehold(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
-        updateHousehold(patchPayload)
-          .then(() => {
-            router.push('/');
-          });
+
+        updateHousehold(patchPayload);
+      }).then(() => {
+        router.push('/');
       });
+    }
   };
 
   return (
@@ -54,7 +59,8 @@ export default function HouseholdForm() {
           />
         </FloatingLabel>
 
-        <Button type="submit" className="blue-btn">Create Household</Button>
+        <Button type="submit" className="blue-btn">{householdObj.firebaseKey ? 'Update' : 'Add'}</Button>
+
         <Button type="btn" className="mx-2 red-btn" onClick={() => router.back()}>Cancel</Button>
 
       </Form>
@@ -72,3 +78,5 @@ HouseholdForm.propTypes = {
 HouseholdForm.defaultProps = {
   householdObj: initialState,
 };
+
+export default HouseholdForm;

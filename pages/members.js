@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Button } from 'react-bootstrap';
 import Head from 'next/head';
 
-export default function members() {
+export default function Members() {
   return (
     <>
       <Head>
