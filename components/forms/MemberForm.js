@@ -164,12 +164,15 @@ function MemberForm({ memberObj }) {
           }}
         >
           {memberObj.firebaseKey ? (
-            <Button className="view-btn" type="submit" onClick={() => router.back}>Update Member </Button>
+            <>
+              <Button className="view-btn" type="submit" onClick={() => router.back}>Update</Button>
+              <Button type="btn" className="mx-2 red-btn" onClick={() => router.back()}>Cancel</Button>
+            </>
           ) : (
 
             <>
-              <Button className="view-btn" type="submit" onClick={() => router.push('/household/new')}>Create Household </Button>
-              <Button className="view-btn" type="submit" onClick={() => router.push('/')}>Join Household </Button>
+              <Button className="view-btn" type="submit" onClick={() => router.push('/household/new')}>Create A Household</Button>
+              <Button className="view-btn" type="submit" onClick={() => router.push('/')}>Join A Household</Button>
             </>
           )}
         </div>

@@ -6,8 +6,8 @@ import { createHousehold, updateHousehold } from '../../api/householdData';
 import { useAuth } from '../../utils/context/authContext';
 
 const initialState = {
-  firebaseKey: '',
-  nickname: '',
+  householdName: '',
+  imageUrl: '',
 };
 
 function HouseholdForm({ householdObj }) {
@@ -31,7 +31,7 @@ function HouseholdForm({ householdObj }) {
     e.preventDefault();
     if (householdObj.firebaseKey) {
       updateHousehold(formInput)
-        .then(() => router.push('/'));
+        .then(() => router.push(`/household/${householdObj.firebaseKey}`));
     } else {
       const payload = { ...formInput, uid: user.uid };
       createHousehold(payload).then(({ name }) => {
@@ -39,7 +39,7 @@ function HouseholdForm({ householdObj }) {
 
         updateHousehold(patchPayload);
       }).then(() => {
-        router.push('/');
+        router.push(`/household/${householdObj.firebaseKey}`);
       });
     }
   };
@@ -49,17 +49,29 @@ function HouseholdForm({ householdObj }) {
       <Form onSubmit={handleSubmit}>
         <h1 className="mt-5 mb-3">Create Household</h1>
 
-        <FloatingLabel controlId="floatingInput2" label="Household Nickname" className="mb-3 text-black">
+        <FloatingLabel controlId="floatingInput2" label="Household Name" className="mb-3 text-black">
           <Form.Control
             type="text"
-            name="nickname"
-            value={formInput.nickname}
+            placeholder="Household name"
+            name="householdName"
+            value={formInput.householdName}
             onChange={handleChange}
             required
           />
         </FloatingLabel>
 
-        <Button type="submit" className="blue-btn">{householdObj.firebaseKey ? 'Update' : 'Add'}</Button>
+        <FloatingLabel controlId="floatingInput2" label="Household Image" className="mb-3">
+          <Form.Control
+            type="url"
+            placeholder="Image url"
+            name="imageUrl"
+            value={formInput.imageUrl}
+            onChange={handleChange}
+            required
+          />
+        </FloatingLabel>
+
+        <Button type="submit" className="blue-btn">{householdObj.firebaseKey ? 'Update' : 'Create'} Household</Button>
 
         <Button type="btn" className="mx-2 red-btn" onClick={() => router.back()}>Cancel</Button>
 
@@ -71,7 +83,9 @@ function HouseholdForm({ householdObj }) {
 HouseholdForm.propTypes = {
   householdObj: PropTypes.shape({
     firebaseKey: PropTypes.string,
-    nickname: PropTypes.string,
+    householdName: PropTypes.string,
+    imageUrl: PropTypes.string,
+    uid: PropTypes.string,
   }),
 };
 
