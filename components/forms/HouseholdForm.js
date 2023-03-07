@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
 import { Form, FloatingLabel, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { createHousehold, updateHousehold } from '../../api/householdData';
+import { createHousehold, getSingleHousehold, updateHousehold } from '../../api/householdData';
 import { useAuth } from '../../utils/context/authContext';
 
 const initialState = {
@@ -11,13 +11,16 @@ const initialState = {
 };
 
 function HouseholdForm({ householdObj }) {
-  const [formInput, setFormInput] = useState(initialState);
+  const [formInput, setFormInput] = useState({
+    ...initialState,
+    uid: householdObj.uid,
+  });
   const router = useRouter();
-  const { user } = useAuth();
+  const { uid } = useAuth();
 
   useEffect(() => {
     if (householdObj.firebaseKey) setFormInput(householdObj);
-  }, [householdObj, user]);
+  }, [householdObj]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,13 +34,15 @@ function HouseholdForm({ householdObj }) {
     e.preventDefault();
     if (householdObj.firebaseKey) {
       updateHousehold(formInput)
-        .then(() => router.push(`/household/${householdObj.firebaseKey}`));
+        .then(() => router.back);
     } else {
-      const payload = { ...formInput, uid: user.uid };
+      const payload = { ...formInput, uid };
       createHousehold(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
 
-        updateHousehold(patchPayload);
+        updateHousehold(patchPayload).then(() => {
+          getSingleHousehold(householdObj.firebaseKey);
+        });
       }).then(() => {
         router.push(`/household/${householdObj.firebaseKey}`);
       });

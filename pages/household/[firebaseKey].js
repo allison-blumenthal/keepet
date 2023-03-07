@@ -7,13 +7,15 @@ import { getSingleHousehold } from '../../api/householdData';
 function ViewHousehold() {
   const [householdDetails, setHouseholdDetails] = useState([]);
   const router = useRouter();
-
   const { firebaseKey } = router.query;
 
-  useEffect(() => {
+  const getHouseholdDetails = () => {
     getSingleHousehold(firebaseKey).then(setHouseholdDetails);
+  };
+
+  useEffect(() => {
+    getHouseholdDetails();
   }, [firebaseKey]);
-  console.warn(householdDetails.householdName);
 
   return (
     <>
