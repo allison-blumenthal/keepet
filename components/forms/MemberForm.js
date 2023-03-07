@@ -47,7 +47,7 @@ function MemberForm({ memberObj }) {
     e.preventDefault();
     if (memberObj.firebaseKey) {
       updateMember(formInput)
-        .then(() => router.push('/'));
+        .then(() => router.back);
     } else {
       const payload = { ...formInput, uid };
       createMember(payload).then(({ name }) => {
@@ -57,7 +57,6 @@ function MemberForm({ memberObj }) {
           getMemberByUID(uid)
             .then((userData) => {
               setUser(userData);
-              router.push('/');
             });
         });
       });
@@ -68,21 +67,6 @@ function MemberForm({ memberObj }) {
     <>
       <Form onSubmit={handleSubmit}>
         <h1 className="text-white mt-5">{memberObj.firebaseKey ? 'Update' : 'New'} Member</h1>
-
-        {/* <Form.Check
-          className="mb-3"
-          type="switch"
-          id="isAdmin"
-          name="isAdmin"
-          label="Is this member an Admin?"
-          checked={formInput.isAdmin}
-          onChange={(e) => {
-            setFormInput((prevState) => ({
-              ...prevState,
-              isAdmin: e.target.checked,
-            }));
-          }}
-        /> */}
 
         <FloatingLabel controlId="floatingInput1" label="Member's Name" className="mb-3">
           <Form.Control
@@ -179,7 +163,18 @@ function MemberForm({ memberObj }) {
             marginBottom: '80px',
           }}
         >
-          <Button className="view-btn" type="submit">{memberObj.firebaseKey ? 'Update' : 'Add'} Member</Button>
+          {memberObj.firebaseKey ? (
+            <>
+              <Button className="view-btn" type="submit" onClick={() => router.back}>Update</Button>
+              <Button type="btn" className="mx-2 red-btn" onClick={() => router.back()}>Cancel</Button>
+            </>
+          ) : (
+
+            <>
+              <Button className="view-btn" type="submit" onClick={() => router.push('/household/new')}>Create A Household</Button>
+              <Button className="view-btn" type="submit" onClick={() => router.push('/')}>Join A Household</Button>
+            </>
+          )}
         </div>
       </Form>
     </>
