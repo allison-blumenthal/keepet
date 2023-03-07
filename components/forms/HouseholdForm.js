@@ -71,7 +71,9 @@ function HouseholdForm({ householdObj }) {
           />
         </FloatingLabel>
 
-        <Button type="submit" className="blue-btn">{householdObj.firebaseKey ? 'Update' : 'Create'} Household</Button>
+        <Button type="submit" className="blue-btn" onClick={() => router.push(`/household/${householdObj.firebaseKey}`)}>
+          {householdObj.firebaseKey ? 'Update' : 'Create'} Household
+        </Button>
 
         <Button type="btn" className="mx-2 red-btn" onClick={() => router.back()}>Cancel</Button>
 

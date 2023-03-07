@@ -13,6 +13,7 @@ function ViewHousehold() {
   useEffect(() => {
     getSingleHousehold(firebaseKey).then(setHouseholdDetails);
   }, [firebaseKey]);
+  console.warn(householdDetails.householdName);
 
   return (
     <>
