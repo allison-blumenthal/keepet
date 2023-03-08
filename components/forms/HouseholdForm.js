@@ -2,8 +2,9 @@ import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
 import { Form, FloatingLabel, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { createHousehold, getSingleHousehold, updateHousehold } from '../../api/householdData';
+import { updateHousehold } from '../../api/householdData';
 import { useAuth } from '../../utils/context/authContext';
+import createHouseholdAndUpdateMember from '../../api/mergedData';
 
 const initialState = {
   householdName: '',
@@ -37,15 +38,10 @@ function HouseholdForm({ householdObj }) {
         .then(() => router.back);
     } else {
       const payload = { ...formInput, uid };
-      createHousehold(payload).then(({ name }) => {
-        const patchPayload = { firebaseKey: name };
-
-        updateHousehold(patchPayload).then(() => {
-          getSingleHousehold(householdObj.firebaseKey);
+      createHouseholdAndUpdateMember(payload)
+        .then((response) => {
+          router.push(`/household/${response.householdId}`);
         });
-      }).then(() => {
-        router.push(`/household/${householdObj.firebaseKey}`);
-      });
     }
   };
 

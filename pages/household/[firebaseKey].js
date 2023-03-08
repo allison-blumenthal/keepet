@@ -20,11 +20,11 @@ function ViewHousehold() {
   return (
     <>
       <Head>
-        <title>{householdDetails.householdName}</title>
+        <title>{householdDetails?.householdName}</title>
       </Head>
       <div className="text-black ms-5 details">
         <h2>
-          {householdDetails.householdName}
+          {householdDetails?.householdName}
         </h2>
       </div>
       <div
@@ -33,7 +33,7 @@ function ViewHousehold() {
           justifyContent: 'center',
         }}
       >
-        <img src={householdDetails.imageUrl} alt={householdDetails.householdName} style={{ width: '300px' }} />
+        <img src={householdDetails?.imageUrl} alt={householdDetails?.householdName} style={{ width: '300px' }} />
       </div>
       {/* <div
         className="d-flex flex-wrap"
