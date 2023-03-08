@@ -8,6 +8,7 @@ export default function HouseholdCard({ householdObj }) {
     <>
       <Card style={{ width: '18rem', margin: '10px' }}>
         <Card.Body>
+          <Card.Img variant="top" src={householdObj.imageUrl} alt="Household Image" style={{ height: '200px' }} />
           <Card.Title>{householdObj.nickname}</Card.Title>
           <Link href={`/household/${householdObj.firebaseKey}`} passHref>
             <Button variant="primary" className="view-btn">Select</Button>
@@ -25,5 +26,7 @@ HouseholdCard.propTypes = {
   householdObj: PropTypes.shape({
     nickname: PropTypes.string,
     firebaseKey: PropTypes.string,
+    imageUrl: PropTypes.string,
+    uid: PropTypes.string,
   }).isRequired,
 };
