@@ -1,12 +1,7 @@
 import { createHousehold, updateHousehold } from './householdData';
 import { getMemberByUID, updateMember } from './memberData';
 
-// getHouseholdMembers = (firebaseKey) => new Promise((resolve, reject) => {
-//   getSingleHousehold(firebaseKey).then(householdObj) => {
-
-//   }
-// })
-
+// Create household object, update member's householdId
 const createHouseholdAndUpdateMember = (payload) => new Promise((resolve, reject) => {
   createHousehold(payload).then(({ name }) => {
     const patchPayload = { firebaseKey: name };
@@ -20,4 +15,16 @@ const createHouseholdAndUpdateMember = (payload) => new Promise((resolve, reject
     .catch(reject);
 });
 
-export default createHouseholdAndUpdateMember;
+// Update member's householdId
+const updateMemberHouseholdId = (payload, uid) => new Promise((resolve, reject) => {
+  getMemberByUID(uid).then(() => {
+    const patchPayload = { householdId: payload };
+    updateMember(patchPayload).then(resolve);
+  })
+    .catch(reject);
+});
+
+export {
+  createHouseholdAndUpdateMember,
+  updateMemberHouseholdId,
+};

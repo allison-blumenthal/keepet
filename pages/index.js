@@ -21,7 +21,7 @@ export default function Households() {
       <Head>
         <title>Choose Household</title>
       </Head>
-      <h1>Choose a household</h1>
+      <h1>Join a Household</h1>
       <div className="household-card-container">
         {households.map((household) => (
           <HouseholdCard key={household.firebaseKey} householdObj={household} onUpdate={displayHouseholds} />
