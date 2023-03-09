@@ -13,12 +13,12 @@ import { memberAvatars } from '../../utils/avatars';
 
 const initialState = {
   firebaseKey: '',
-  household_id: '',
+  householdId: '',
   uid: '',
   isAdmin: false,
   name: '',
   age: '',
-  memberImage: '',
+  memberAvatar: '',
   role: '',
   description: '',
 };
@@ -122,13 +122,13 @@ function MemberForm({ memberObj }) {
                 <RadioGroup
                   aria-labelledby="avatar-radio-buttons-group"
                   name="avatar-buttons"
-                  value={formInput.memberImage}
+                  value={formInput.memberAvatar}
                   defaultValue="1.png"
-                  checked={formInput.memberImage}
+                  checked={formInput.memberAvatar}
                   onClick={(e) => {
                     setFormInput((prevState) => ({
                       ...prevState,
-                      memberImage: e.target.value,
+                      memberAvatar: e.target.value,
                     }));
                   }}
                   required
@@ -140,7 +140,7 @@ function MemberForm({ memberObj }) {
                   />
                   <ImageListItem
                     key={avatar}
-                    name="memberImage"
+                    name="memberAvatar"
                   >
                     <img
                       src={`/assets/images/memberAvatars/${avatar}?w=164&h=164&fit=crop&auto=format`}
@@ -184,12 +184,12 @@ function MemberForm({ memberObj }) {
 MemberForm.propTypes = {
   memberObj: PropTypes.shape({
     firebaseKey: PropTypes.string,
-    household_id: PropTypes.string,
+    householdId: PropTypes.string,
     uid: PropTypes.string,
     isAdmin: PropTypes.bool,
     name: PropTypes.string,
     age: PropTypes.string,
-    memberImage: PropTypes.string,
+    memberAvatar: PropTypes.string,
     role: PropTypes.string,
     description: PropTypes.string,
   }),

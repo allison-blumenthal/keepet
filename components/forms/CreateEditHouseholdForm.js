@@ -2,22 +2,26 @@ import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
 import { Form, FloatingLabel, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { createHousehold, updateHousehold } from '../../api/householdData';
+import { updateHousehold } from '../../api/householdData';
 import { useAuth } from '../../utils/context/authContext';
+import { createHouseholdAndUpdateMember } from '../../api/mergedData';
 
 const initialState = {
   householdName: '',
   imageUrl: '',
 };
 
-function HouseholdForm({ householdObj }) {
-  const [formInput, setFormInput] = useState(initialState);
+function CreateEditHouseholdForm({ householdObj }) {
+  const [formInput, setFormInput] = useState({
+    ...initialState,
+    uid: householdObj.uid,
+  });
   const router = useRouter();
-  const { user } = useAuth();
+  const { uid } = useAuth();
 
   useEffect(() => {
     if (householdObj.firebaseKey) setFormInput(householdObj);
-  }, [householdObj, user]);
+  }, [householdObj]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,16 +35,13 @@ function HouseholdForm({ householdObj }) {
     e.preventDefault();
     if (householdObj.firebaseKey) {
       updateHousehold(formInput)
-        .then(() => router.push(`/household/${householdObj.firebaseKey}`));
+        .then(() => router.back);
     } else {
-      const payload = { ...formInput, uid: user.uid };
-      createHousehold(payload).then(({ name }) => {
-        const patchPayload = { firebaseKey: name };
-
-        updateHousehold(patchPayload);
-      }).then(() => {
-        router.push(`/household/${householdObj.firebaseKey}`);
-      });
+      const payload = { ...formInput, uid };
+      createHouseholdAndUpdateMember(payload)
+        .then((response) => {
+          router.push(`/household/${response.householdId}`);
+        });
     }
   };
 
@@ -71,7 +72,7 @@ function HouseholdForm({ householdObj }) {
           />
         </FloatingLabel>
 
-        <Button type="submit" className="blue-btn" onClick={() => router.push(`/household/${householdObj.firebaseKey}`)}>
+        <Button type="submit" className="blue-btn">
           {householdObj.firebaseKey ? 'Update' : 'Create'} Household
         </Button>
 
@@ -82,7 +83,7 @@ function HouseholdForm({ householdObj }) {
   );
 }
 
-HouseholdForm.propTypes = {
+CreateEditHouseholdForm.propTypes = {
   householdObj: PropTypes.shape({
     firebaseKey: PropTypes.string,
     householdName: PropTypes.string,
@@ -91,8 +92,8 @@ HouseholdForm.propTypes = {
   }),
 };
 
-HouseholdForm.defaultProps = {
+CreateEditHouseholdForm.defaultProps = {
   householdObj: initialState,
 };
 
-export default HouseholdForm;
+export default CreateEditHouseholdForm;

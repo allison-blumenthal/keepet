@@ -1,15 +1,15 @@
 import React from 'react';
 import Head from 'next/head';
-import HouseholdForm from '../../components/forms/HouseholdForm';
+import CreateEditHouseholdForm from '../../components/forms/CreateEditHouseholdForm';
 
-export default function AddHousehold() {
+export default function CreateHousehold() {
   return (
     <>
       <Head>
-        <title>New Household</title>
+        <title>Household Form</title>
       </Head>
       <div>
-        <HouseholdForm />
+        <CreateEditHouseholdForm />
       </div>
     </>
   );
