@@ -15,6 +15,7 @@ function ViewHousehold() {
 
   useEffect(() => {
     getHouseholdDetails();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [firebaseKey]);
 
   return (
