@@ -42,27 +42,29 @@ function JoinHouseholdForm({ memberObj }) {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="household-radios">
+        <div className="household-card-container">
           {households.map((household) => (
             <>
-              <Form.Check
-                type="radio"
-                name="household-radio-btn"
-                label={household.householdName}
-                value={formInput.householdId}
-                checked={formInput.householdId}
-                onChange={(e) => {
-                  setFormInput((prevState) => ({
-                    ...prevState,
-                    householdId: e.target.checked,
-                  }));
-                }}
-                required
-              />
-              <HouseholdCard key={household.firebaseKey} householdObj={household} onUpdate={displayHouseholds} />
+              <Form.Group controlId="household-radios">
+                <Form.Check
+                  type="radio"
+                  name="household-radio-btn"
+                  label={household.householdName}
+                  value={formInput.householdId}
+                  checked={formInput.householdId}
+                  onChange={() => {
+                    setFormInput((prevState) => ({
+                      ...prevState,
+                      householdId: (household.firebaseKey),
+                    }));
+                  }}
+                  required
+                />
+                <HouseholdCard key={household.firebaseKey} householdObj={household} onUpdate={displayHouseholds} />
+              </Form.Group>
             </>
           ))}
-        </Form.Group>
+        </div>
         <Button type="submit">Join Selected Household</Button>
       </Form>
     </>
