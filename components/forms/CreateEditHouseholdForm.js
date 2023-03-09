@@ -4,7 +4,7 @@ import { Form, FloatingLabel, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { updateHousehold } from '../../api/householdData';
 import { useAuth } from '../../utils/context/authContext';
-import { createHouseholdAndUpdateMember } from '../../api/mergedData';
+import createHouseholdAndUpdateMember from '../../api/mergedData';
 
 const initialState = {
   householdName: '',
