@@ -15,16 +15,4 @@ const createHouseholdAndUpdateMember = (payload) => new Promise((resolve, reject
     .catch(reject);
 });
 
-// // Update member's householdId
-// const updateMemberHouseholdId = (uid) => new Promise((resolve, reject) => {
-//   getMemberByUID(uid).then(() => {
-//     const payload = { householdId: formInput };
-//     updateMember(patchPayload).then(resolve);
-//   })
-//     .catch(reject);
-// });
-
-export default {
-  createHouseholdAndUpdateMember,
-  // updateMemberHouseholdId,
-};
+export default createHouseholdAndUpdateMember;
