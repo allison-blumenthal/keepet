@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Form, Button } from 'react-bootstrap';
-import {
-  FormControl, FormLabel, RadioGroup, FormControlLabel, Radio,
-} from '@mui/material';
 import PropTypes from 'prop-types';
 import { updateMemberHouseholdId } from '../../api/mergedData';
 import HouseholdCard from '../ cards/HouseholdCard';
@@ -45,37 +42,29 @@ function JoinHouseholdForm({ memberObj }) {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <FormControl>
-          <FormLabel>Choose a household:</FormLabel>
-          <div className="household-card-container">
-            {households.map((household) => (
-              <RadioGroup
-                aria-labelledby="household-radio-buttons-group"
-                name="household-buttons"
+        <Form.Group controlId="household-radios">
+          {households.map((household) => (
+            <>
+              <Form.Check
+                type="radio"
+                name="household-radio-btn"
+                label={household.householdName}
                 value={formInput.householdId}
-                defaultValue=""
                 checked={formInput.householdId}
-                onClick={(e) => {
+                onChange={(e) => {
                   setFormInput((prevState) => ({
                     ...prevState,
-                    householdId: e.target.value,
+                    householdId: e.target.checked,
                   }));
                 }}
                 required
-              >
-                <FormControlLabel
-                  value={household}
-                  control={<Radio />}
-                  label={household.householdName}
-                />
-                <HouseholdCard key={household.firebaseKey} householdObj={household} onUpdate={displayHouseholds} />
-              </RadioGroup>
-            ))}
-          </div>
-        </FormControl>
+              />
+              <HouseholdCard key={household.firebaseKey} householdObj={household} onUpdate={displayHouseholds} />
+            </>
+          ))}
+        </Form.Group>
+        <Button type="submit">Join Selected Household</Button>
       </Form>
-
-      <Button className="view-btn" type="submit">Join Selected Household</Button>
     </>
   );
 }
