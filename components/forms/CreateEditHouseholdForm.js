@@ -11,7 +11,7 @@ const initialState = {
   imageUrl: '',
 };
 
-function HouseholdForm({ householdObj }) {
+function CreateEditHouseholdForm({ householdObj }) {
   const [formInput, setFormInput] = useState({
     ...initialState,
     uid: householdObj.uid,
@@ -83,7 +83,7 @@ function HouseholdForm({ householdObj }) {
   );
 }
 
-HouseholdForm.propTypes = {
+CreateEditHouseholdForm.propTypes = {
   householdObj: PropTypes.shape({
     firebaseKey: PropTypes.string,
     householdName: PropTypes.string,
@@ -92,8 +92,8 @@ HouseholdForm.propTypes = {
   }),
 };
 
-HouseholdForm.defaultProps = {
+CreateEditHouseholdForm.defaultProps = {
   householdObj: initialState,
 };
 
-export default HouseholdForm;
+export default CreateEditHouseholdForm;
