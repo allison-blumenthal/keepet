@@ -15,16 +15,16 @@ const createHouseholdAndUpdateMember = (payload) => new Promise((resolve, reject
     .catch(reject);
 });
 
-// Update member's householdId
-const updateMemberHouseholdId = (payload, uid) => new Promise((resolve, reject) => {
-  getMemberByUID(uid).then(() => {
-    const patchPayload = { householdId: payload };
-    updateMember(patchPayload).then(resolve);
-  })
-    .catch(reject);
-});
+// // Update member's householdId
+// const updateMemberHouseholdId = (uid) => new Promise((resolve, reject) => {
+//   getMemberByUID(uid).then(() => {
+//     const payload = { householdId: formInput };
+//     updateMember(patchPayload).then(resolve);
+//   })
+//     .catch(reject);
+// });
 
-export {
+export default {
   createHouseholdAndUpdateMember,
-  updateMemberHouseholdId,
+  // updateMemberHouseholdId,
 };

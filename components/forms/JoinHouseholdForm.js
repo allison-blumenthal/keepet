@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Form, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { updateMemberHouseholdId } from '../../api/mergedData';
 import HouseholdCard from '../ cards/HouseholdCard';
 import { getHouseholds } from '../../api/householdData';
 import { useAuth } from '../../utils/context/authContext';
+import { getMemberByUID, updateMember } from '../../api/memberData';
 
 const initialState = {
   householdId: '',
@@ -32,11 +32,13 @@ function JoinHouseholdForm({ memberObj }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const payload = { ...formInput, uid };
-    updateMemberHouseholdId(payload)
-      .then((response) => {
-        router.push(`/household/${response.householdId}`);
-      });
+    getMemberByUID(uid).then(() => {
+      const payload = { householdId: formInput };
+      updateMember(payload)
+        .then(() => {
+          router.push(`/household/${memberObj.householdId}`);
+        });
+    });
   };
 
   return (
