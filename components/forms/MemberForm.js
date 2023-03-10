@@ -172,7 +172,7 @@ function MemberForm({ memberObj }) {
 
             <>
               <Button className="view-btn" type="submit" onClick={() => router.push('/household/new')}>Create A Household</Button>
-              <Button className="view-btn" type="submit" onClick={() => router.push('/')}>Join A Household</Button>
+              <Button className="view-btn" type="submit" onClick={() => router.push('/join')}>Join A Household</Button>
             </>
           )}
         </div>

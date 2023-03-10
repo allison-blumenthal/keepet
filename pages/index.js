@@ -1,16 +1,10 @@
 import React from 'react';
-import Head from 'next/head';
-import JoinHouseholdForm from '../components/forms/JoinHouseholdForm';
 
-export default function JoinHousehold() {
+export default function index() {
   return (
-    <>
-      <Head>
-        <title>Join Household</title>
-      </Head>
-      <div>
-        <JoinHouseholdForm />
-      </div>
-    </>
+    <div>
+      <h1>Welcome to Keepet!</h1>
+      <h3>A place to keep your pets and people organized.</h3>
+    </div>
   );
 }

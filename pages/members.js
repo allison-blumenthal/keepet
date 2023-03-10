@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
-import { getMembers } from '../api/memberData';
+import { getMemberByUID, getMembersByHouseholdId } from '../api/memberData';
 import MemberCard from '../components/ cards/MemberCard';
+import { useAuth } from '../utils/context/authContext';
 
 export default function ShowMembers() {
-  const [members, setMembers] = useState([]);
+  const [member, setMember] = useState({});
+  const [householdMembers, setHouseholdMembers] = useState([]);
+  const { user } = useAuth();
 
   const getHouseholdMembers = () => {
-    getMembers().then(setMembers);
+    getMemberByUID(user.uid).then(setMember);
+    console.warn(member);
+    getMembersByHouseholdId(member[0].householdId).then(setHouseholdMembers);
   };
 
   useEffect(() => {
@@ -21,8 +26,8 @@ export default function ShowMembers() {
       </Head>
       <h1>This is the members page.</h1>
       <div className="d-flex flex-wrap">
-        {members.map((member) => (
-          <MemberCard key={member.firebaseKey} memberObj={member} onUpdate={getHouseholdMembers} />
+        {householdMembers.map((householdMember) => (
+          <MemberCard key={householdMember.firebaseKey} memberObj={householdMember} onUpdate={getHouseholdMembers} />
         ))}
       </div>
     </>
