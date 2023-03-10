@@ -11,12 +11,12 @@ export default function ShowMembers() {
 
   const getHouseholdMembers = () => {
     getMemberByUID(user.uid).then(setMember);
-    console.warn(member);
     getMembersByHouseholdId(member[0].householdId).then(setHouseholdMembers);
   };
 
   useEffect(() => {
     getHouseholdMembers();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
