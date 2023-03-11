@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import Button from 'react-bootstrap/Button';
+import Link from 'next/link';
 import { getSinglePet } from '../../api/petData';
 
 export default function ViewPet() {
@@ -15,6 +17,9 @@ export default function ViewPet() {
 
   return (
     <>
+      <Link href={`/pet/edit/${firebaseKey}`} passHref>
+        <Button variant="info" className="edit-btn">Edit Pet</Button>
+      </Link>
       <div className="mt-5 d-flex flex-wrap">
         <div className="d-flex flex-column">
           <img src={`/assets/images/petAvatars/${petDetails.petAvatar}`} alt={petDetails.petName} style={{ width: '300px' }} />
