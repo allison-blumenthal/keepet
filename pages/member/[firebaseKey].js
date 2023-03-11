@@ -17,12 +17,12 @@ export default function ViewMember() {
     <>
       <div className="mt-5 d-flex flex-wrap">
         <div className="d-flex flex-column">
-          <img src={`/assets/images/memberAvatars/${memberDetails.memberAvatar}`} alt={memberDetails.name} style={{ width: '300px' }} />
+          <img src={`/assets/images/memberAvatars/${memberDetails.memberAvatar}`} alt={memberDetails.memberName} style={{ width: '300px' }} />
         </div>
         <div className="text-black ms-5 details">
-          <h2>{memberDetails.name}</h2>
+          <h2>{memberDetails.memberName}</h2>
           <h3>{memberDetails.role}</h3>
-          <h3>{memberDetails.age}</h3>
+          <h3>{memberDetails.memberAge}</h3>
           <p>{memberDetails.description}</p>
         </div>
       </div>
