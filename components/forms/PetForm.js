@@ -1,39 +1,38 @@
 /* eslint-disable @next/next/no-img-element */
-import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import { FloatingLabel, Form, Button } from 'react-bootstrap';
-// eslint-disable-next-line import/no-extraneous-dependencies
+import { Form, FloatingLabel, Button } from 'react-bootstrap';
 import {
   ImageList, ImageListItem, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio,
 } from '@mui/material';
 import { useAuth } from '../../utils/context/authContext';
-import { createMember, getMemberByUID, updateMember } from '../../api/memberData';
-import { memberAvatars } from '../../utils/avatars';
+import { petAvatars } from '../../utils/avatars';
+import { createPet, updatePet } from '../../api/petData';
 
 const initialState = {
   firebaseKey: '',
   householdId: '',
   uid: '',
-  isAdmin: false,
-  memberName: '',
-  memberAge: '',
-  memberAvatar: '',
-  role: '',
-  description: '',
+  petName: '',
+  species: '',
+  petAge: '',
+  color: '',
+  info: '',
+  petAvatar: '',
 };
 
-function MemberForm({ memberObj }) {
+function PetForm({ petObj }) {
   const [formInput, setFormInput] = useState({
     ...initialState,
-    uid: memberObj.uid,
+    uid: petObj.uid,
   });
   const router = useRouter();
-  const { setUser, uid } = useAuth();
+  const { uid } = useAuth();
 
   useEffect(() => {
-    if (memberObj.firebaseKey) setFormInput(memberObj);
-  }, [memberObj]);
+    if (petObj.firebaseKey) setFormInput(petObj);
+  }, [petObj]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -45,20 +44,17 @@ function MemberForm({ memberObj }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (memberObj.firebaseKey) {
-      updateMember(formInput)
+    if (petObj.firebaseKey) {
+      updatePet(formInput)
         .then(() => router.back);
     } else {
       const payload = { ...formInput, uid };
-      createMember(payload).then(({ name }) => {
+      createPet(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
 
-        updateMember(patchPayload).then(() => {
-          getMemberByUID(uid)
-            .then((userData) => {
-              setUser(userData);
-            });
-        });
+        updatePet(patchPayload);
+      }).then(() => {
+        router.push('/pets');
       });
     }
   };
@@ -66,48 +62,59 @@ function MemberForm({ memberObj }) {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <h1 className="text-white mt-5">{memberObj.firebaseKey ? 'Update' : 'New'} Member</h1>
+        <h1 className="text-white mt-5">{petObj.firebaseKey ? 'Update' : 'New'} Pet</h1>
 
-        <FloatingLabel controlId="floatingInput1" label="Member's Name" className="mb-3">
+        <FloatingLabel controlId="floatingInput1" label="Pet's Name" className="mb-3">
           <Form.Control
             type="text"
-            placeholder="Member's Name"
-            name="memberName"
-            value={formInput.memberName}
+            placeholder="Pet's Name"
+            name="petName"
+            value={formInput.petName}
             onChange={handleChange}
             required
           />
         </FloatingLabel>
 
-        <FloatingLabel controlId="floatingInput2" label="Member's Age" className="mb-3">
+        <FloatingLabel controlId="floatingInput2" label="Pet's Species" className="mb-3">
           <Form.Control
             type="text"
-            placeholder="Member's Age"
-            name="memberAge"
-            value={formInput.memberAge}
+            placeholder="Pet's Species"
+            name="species"
+            value={formInput.species}
             onChange={handleChange}
             required
           />
         </FloatingLabel>
 
-        <FloatingLabel controlId="floatingInput3" label="Member's Role" className="mb-3">
+        <FloatingLabel controlId="floatingInput2" label="Pet's Age" className="mb-3">
           <Form.Control
             type="text"
-            placeholder="Member's Role"
-            name="role"
-            value={formInput.role}
+            placeholder="Pet's Age"
+            name="petAge"
+            value={formInput.petAge}
             onChange={handleChange}
             required
           />
         </FloatingLabel>
 
-        <FloatingLabel controlId="floatingTextarea" label="Description" className="mb-3">
+        <FloatingLabel controlId="floatingInput3" label="Pet Color" className="mb-3">
+          <Form.Control
+            type="text"
+            placeholder="Pet Color"
+            name="color"
+            value={formInput.color}
+            onChange={handleChange}
+            required
+          />
+        </FloatingLabel>
+
+        <FloatingLabel controlId="floatingTextarea" label="Info" className="mb-3">
           <Form.Control
             as="textarea"
             placeholder="Description"
             style={{ height: '100px' }}
-            name="description"
-            value={formInput.description}
+            name="info"
+            value={formInput.info}
             onChange={handleChange}
             required
           />
@@ -118,17 +125,17 @@ function MemberForm({ memberObj }) {
 
           <div className="image-list-container">
             <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
-              {memberAvatars.map((avatar) => (
+              {petAvatars.map((avatar) => (
                 <RadioGroup
                   aria-labelledby="avatar-radio-buttons-group"
                   name="avatar-buttons"
-                  value={formInput.memberAvatar}
+                  value={formInput.petAvatar}
                   defaultValue="1.png"
-                  checked={formInput.memberAvatar}
+                  checked={formInput.petAvatar}
                   onClick={(e) => {
                     setFormInput((prevState) => ({
                       ...prevState,
-                      memberAvatar: e.target.value,
+                      petAvatar: e.target.value,
                     }));
                   }}
                   required
@@ -143,8 +150,8 @@ function MemberForm({ memberObj }) {
                     name="memberAvatar"
                   >
                     <img
-                      src={`/assets/images/memberAvatars/${avatar}?w=164&h=164&fit=crop&auto=format`}
-                      srcSet={`/assets/images/memberAvatars/${avatar}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                      src={`/assets/images/petAvatars/${avatar}?w=164&h=164&fit=crop&auto=format`}
+                      srcSet={`/assets/images/petAvatars/${avatar}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                       alt={`avatar ${avatar}`}
                       loading="lazy"
                     />
@@ -163,40 +170,30 @@ function MemberForm({ memberObj }) {
             marginBottom: '80px',
           }}
         >
-          {memberObj.firebaseKey ? (
-            <>
-              <Button className="view-btn" type="submit" onClick={() => router.back}>Update</Button>
-              <Button type="btn" className="mx-2 red-btn" onClick={() => router.back()}>Cancel</Button>
-            </>
-          ) : (
-
-            <>
-              <Button className="view-btn" type="submit" onClick={() => router.push('/household/new')}>Create A Household</Button>
-              <Button className="view-btn" type="submit" onClick={() => router.push('/join')}>Join A Household</Button>
-            </>
-          )}
+          <Button className="view-btn" type="submit">{petObj.firebaseKey ? 'Update' : 'Add'} Pet</Button>
+          <Button type="btn" className="mx-2 red-btn" onClick={() => router.back()}>Cancel</Button>
         </div>
       </Form>
     </>
   );
 }
 
-MemberForm.propTypes = {
-  memberObj: PropTypes.shape({
+PetForm.propTypes = {
+  petObj: PropTypes.shape({
     firebaseKey: PropTypes.string,
     householdId: PropTypes.string,
     uid: PropTypes.string,
-    isAdmin: PropTypes.bool,
-    memberName: PropTypes.string,
-    memberAge: PropTypes.string,
-    memberAvatar: PropTypes.string,
-    role: PropTypes.string,
-    description: PropTypes.string,
+    petName: PropTypes.string,
+    species: PropTypes.string,
+    petAge: PropTypes.string,
+    color: PropTypes.string,
+    info: PropTypes.string,
+    petAvatar: PropTypes.string,
   }),
 };
 
-MemberForm.defaultProps = {
-  memberObj: initialState,
+PetForm.defaultProps = {
+  petObj: initialState,
 };
 
-export default MemberForm;
+export default PetForm;
