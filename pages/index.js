@@ -6,7 +6,7 @@ import { useAuth } from '../utils/context/authContext';
 import { getMemberByUID } from '../api/memberData';
 
 export default function Index() {
-  const [member, setMember] = useState([]);
+  const [member, setMember] = useState({});
   const router = useRouter();
   const { uid } = useAuth();
 

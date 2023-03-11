@@ -16,8 +16,7 @@ export default function ShowMembers() {
 
   useEffect(() => {
     getHouseholdMembers();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [user]);
 
   return (
     <>
