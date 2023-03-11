@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import PetForm from '../../components/forms/PetForm';
 
 export default function AddPet() {
   return (
@@ -8,7 +9,7 @@ export default function AddPet() {
         <title>New Pet</title>
       </Head>
       <div>
-        {/* <PetForm /> */}
+        <PetForm />
       </div>
     </>
   );

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { getMemberByUID, getMembersByHouseholdId } from '../api/memberData';
-import MemberCard from '../components/ cards/MemberCard';
+import MemberCard from '../components/cards/MemberCard';
 import { useAuth } from '../utils/context/authContext';
 
 export default function ShowMembers() {

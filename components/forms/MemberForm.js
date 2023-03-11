@@ -16,8 +16,8 @@ const initialState = {
   householdId: '',
   uid: '',
   isAdmin: false,
-  name: '',
-  age: '',
+  memberName: '',
+  memberAge: '',
   memberAvatar: '',
   role: '',
   description: '',
@@ -72,8 +72,8 @@ function MemberForm({ memberObj }) {
           <Form.Control
             type="text"
             placeholder="Member's Name"
-            name="name"
-            value={formInput.name}
+            name="memberName"
+            value={formInput.memberName}
             onChange={handleChange}
             required
           />
@@ -83,8 +83,8 @@ function MemberForm({ memberObj }) {
           <Form.Control
             type="text"
             placeholder="Member's Age"
-            name="age"
-            value={formInput.age}
+            name="memberAge"
+            value={formInput.memberAge}
             onChange={handleChange}
             required
           />
@@ -187,8 +187,8 @@ MemberForm.propTypes = {
     householdId: PropTypes.string,
     uid: PropTypes.string,
     isAdmin: PropTypes.bool,
-    name: PropTypes.string,
-    age: PropTypes.string,
+    memberName: PropTypes.string,
+    memberAge: PropTypes.string,
     memberAvatar: PropTypes.string,
     role: PropTypes.string,
     description: PropTypes.string,
