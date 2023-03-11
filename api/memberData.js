@@ -93,6 +93,23 @@ const deleteMember = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getMembersByHouseholdId = (householdId) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/members.json?orderBy="householdId"&equalTo="${householdId}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    }).catch(reject);
+});
+
 export {
   getMemberByUID,
   getMembers,
@@ -100,4 +117,5 @@ export {
   createMember,
   updateMember,
   deleteMember,
+  getMembersByHouseholdId,
 };

@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
-import JoinHouseholdForm from '../components/forms/JoinHouseholdForm';
+import { Button } from 'react-bootstrap';
+import { useRouter } from 'next/router';
+import { useAuth } from '../utils/context/authContext';
+import { getMemberByUID } from '../api/memberData';
 
-export default function JoinHousehold() {
+export default function Index() {
+  const [member, setMember] = useState({});
+  const router = useRouter();
+  const { uid } = useAuth();
+
+  useEffect(() => {
+    getMemberByUID(uid).then(setMember);
+  }, [uid]);
+
   return (
     <>
       <Head>
-        <title>Join Household</title>
+        <title>Home</title>
       </Head>
       <div>
-        <JoinHouseholdForm />
+        <Button type="btn" className="mx-2 primary" onClick={() => router.push(`/household/${member[0].householdId}`)}>Go to My Household</Button>
       </div>
     </>
   );
