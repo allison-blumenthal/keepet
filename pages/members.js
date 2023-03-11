@@ -5,17 +5,21 @@ import MemberCard from '../components/ cards/MemberCard';
 import { useAuth } from '../utils/context/authContext';
 
 export default function ShowMembers() {
+  // eslint-disable-next-line no-unused-vars
   const [member, setMember] = useState({});
   const [householdMembers, setHouseholdMembers] = useState([]);
   const { user } = useAuth();
 
   const getHouseholdMembers = () => {
-    getMemberByUID(user.uid).then(setMember);
-    getMembersByHouseholdId(member[0].householdId).then(setHouseholdMembers);
+    getMemberByUID(user.uid).then((memberObj) => {
+      setMember(memberObj[0]);
+      getMembersByHouseholdId(memberObj[0].householdId).then(setHouseholdMembers);
+    });
   };
 
   useEffect(() => {
     getHouseholdMembers();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   return (
