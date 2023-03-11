@@ -18,7 +18,7 @@ export default function ViewPet() {
   const deleteThisPet = () => {
     if (window.confirm(`Delete ${petDetails.petName}?`)) {
       deletePet(petDetails.firebaseKey)
-        .then(() => router.push('pets'));
+        .then(() => router.push('/pets'));
     }
   };
 
