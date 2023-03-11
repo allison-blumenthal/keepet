@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Button from 'react-bootstrap/Button';
 import Link from 'next/link';
-import { getSinglePet } from '../../api/petData';
+import { deletePet, getSinglePet } from '../../api/petData';
 
 export default function ViewPet() {
   const [petDetails, setPetDetails] = useState({});
@@ -15,11 +15,20 @@ export default function ViewPet() {
     getSinglePet(firebaseKey).then(setPetDetails);
   }, [firebaseKey]);
 
+  const deleteThisPet = () => {
+    if (window.confirm(`Delete ${petDetails.petName}?`)) {
+      deletePet(petDetails.firebaseKey)
+        .then(() => router.push('pets'));
+    }
+  };
+
   return (
     <>
       <Link href={`/pet/edit/${firebaseKey}`} passHref>
         <Button variant="info" className="edit-btn">Edit Pet</Button>
       </Link>
+      <Button variant="danger" onClick={deleteThisPet} className="delete-btn">DELETE
+      </Button>
       <div className="mt-5 d-flex flex-wrap">
         <div className="d-flex flex-column">
           <img src={`/assets/images/petAvatars/${petDetails.petAvatar}`} alt={petDetails.petName} style={{ width: '300px' }} />
