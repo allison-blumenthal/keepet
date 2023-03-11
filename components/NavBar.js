@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -9,15 +9,27 @@ import Image from 'next/image';
 import Logo from './Logo';
 import { signOut } from '../utils/auth';
 import home from '../src/assets/images/home-icon.png';
-import member from '../src/assets/images/member-icon.png';
-import pet from '../src/assets/images/paw-icon.png';
-import task from '../src/assets/images/task-icon.png';
+import members from '../src/assets/images/member-icon.png';
+import pets from '../src/assets/images/paw-icon.png';
+import tasks from '../src/assets/images/task-icon.png';
+import { useAuth } from '../utils/context/authContext';
+import { getMemberByUID } from '../api/memberData';
 
 export default function NavBar() {
+  const [member, setMember] = useState({});
+
+  const { uid } = useAuth();
+
+  useEffect(() => {
+    getMemberByUID(uid).then((memberObj) => {
+      setMember(memberObj[0]);
+    });
+  }, [uid]);
+
   return (
     <>
       <div className="navbar-top">
-        <Link passHref href="/">
+        <Link passHref href={`/household/${member.householdId}`}>
           <Navbar.Brand>
             <div className="logo">
               <Logo />
@@ -31,7 +43,7 @@ export default function NavBar() {
         <Container>
           <Nav className="flex-grow-1 justify-content-evenly">
 
-            <Nav.Link href="/home">
+            <Nav.Link href={`/household/${member.householdId}`}>
               <div className="nav-icon">
                 <Image src={home} alt="home icon" />
               </div>
@@ -39,19 +51,19 @@ export default function NavBar() {
 
             <Nav.Link href="/members">
               <div className="nav-icon">
-                <Image src={member} alt="member icon" />
+                <Image src={members} alt="member icon" />
               </div>
             </Nav.Link>
 
             <Nav.Link href="/pets">
               <div className="nav-icon">
-                <Image src={pet} alt="pet icon" />
+                <Image src={pets} alt="pet icon" />
               </div>
             </Nav.Link>
 
             <Nav.Link href="/tasks">
               <div className="nav-icon">
-                <Image src={task} alt="task icon" />
+                <Image src={tasks} alt="task icon" />
               </div>
             </Nav.Link>
           </Nav>
