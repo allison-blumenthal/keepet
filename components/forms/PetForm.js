@@ -9,6 +9,7 @@ import {
 import { useAuth } from '../../utils/context/authContext';
 import { petAvatars } from '../../utils/avatars';
 import { createPet, updatePet } from '../../api/petData';
+import { getMemberByUID } from '../../api/memberData';
 
 const initialState = {
   firebaseKey: '',
@@ -23,6 +24,7 @@ const initialState = {
 };
 
 function PetForm({ petObj }) {
+  const [member, setMember] = useState({});
   const [formInput, setFormInput] = useState({
     ...initialState,
     uid: petObj.uid,
@@ -30,9 +32,17 @@ function PetForm({ petObj }) {
   const router = useRouter();
   const { uid } = useAuth();
 
+  const getMemberInfo = () => {
+    getMemberByUID(uid).then((memberObj) => {
+      setMember(memberObj[0]);
+    });
+  };
+
   useEffect(() => {
+    getMemberInfo();
     if (petObj.firebaseKey) setFormInput(petObj);
-  }, [petObj]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [uid, petObj]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,11 +54,12 @@ function PetForm({ petObj }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (petObj.firebaseKey) {
       updatePet(formInput)
         .then(() => router.back);
     } else {
-      const payload = { ...formInput, uid };
+      const payload = { ...formInput, uid, householdId: member.householdId };
       createPet(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
 
