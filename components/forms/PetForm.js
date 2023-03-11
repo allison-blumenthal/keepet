@@ -57,7 +57,7 @@ function PetForm({ petObj }) {
 
     if (petObj.firebaseKey) {
       updatePet(formInput)
-        .then(() => router.back);
+        .then(() => router.push(`/pet/${petObj.firebaseKey}`));
     } else {
       const payload = { ...formInput, uid, householdId: member.householdId };
       createPet(payload).then(({ name }) => {
