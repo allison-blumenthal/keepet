@@ -16,6 +16,7 @@ const initialState = {
   firebaseKey: '',
   memberId: '',
   petId: '',
+  householdId: '',
   title: '',
   location: '',
   taskDescription: '',
@@ -72,9 +73,10 @@ export default function TaskForm({ taskObj }) {
       updateTask(formInput)
         .then(() => router.push(`/task/${taskObj.firebaseKey}`));
     } else {
-      const payload = (formInput);
+      const payload = { ...formInput, uid, householdId: member.householdId };
       createTask(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
+        console.warn(patchPayload);
 
         updateTask(patchPayload);
       }).then(() => {
@@ -105,7 +107,7 @@ export default function TaskForm({ taskObj }) {
             name="petId"
             onChange={handleChange}
             className="mb-3"
-            value={taskObj.petId}
+            value={formInput.petId}
             required
           >
             <option value="">Which pet is this task for?</option>
@@ -178,7 +180,7 @@ export default function TaskForm({ taskObj }) {
             name="memberId"
             onChange={handleChange}
             className="mb-3"
-            value={taskObj.memberId}
+            value={formInput.memberId}
             required
           >
             <option value="">Who is this task assigned to?</option>
@@ -265,6 +267,7 @@ TaskForm.propTypes = {
     due: PropTypes.string,
     taskAvatar: PropTypes.string,
     uid: PropTypes.string,
+    householdId: PropTypes.string,
   }),
 };
 

@@ -4,7 +4,6 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 
 export default function PetCard({ petObj }) {
-  console.warn(petObj);
   return (
     <>
       <Card style={{ width: '18rem', margin: '10px' }}>

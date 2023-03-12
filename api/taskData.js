@@ -94,6 +94,24 @@ const getTasksByPetId = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// GET TASKS BY HOUSEHOLDID
+const getTasksByHouseholdId = (householdId) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/tasks.json?orderBy="householdId"&equalTo="${householdId}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    }).catch(reject);
+});
+
 export {
   getAllTasks,
   getSingleTask,
@@ -101,4 +119,5 @@ export {
   updateTask,
   deleteTask,
   getTasksByPetId,
+  getTasksByHouseholdId,
 };
