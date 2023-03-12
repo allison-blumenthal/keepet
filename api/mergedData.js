@@ -7,7 +7,7 @@ const createHouseholdAndUpdateMember = (payload) => new Promise((resolve, reject
     const patchPayload = { firebaseKey: name };
     updateHousehold(patchPayload).then(() => {
       getMemberByUID(payload.uid).then((memberObj) => {
-        const memberPayload = { householdId: name, firebaseKey: memberObj[0].firebaseKey };
+        const memberPayload = { householdId: name, firebaseKey: memberObj[0].firebaseKey, isAdmin: true };
         updateMember(memberPayload).then(resolve);
       });
     });
