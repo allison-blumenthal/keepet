@@ -28,7 +28,9 @@ function JoinHouseholdForm({ memberObj }) {
 
   useEffect(() => {
     displayHouseholds();
-    getMemberByUID(uid).then(setMember);
+    getMemberByUID(uid).then((memberInfo) => {
+      setMember(memberInfo[0]);
+    });
 
     if (memberObj.firebaseKey) setFormInput(memberObj);
   }, [uid, memberObj]);
@@ -36,10 +38,10 @@ function JoinHouseholdForm({ memberObj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const payload = { householdId: formInput.householdId, firebaseKey: member[0].firebaseKey };
+    const payload = { householdId: formInput.householdId, firebaseKey: member.firebaseKey };
     updateMember(payload)
       .then(() => {
-        router.push(`/household/${member[0].householdId}`);
+        router.push(`/household/${member.householdId}`);
       });
   };
 
