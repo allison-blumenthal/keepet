@@ -22,6 +22,7 @@ const initialState = {
   taskDescription: '',
   timeOfDay: '',
   due: '',
+  lastDone: '',
   taskAvatar: '',
 };
 
@@ -130,6 +131,7 @@ export default function TaskForm({ taskObj }) {
             name="timeOfDay"
             onChange={handleChange}
             className="mb-3"
+            value={formInput.timeOfDay}
             required
           >
             <option value="">Select the task time of day</option>

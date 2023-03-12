@@ -25,7 +25,7 @@ export default function ViewPet() {
   return (
     <>
       <Link href={`/pet/edit/${firebaseKey}`} passHref>
-        <Button variant="info" className="edit-btn">Edit Pet</Button>
+        <Button variant="info" className="edit-btn">EDIT</Button>
       </Link>
       <Button variant="danger" onClick={deleteThisPet} className="delete-btn">DELETE
       </Button>
