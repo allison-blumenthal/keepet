@@ -29,12 +29,15 @@ export default function TaskForm({ taskObj }) {
   const [member, setMember] = useState({});
   const [householdPets, setHouseholdPets] = useState([]);
   const [householdMembers, setHouseholdMembers] = useState([]);
-  const [formInput, setFormInput] = useState({});
+  const [formInput, setFormInput] = useState({
+    ...initialState,
+    uid: taskObj.uid,
+  });
   const router = useRouter();
-  const { user } = useAuth();
+  const { uid } = useAuth();
 
   const getWholeHousehold = () => {
-    getMemberByUID(user.uid).then((memberObj) => {
+    getMemberByUID(uid).then((memberObj) => {
       setMember(memberObj[0]);
       getPetsByHouseholdId(memberObj[0].householdId)
         .then((petArr) => {
@@ -52,7 +55,7 @@ export default function TaskForm({ taskObj }) {
 
     if (taskObj.firebaseKey) setFormInput(taskObj);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, taskObj]);
+  }, [uid, taskObj]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -261,6 +264,7 @@ TaskForm.propTypes = {
     timeOfDay: PropTypes.string,
     due: PropTypes.string,
     taskAvatar: PropTypes.string,
+    uid: PropTypes.string,
   }),
 };
 
