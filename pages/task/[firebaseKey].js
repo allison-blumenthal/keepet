@@ -25,7 +25,8 @@ export default function ViewTask() {
   useEffect(() => {
     getMemberInfo();
     getSingleTask(firebaseKey).then(setTaskDetails);
-  }, [firebaseKey]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user, firebaseKey]);
 
   const deleteThisTask = () => {
     if (window.confirm(`Delete ${taskDetails.title}?`)) {
