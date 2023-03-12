@@ -6,7 +6,7 @@ export default function CreateHousehold() {
   return (
     <>
       <Head>
-        <title>Household Form</title>
+        <title>Create Household</title>
       </Head>
       <div>
         <CreateEditHouseholdForm />

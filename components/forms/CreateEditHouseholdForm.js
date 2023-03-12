@@ -48,7 +48,7 @@ function CreateEditHouseholdForm({ householdObj }) {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <h1 className="mt-5 mb-3">Create Household</h1>
+        <h1 className="mt-5 mb-3">{householdObj.firebaseKey ? 'Update' : 'Create'} Household</h1>
 
         <FloatingLabel controlId="floatingInput2" label="Household Name" className="mb-3 text-black">
           <Form.Control
