@@ -6,15 +6,25 @@ import Link from 'next/link';
 import Head from 'next/head';
 import { deletePet, getSinglePet } from '../../api/petData';
 import { useAuth } from '../../utils/context/authContext';
+import { getMemberByUID } from '../../api/memberData';
 
 export default function ViewPet() {
+  const [member, setMember] = useState({});
   const [petDetails, setPetDetails] = useState({});
   const router = useRouter();
   const { user } = useAuth();
 
   const { firebaseKey } = router.query;
 
+  const getMemberInfo = () => {
+    getMemberByUID(user.uid).then((memberObj) => {
+      setMember(memberObj[0]);
+    });
+  };
+
   useEffect(() => {
+    getMemberInfo();
+    console.warn(member);
     getSinglePet(firebaseKey).then(setPetDetails);
   }, [firebaseKey]);
 
@@ -30,7 +40,7 @@ export default function ViewPet() {
       <Head>
         <title>{petDetails?.title}</title>
       </Head>
-      {user.uid === petDetails.uid ? (
+      {(petDetails.uid === member.uid) || (member.isAdmin === true) ? (
         <>
           <Link href={`/pet/edit/${firebaseKey}`} passHref>
             <Button variant="info" className="edit-btn">EDIT</Button>
