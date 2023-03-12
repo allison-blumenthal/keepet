@@ -24,7 +24,8 @@ export default function ViewMember() {
   useEffect(() => {
     getMemberInfo();
     getSingleMember(firebaseKey).then(setMemberDetails);
-  }, [firebaseKey]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user, firebaseKey]);
 
   return (
     <>

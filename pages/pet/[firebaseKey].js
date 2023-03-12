@@ -26,7 +26,8 @@ export default function ViewPet() {
     getMemberInfo();
     console.warn(member);
     getSinglePet(firebaseKey).then(setPetDetails);
-  }, [firebaseKey]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user, firebaseKey]);
 
   const deleteThisPet = () => {
     if (window.confirm(`Delete ${petDetails.petName}?`)) {
