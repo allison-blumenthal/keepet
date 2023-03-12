@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Form, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import HouseholdCard from '../ cards/HouseholdCard';
+import HouseholdCard from '../cards/HouseholdCard';
 import { getHouseholds } from '../../api/householdData';
 import { useAuth } from '../../utils/context/authContext';
 import { getMemberByUID, updateMember } from '../../api/memberData';
