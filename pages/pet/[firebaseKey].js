@@ -5,10 +5,12 @@ import Button from 'react-bootstrap/Button';
 import Link from 'next/link';
 import Head from 'next/head';
 import { deletePet, getSinglePet } from '../../api/petData';
+import { useAuth } from '../../utils/context/authContext';
 
 export default function ViewPet() {
   const [petDetails, setPetDetails] = useState({});
   const router = useRouter();
+  const { user } = useAuth();
 
   const { firebaseKey } = router.query;
 
@@ -28,11 +30,15 @@ export default function ViewPet() {
       <Head>
         <title>{petDetails?.title}</title>
       </Head>
-      <Link href={`/pet/edit/${firebaseKey}`} passHref>
-        <Button variant="info" className="edit-btn">EDIT</Button>
-      </Link>
-      <Button variant="danger" onClick={deleteThisPet} className="delete-btn">DELETE
-      </Button>
+      {user.uid === petDetails.uid ? (
+        <>
+          <Link href={`/pet/edit/${firebaseKey}`} passHref>
+            <Button variant="info" className="edit-btn">EDIT</Button>
+          </Link>
+          <Button variant="danger" onClick={deleteThisPet} className="delete-btn">DELETE
+          </Button>
+        </>
+      ) : ''}
       <div className="mt-5 d-flex flex-wrap">
         <div className="d-flex flex-column">
           <img src={`/assets/images/petAvatars/${petDetails.petAvatar}`} alt={petDetails.petName} style={{ width: '300px' }} />
