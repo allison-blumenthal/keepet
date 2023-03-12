@@ -132,14 +132,14 @@ function PetForm({ petObj }) {
         </FloatingLabel>
 
         <FormControl>
-          <FormLabel>Choose an avatar:</FormLabel>
+          <FormLabel>Choose a pet avatar:</FormLabel>
 
           <div className="image-list-container">
             <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
               {petAvatars.map((avatar) => (
                 <RadioGroup
                   aria-labelledby="avatar-radio-buttons-group"
-                  name="avatar-buttons"
+                  name="pet-avatar-buttons"
                   value={formInput.petAvatar}
                   defaultValue="1.png"
                   checked={formInput.petAvatar}
@@ -158,7 +158,7 @@ function PetForm({ petObj }) {
                   />
                   <ImageListItem
                     key={avatar}
-                    name="memberAvatar"
+                    name="petAvatar"
                   >
                     <img
                       src={`/assets/images/petAvatars/${avatar}?w=164&h=164&fit=crop&auto=format`}
