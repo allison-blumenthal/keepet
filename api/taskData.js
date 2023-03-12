@@ -77,7 +77,7 @@ const deleteTask = (firebaseKey) => new Promise((resolve, reject) => {
 
 // GET PET TASKS
 const getTasksByPetId = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/tasks.json?orderBy="pet_id"&equalTo="${firebaseKey}"`, {
+  fetch(`${endpoint}/tasks.json?orderBy="petId"&equalTo="${firebaseKey}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
