@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 import { getSingleMember } from '../../api/memberData';
 
 export default function ViewMember() {
@@ -15,6 +16,9 @@ export default function ViewMember() {
 
   return (
     <>
+      <Head>
+        <title>{memberDetails?.title}</title>
+      </Head>
       <div className="mt-5 d-flex flex-wrap">
         <div className="d-flex flex-column">
           <img src={`/assets/images/memberAvatars/${memberDetails.memberAvatar}`} alt={memberDetails.memberName} style={{ width: '300px' }} />

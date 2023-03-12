@@ -34,7 +34,13 @@ export default function ShowTasks() {
         <title>Tasks</title>
       </Head>
       <h1>This is the tasks page.</h1>
-      <Button type="btn" className="mx-2 red-btn" onClick={() => router.push('/task/new')}>Add a Task</Button>
+
+      {member.isAdmin === true ? (
+        <>
+          <Button type="btn" className="mx-2 red-btn" onClick={() => router.push('/task/new')}>Add a Task</Button>
+        </>
+      )
+        : '' }
       <div className="d-flex flex-wrap">
         {householdTasks.map((householdTask) => (
           <TaskCard key={householdTask.firebaseKey} taskObj={householdTask} onUpdate={getHouseholdTasks} />

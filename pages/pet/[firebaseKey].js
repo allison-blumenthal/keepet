@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Button from 'react-bootstrap/Button';
 import Link from 'next/link';
+import Head from 'next/head';
 import { deletePet, getSinglePet } from '../../api/petData';
 
 export default function ViewPet() {
@@ -24,6 +25,9 @@ export default function ViewPet() {
 
   return (
     <>
+      <Head>
+        <title>{petDetails?.title}</title>
+      </Head>
       <Link href={`/pet/edit/${firebaseKey}`} passHref>
         <Button variant="info" className="edit-btn">EDIT</Button>
       </Link>
