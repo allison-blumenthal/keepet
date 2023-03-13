@@ -27,7 +27,7 @@ function CommentCard({ commentObj, onUpdate }) {
         <>
           <Card className="comment-card">
             <div className="comment-container">
-              <Card.Header>{commentObj.dateAdded}</Card.Header>
+              <Card.Header>{commentObj.timestamp}</Card.Header>
               <Card.Body>
                 <blockquote className="blockquote mb-0">
                   <p>
@@ -63,7 +63,7 @@ CommentCard.propTypes = {
     firebaseKey: PropTypes.string,
     taskId: PropTypes.string,
     memberId: PropTypes.string,
-    dateAdded: PropTypes.string,
+    timestamp: PropTypes.string,
     text: PropTypes.string,
     author: PropTypes.string,
   }).isRequired,

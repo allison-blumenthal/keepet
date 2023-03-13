@@ -9,7 +9,7 @@ const initialState = {
   firebaseKey: '',
   taskId: '',
   memberId: '',
-  dateAdded: '',
+  timestamp: '',
   text: '',
   author: '',
 };
@@ -18,6 +18,8 @@ export default function CommentForm({ taskFirebaseKey, onUpdate }) {
   const [formInput, setFormInput] = useState(initialState);
   const [member, setMember] = useState({});
   const { user } = useAuth();
+
+  const time = new Date();
 
   const getMemberInfo = () => {
     getMemberByUID(user.uid).then((memberObj) => {
@@ -44,7 +46,7 @@ export default function CommentForm({ taskFirebaseKey, onUpdate }) {
       ...formInput,
       taskId: taskFirebaseKey,
       memberId: member.uid,
-      dateAdded: new Date().toLocaleString(),
+      timestamp: time,
       author: member.memberName,
     };
 

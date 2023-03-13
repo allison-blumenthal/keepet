@@ -14,21 +14,13 @@ import CommentCard from '../../components/cards/CommentCard';
 export default function ViewTask() {
   const [taskDetails, setTaskDetails] = useState({});
   const [comments, setComments] = useState([]);
+  // eslint-disable-next-line no-unused-vars
+  const [sortedComments, setSortedComments] = useState([]);
   const [member, setMember] = useState({});
   const router = useRouter();
   const { user } = useAuth();
 
   const { firebaseKey } = router.query;
-
-  const getMemberInfo = () => {
-    getMemberByUID(user.uid).then((memberObj) => {
-      setMember(memberObj[0]);
-    });
-  };
-
-  const displayComments = () => {
-    getCommentsByTaskId(firebaseKey).then(setComments);
-  };
 
   const deleteThisTask = () => {
     if (window.confirm(`Delete ${taskDetails.title}?`)) {
@@ -37,10 +29,30 @@ export default function ViewTask() {
     }
   };
 
+  const getMemberInfo = () => {
+    getMemberByUID(user.uid).then((memberObj) => {
+      setMember(memberObj[0]);
+    });
+  };
+
+  const getTaskComments = () => {
+    getCommentsByTaskId(firebaseKey).then(setComments);
+  };
+
+  const displaySortedComments = () => {
+    if ((comments?.length) === 1) {
+      setSortedComments(comments);
+    } else {
+      const sorted = [...comments].sort((a, b) => b.timestamp - a.timestamp);
+      setSortedComments(sorted);
+    }
+  };
+
   useEffect(() => {
     getMemberInfo();
     getSingleTask(firebaseKey).then(setTaskDetails);
-    displayComments();
+    getTaskComments();
+    displaySortedComments();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, firebaseKey]);
 
@@ -73,13 +85,16 @@ export default function ViewTask() {
         </div>
       </div>
       <div>
-        <div className="comment-cards-container">{comments.map((comment) => (
-          <CommentCard key={comment.firebaseKey} commentObj={comment} onUpdate={displayComments} />
-        ))}
+        <div className="comment-cards-container">
+          {sortedComments
+            .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
+            .map((comment) => (
+              <CommentCard key={comment?.firebaseKey} commentObj={comment} onUpdate={displaySortedComments} />
+            ))}
         </div>
       </div>
       <div className="comment-form">
-        <CommentForm taskFirebaseKey={firebaseKey} onUpdate={displayComments} />
+        <CommentForm taskFirebaseKey={firebaseKey} onUpdate={displaySortedComments} />
       </div>
     </>
   );
