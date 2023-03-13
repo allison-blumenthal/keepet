@@ -24,7 +24,6 @@ export default function ViewPet() {
 
   useEffect(() => {
     getMemberInfo();
-    console.warn(member);
     getSinglePet(firebaseKey).then(setPetDetails);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, firebaseKey]);

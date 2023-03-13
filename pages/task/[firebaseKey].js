@@ -13,6 +13,7 @@ import CommentCard from '../../components/cards/CommentCard';
 
 export default function ViewTask() {
   const [taskDetails, setTaskDetails] = useState({});
+  // eslint-disable-next-line no-unused-vars
   const [comments, setComments] = useState([]);
   // eslint-disable-next-line no-unused-vars
   const [sortedComments, setSortedComments] = useState([]);
@@ -35,24 +36,21 @@ export default function ViewTask() {
     });
   };
 
-  const getTaskComments = () => {
-    getCommentsByTaskId(firebaseKey).then(setComments);
-  };
-
-  const displaySortedComments = () => {
-    if ((comments?.length) === 1) {
-      setSortedComments(comments);
-    } else {
-      const sorted = [...comments].sort((a, b) => b.timestamp - a.timestamp);
-      setSortedComments(sorted);
-    }
+  const displayComments = () => {
+    getCommentsByTaskId(firebaseKey).then((commentArr) => {
+      setComments(commentArr);
+      if (commentArr) {
+        const sorted = [...commentArr].sort((a, b) => b.timestamp - a.timestamp);
+        setSortedComments(sorted);
+      }
+    });
   };
 
   useEffect(() => {
     getMemberInfo();
     getSingleTask(firebaseKey).then(setTaskDetails);
-    getTaskComments();
-    displaySortedComments();
+    displayComments();
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, firebaseKey]);
 
@@ -89,12 +87,12 @@ export default function ViewTask() {
           {sortedComments
             .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
             .map((comment) => (
-              <CommentCard key={comment?.firebaseKey} commentObj={comment} onUpdate={displaySortedComments} />
+              <CommentCard key={comment?.firebaseKey} commentObj={comment} onUpdate={displayComments} />
             ))}
         </div>
       </div>
       <div className="comment-form">
-        <CommentForm taskFirebaseKey={firebaseKey} onUpdate={displaySortedComments} />
+        <CommentForm taskFirebaseKey={firebaseKey} onUpdate={displayComments} />
       </div>
     </>
   );
