@@ -5,7 +5,7 @@ const endpoint = clientCredentials.databaseURL;
 
 // GET TASK COMMENTS
 const getCommentsByTaskId = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/comments.json?orderBy="task_id"&equalTo="${firebaseKey}"`, {
+  fetch(`${endpoint}/comments.json?orderBy="taskId"&equalTo="${firebaseKey}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

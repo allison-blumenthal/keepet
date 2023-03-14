@@ -24,7 +24,6 @@ export default function ViewPet() {
 
   useEffect(() => {
     getMemberInfo();
-    console.warn(member);
     getSinglePet(firebaseKey).then(setPetDetails);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, firebaseKey]);
@@ -41,7 +40,7 @@ export default function ViewPet() {
       <Head>
         <title>{petDetails?.title}</title>
       </Head>
-      {(petDetails.uid === member.uid) || (member.isAdmin === true) ? (
+      {(petDetails.memberId === member.uid) || (member.isAdmin === true) ? (
         <>
           <Link href={`/pet/edit/${firebaseKey}`} passHref>
             <Button variant="info" className="edit-btn">EDIT</Button>

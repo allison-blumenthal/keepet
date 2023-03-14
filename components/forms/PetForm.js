@@ -14,7 +14,7 @@ import { getMemberByUID } from '../../api/memberData';
 const initialState = {
   firebaseKey: '',
   householdId: '',
-  uid: '',
+  memberId: '',
   petName: '',
   species: '',
   petAge: '',
@@ -27,7 +27,7 @@ function PetForm({ petObj }) {
   const [member, setMember] = useState({});
   const [formInput, setFormInput] = useState({
     ...initialState,
-    uid: petObj.uid,
+    uid: petObj.memberId,
   });
   const router = useRouter();
   const { uid } = useAuth();
@@ -193,7 +193,7 @@ PetForm.propTypes = {
   petObj: PropTypes.shape({
     firebaseKey: PropTypes.string,
     householdId: PropTypes.string,
-    uid: PropTypes.string,
+    memberId: PropTypes.string,
     petName: PropTypes.string,
     species: PropTypes.string,
     petAge: PropTypes.string,

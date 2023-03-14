@@ -7,26 +7,21 @@ import Head from 'next/head';
 import { deleteTask, getSingleTask } from '../../api/taskData';
 import { getMemberByUID } from '../../api/memberData';
 import { useAuth } from '../../utils/context/authContext';
+import { getCommentsByTaskId } from '../../api/commentData';
+import CommentForm from '../../components/forms/CommentForm';
+import CommentCard from '../../components/cards/CommentCard';
 
 export default function ViewTask() {
   const [taskDetails, setTaskDetails] = useState({});
+  // eslint-disable-next-line no-unused-vars
+  const [comments, setComments] = useState([]);
+  // eslint-disable-next-line no-unused-vars
+  const [sortedComments, setSortedComments] = useState([]);
   const [member, setMember] = useState({});
   const router = useRouter();
   const { user } = useAuth();
 
   const { firebaseKey } = router.query;
-
-  const getMemberInfo = () => {
-    getMemberByUID(user.uid).then((memberObj) => {
-      setMember(memberObj[0]);
-    });
-  };
-
-  useEffect(() => {
-    getMemberInfo();
-    getSingleTask(firebaseKey).then(setTaskDetails);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, firebaseKey]);
 
   const deleteThisTask = () => {
     if (window.confirm(`Delete ${taskDetails.title}?`)) {
@@ -34,6 +29,30 @@ export default function ViewTask() {
         .then(() => router.push('/tasks'));
     }
   };
+
+  const getMemberInfo = () => {
+    getMemberByUID(user.uid).then((memberObj) => {
+      setMember(memberObj[0]);
+    });
+  };
+
+  const displayComments = () => {
+    getCommentsByTaskId(firebaseKey).then((commentArr) => {
+      setComments(commentArr);
+      if (commentArr) {
+        const sorted = [...commentArr].sort((a, b) => b.timestamp - a.timestamp);
+        setSortedComments(sorted);
+      }
+    });
+  };
+
+  useEffect(() => {
+    getMemberInfo();
+    getSingleTask(firebaseKey).then(setTaskDetails);
+    displayComments();
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user, firebaseKey]);
 
   return (
     <>
@@ -62,6 +81,18 @@ export default function ViewTask() {
           <h3>{taskDetails.lastDone}</h3>
           <p>{taskDetails.taskDescription}</p>
         </div>
+      </div>
+      <div>
+        <div className="comment-cards-container">
+          {sortedComments
+            .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
+            .map((comment) => (
+              <CommentCard key={comment?.firebaseKey} commentObj={comment} onUpdate={displayComments} />
+            ))}
+        </div>
+      </div>
+      <div className="comment-form">
+        <CommentForm taskFirebaseKey={firebaseKey} onUpdate={displayComments} />
       </div>
     </>
   );
