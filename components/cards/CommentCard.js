@@ -42,7 +42,8 @@ function CommentCard({ commentObj, onUpdate }) {
 
     if (commentObj.firebaseKey) {
       updateComment(formInput)
-        .then(() => handleClose());
+        .then(() => handleClose())
+        .then(onUpdate);
     }
   };
 
