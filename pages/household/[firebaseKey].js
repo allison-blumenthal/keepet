@@ -41,8 +41,6 @@ function ViewHousehold() {
       <Head>
         <title>{householdDetails?.householdName}</title>
       </Head>
-      <h1>Welcome to Keepet!</h1>
-      <h3>A place to keep your pets and people organized.</h3>
 
       <div className="text-black ms-5 details">
         <h2>Your household:

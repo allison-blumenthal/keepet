@@ -17,19 +17,16 @@ import { getMemberByUID } from '../api/memberData';
 
 export default function NavBar() {
   const [member, setMember] = useState({});
-
-  const { uid } = useAuth();
+  const { user } = useAuth();
 
   useEffect(() => {
-    getMemberByUID(uid).then((memberObj) => {
-      setMember(memberObj[0]);
-    });
-  }, [uid]);
+    getMemberByUID(user.uid).then(setMember[0]);
+  }, [user]);
 
   return (
     <>
       <div className="navbar-top">
-        <Link passHref href={`/household/${member.householdId}`}>
+        <Link passHref href="/">
           <Navbar.Brand>
             <div className="logo">
               <Logo />
@@ -39,36 +36,37 @@ export default function NavBar() {
         <Button className="logout-btn" variant="danger" onClick={signOut}>Log Out</Button>
       </div>
 
-      <Navbar bg="light" variant="light" fixed="bottom">
-        <Container>
-          <Nav className="flex-grow-1 justify-content-evenly">
+      {member ? (
+        <Navbar bg="light" variant="light" fixed="bottom">
+          <Container>
+            <Nav className="flex-grow-1 justify-content-evenly">
+              <Nav.Link href={`/household/${member.householdId}`}>
+                <div className="nav-icon">
+                  <Image src={home} alt="home icon" />
+                </div>
+              </Nav.Link>
 
-            <Nav.Link href={`/household/${member.householdId}`}>
-              <div className="nav-icon">
-                <Image src={home} alt="home icon" />
-              </div>
-            </Nav.Link>
+              <Nav.Link href="/members">
+                <div className="nav-icon">
+                  <Image src={members} alt="member icon" />
+                </div>
+              </Nav.Link>
 
-            <Nav.Link href="/members">
-              <div className="nav-icon">
-                <Image src={members} alt="member icon" />
-              </div>
-            </Nav.Link>
+              <Nav.Link href="/pets">
+                <div className="nav-icon">
+                  <Image src={pets} alt="pet icon" />
+                </div>
+              </Nav.Link>
 
-            <Nav.Link href="/pets">
-              <div className="nav-icon">
-                <Image src={pets} alt="pet icon" />
-              </div>
-            </Nav.Link>
-
-            <Nav.Link href="/tasks">
-              <div className="nav-icon">
-                <Image src={tasks} alt="task icon" />
-              </div>
-            </Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
+              <Nav.Link href="/tasks">
+                <div className="nav-icon">
+                  <Image src={tasks} alt="task icon" />
+                </div>
+              </Nav.Link>
+            </Nav>
+          </Container>
+        </Navbar>
+      ) : ''}
     </>
   );
 }

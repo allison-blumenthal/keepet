@@ -8,7 +8,6 @@ import React, {
   useState,
 } from 'react';
 import { firebase } from '../client';
-import { getMemberByUID } from '../../api/memberData';
 
 const AuthContext = createContext();
 
@@ -16,7 +15,6 @@ AuthContext.displayName = 'AuthContext'; // Context object accepts a displayName
 
 const AuthProvider = (props) => {
   const [user, setUser] = useState(null);
-  const [uid, setUid] = useState('');
 
   // there are 3 states for the user:
   // null = application initial state, not yet loaded
@@ -24,16 +22,9 @@ const AuthProvider = (props) => {
   // an object/value = user is logged in
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged(async (fbUser) => {
+    firebase.auth().onAuthStateChanged((fbUser) => {
       if (fbUser) {
-        setUid(fbUser.uid);
-        await getMemberByUID(fbUser.uid).then(async (response) => {
-          if (Object.keys(response).length === 0) {
-            setUser('NO USER');
-          } else {
-            setUser(fbUser);
-          }
-        });
+        setUser(fbUser);
       } else {
         setUser(false);
       }
@@ -46,10 +37,8 @@ const AuthProvider = (props) => {
       userLoading: user === null,
       // as long as user === null, will be true
       // As soon as the user value !== null, value will be false
-      uid,
-      setUser,
     }),
-    [user, uid],
+    [user],
   );
 
   return <AuthContext.Provider value={value} {...props} />;

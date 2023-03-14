@@ -8,20 +8,16 @@ import createHouseholdAndUpdateMember from '../../api/mergedData';
 
 const initialState = {
   householdName: '',
-  imageUrl: '',
 };
 
 function CreateEditHouseholdForm({ householdObj }) {
-  const [formInput, setFormInput] = useState({
-    ...initialState,
-    uid: householdObj.uid,
-  });
+  const [formInput, setFormInput] = useState(initialState);
   const router = useRouter();
-  const { uid } = useAuth();
+  const { user } = useAuth();
 
   useEffect(() => {
     if (householdObj.firebaseKey) setFormInput(householdObj);
-  }, [householdObj]);
+  }, [householdObj, user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,9 +31,11 @@ function CreateEditHouseholdForm({ householdObj }) {
     e.preventDefault();
     if (householdObj.firebaseKey) {
       updateHousehold(formInput)
-        .then(() => router.back);
+        .then(() => {
+          router.push(`/household/${householdObj.firebaseKey}`);
+        });
     } else {
-      const payload = { ...formInput, uid };
+      const payload = { ...formInput, uid: user.uid };
       createHouseholdAndUpdateMember(payload)
         .then((response) => {
           router.push(`/household/${response.householdId}`);
@@ -61,17 +59,6 @@ function CreateEditHouseholdForm({ householdObj }) {
           />
         </FloatingLabel>
 
-        <FloatingLabel controlId="floatingInput2" label="Household Image" className="mb-3">
-          <Form.Control
-            type="url"
-            placeholder="Image url"
-            name="imageUrl"
-            value={formInput.imageUrl}
-            onChange={handleChange}
-            required
-          />
-        </FloatingLabel>
-
         <Button type="submit" className="blue-btn">
           {householdObj.firebaseKey ? 'Update' : 'Create'} Household
         </Button>
@@ -87,7 +74,6 @@ CreateEditHouseholdForm.propTypes = {
   householdObj: PropTypes.shape({
     firebaseKey: PropTypes.string,
     householdName: PropTypes.string,
-    imageUrl: PropTypes.string,
     uid: PropTypes.string,
   }),
 };

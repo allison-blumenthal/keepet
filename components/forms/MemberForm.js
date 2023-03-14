@@ -8,13 +8,10 @@ import {
   ImageList, ImageListItem, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio,
 } from '@mui/material';
 import { useAuth } from '../../utils/context/authContext';
-import { createMember, getMemberByUID, updateMember } from '../../api/memberData';
+import { createMember, updateMember } from '../../api/memberData';
 import { memberAvatars } from '../../utils/avatars';
 
 const initialState = {
-  firebaseKey: '',
-  householdId: '',
-  uid: '',
   isAdmin: false,
   memberName: '',
   memberAge: '',
@@ -24,16 +21,13 @@ const initialState = {
 };
 
 function MemberForm({ memberObj }) {
-  const [formInput, setFormInput] = useState({
-    ...initialState,
-    uid: memberObj.uid,
-  });
+  const [formInput, setFormInput] = useState(initialState);
   const router = useRouter();
-  const { setUser, uid } = useAuth();
+  const { user } = useAuth();
 
   useEffect(() => {
     if (memberObj.firebaseKey) setFormInput(memberObj);
-  }, [memberObj]);
+  }, [memberObj, user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -49,16 +43,11 @@ function MemberForm({ memberObj }) {
       updateMember(formInput)
         .then(() => router.back);
     } else {
-      const payload = { ...formInput, uid };
+      const payload = { ...formInput, uid: user.uid };
       createMember(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
 
-        updateMember(patchPayload).then(() => {
-          getMemberByUID(uid)
-            .then((userData) => {
-              setUser(userData);
-            });
-        });
+        updateMember(patchPayload);
       });
     }
   };
@@ -68,10 +57,10 @@ function MemberForm({ memberObj }) {
       <Form onSubmit={handleSubmit}>
         <h1 className="text-white mt-5">{memberObj.firebaseKey ? 'Update' : 'New'} Member</h1>
 
-        <FloatingLabel controlId="floatingInput1" label="Member's Name" className="mb-3">
+        <FloatingLabel controlId="floatingInput1" label="Name" className="mb-3">
           <Form.Control
             type="text"
-            placeholder="Member's Name"
+            placeholder="Name"
             name="memberName"
             value={formInput.memberName}
             onChange={handleChange}
@@ -79,10 +68,10 @@ function MemberForm({ memberObj }) {
           />
         </FloatingLabel>
 
-        <FloatingLabel controlId="floatingInput2" label="Member's Age" className="mb-3">
+        <FloatingLabel controlId="floatingInput2" label="Age" className="mb-3">
           <Form.Control
             type="text"
-            placeholder="Member's Age"
+            placeholder="Age"
             name="memberAge"
             value={formInput.memberAge}
             onChange={handleChange}
@@ -90,10 +79,10 @@ function MemberForm({ memberObj }) {
           />
         </FloatingLabel>
 
-        <FloatingLabel controlId="floatingInput3" label="Member's Role" className="mb-3">
+        <FloatingLabel controlId="floatingInput3" label="Role" className="mb-3">
           <Form.Control
             type="text"
-            placeholder="Member's Role"
+            placeholder="Role"
             name="role"
             value={formInput.role}
             onChange={handleChange}

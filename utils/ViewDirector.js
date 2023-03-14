@@ -3,7 +3,6 @@ import { useAuth } from './context/authContext';
 import Loading from '../components/Loading';
 import Signin from '../components/Signin';
 import NavBar from '../components/NavBar';
-import MemberForm from '../components/forms/MemberForm';
 
 const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) => {
   const { user, userLoading } = useAuth();
@@ -11,10 +10,6 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
   // if user state is null, then show loader
   if (userLoading) {
     return <Loading />;
-  }
-
-  if (user === 'NO USER') {
-    return <MemberForm user={user} />;
   }
 
   // what the user should see if they are logged in

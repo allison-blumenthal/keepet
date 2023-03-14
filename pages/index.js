@@ -8,20 +8,29 @@ import { getMemberByUID } from '../api/memberData';
 export default function Index() {
   const [member, setMember] = useState({});
   const router = useRouter();
-  const { uid } = useAuth();
+  const { user } = useAuth();
 
   useEffect(() => {
-    getMemberByUID(uid).then(setMember);
-  }, [uid]);
+    getMemberByUID(user.uid).then(setMember[0]);
+  }, [user]);
 
   return (
     <>
       <Head>
         <title>Home</title>
       </Head>
-      <div>
-        <Button type="btn" className="mx-2 primary" onClick={() => router.push(`/household/${member[0].householdId}`)}>Go to My Household</Button>
-      </div>
+      <h1>Welcome to Keepet!</h1>
+      <h3>A place to keep your pets and people organized.</h3>
+
+      {member.firebaseKey ? (
+        <div>
+          <Button type="btn" className="mx-2 primary" onClick={() => router.push(`/household/${member.householdId}`)}>Go to My Household</Button>
+        </div>
+      ) : (
+        <div>
+          <Button type="btn" className="mx-2 primary" onClick={() => router.push('/member/new')}>Get Started</Button>
+        </div>
+      ) }
     </>
   );
 }
