@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
-import { Button } from 'react-bootstrap';
-import { deleteComment } from '../../api/commentData';
+import { Button, Form } from 'react-bootstrap';
+import { deleteComment, updateComment } from '../../api/commentData';
 import { useAuth } from '../../utils/context/authContext';
 import { getSingleTask } from '../../api/taskData';
 
 function CommentCard({ commentObj, onUpdate }) {
+  const [show, setShow] = useState(false);
+  const [formInput, setFormInput] = useState({});
+
   const { user } = useAuth();
   // eslint-disable-next-line no-unused-vars
   const [task, setTask] = useState({});
+
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
 
   const deleteThisComment = () => {
     if (window.confirm('Delete your comment?')) {
@@ -19,7 +25,26 @@ function CommentCard({ commentObj, onUpdate }) {
 
   useEffect(() => {
     getSingleTask(commentObj.taskId).then(setTask);
-  }, [commentObj.taskId]);
+
+    if (commentObj.firebaseKey) setFormInput(commentObj);
+  }, [commentObj]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormInput((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (commentObj.firebaseKey) {
+      updateComment(formInput)
+        .then(() => handleClose());
+    }
+  };
 
   return (
     <>
@@ -39,12 +64,37 @@ function CommentCard({ commentObj, onUpdate }) {
                     {commentObj.author}
                     {commentObj.memberId === user.uid
                       ? (
-                        <Button
-                          className="delete-comment-btn"
-                          onClick={deleteThisComment}
-                        >
-                          Delete
-                        </Button>
+                        <>
+                          <Button
+                            className="edit-comment-btn"
+                            onClick={handleShow}
+                          >
+                            Edit
+                          </Button>
+                          <Button
+                            className="delete-comment-btn"
+                            onClick={deleteThisComment}
+                          >
+                            Delete
+                          </Button>
+                          {show === true ? (
+                            <>
+                              <Form onSubmit={handleSubmit}>
+                                <Form.Control
+                                  type="text"
+                                  aria-label="Comment text"
+                                  style={{ height: '50px' }}
+                                  name="text"
+                                  value={formInput.text}
+                                  onChange={handleChange}
+                                  required
+                                />
+                                <Button className="submit-edit-btn" type="submit">Update Comment</Button>
+                                <Button type="btn" className="mx-2 red-btn" onClick={handleClose}>Cancel</Button>
+                              </Form>
+                            </>
+                          ) : ''}
+                        </>
                       ) : ''}
                   </footer>
                 </blockquote>

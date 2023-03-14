@@ -66,6 +66,7 @@ export default function CommentForm({ taskFirebaseKey, onUpdate }) {
       <FloatingLabel controlId="floatingTextArea" label="Comment about this task..." className="mb-3 text-black">
         <Form.Control
           type="textarea"
+          aria-label="Comment text"
           style={{ height: '100px' }}
           name="text"
           value={formInput.text}
@@ -74,7 +75,7 @@ export default function CommentForm({ taskFirebaseKey, onUpdate }) {
         />
       </FloatingLabel>
 
-      <Button type="submit" className="blue-btn">Submit Comment</Button>
+      <Button type="submit" className="blue-btn">Add Comment</Button>
     </Form>
   );
 }
