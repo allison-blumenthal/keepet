@@ -19,9 +19,15 @@ export default function NavBar() {
   const [member, setMember] = useState({});
   const { user } = useAuth();
 
+  const getMemberInfo = () => {
+    getMemberByUID(user.uid).then((memberObj) => {
+      setMember(memberObj[0]);
+    });
+  };
+
   useEffect(() => {
-    getMemberByUID(user.uid).then(setMember[0]);
-  }, [user]);
+    getMemberInfo();
+  }, [user, member]);
 
   return (
     <>

@@ -7,8 +7,7 @@ export default function HouseholdCard({ householdObj }) {
     <>
       <Card style={{ width: '18rem', margin: '10px' }}>
         <Card.Body>
-          <Card.Img variant="top" src={householdObj.imageUrl} alt="Household Image" style={{ height: '200px' }} />
-          <Card.Title>{householdObj.nickname}</Card.Title>
+          <Card.Title>{householdObj.householdName}</Card.Title>
         </Card.Body>
       </Card>
     </>
@@ -17,9 +16,8 @@ export default function HouseholdCard({ householdObj }) {
 
 HouseholdCard.propTypes = {
   householdObj: PropTypes.shape({
-    nickname: PropTypes.string,
+    householdName: PropTypes.string,
     firebaseKey: PropTypes.string,
-    imageUrl: PropTypes.string,
     uid: PropTypes.string,
   }).isRequired,
 };

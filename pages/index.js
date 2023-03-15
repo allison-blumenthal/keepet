@@ -10,9 +10,19 @@ export default function Index() {
   const router = useRouter();
   const { user } = useAuth();
 
+  const getMemberInfo = () => {
+    getMemberByUID(user.uid).then((memberObj) => {
+      if (memberObj.length === 1) {
+        setMember(memberObj[0]);
+      } else {
+        setMember(null);
+      }
+    });
+  };
+
   useEffect(() => {
-    getMemberByUID(user.uid).then(setMember[0]);
-  }, [user]);
+    getMemberInfo();
+  }, [user, member]);
 
   return (
     <>
@@ -22,7 +32,7 @@ export default function Index() {
       <h1>Welcome to Keepet!</h1>
       <h3>A place to keep your pets and people organized.</h3>
 
-      {member.firebaseKey ? (
+      {member ? (
         <div>
           <Button type="btn" className="mx-2 primary" onClick={() => router.push(`/household/${member.householdId}`)}>Go to My Household</Button>
         </div>

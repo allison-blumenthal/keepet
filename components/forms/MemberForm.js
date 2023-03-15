@@ -41,7 +41,7 @@ function MemberForm({ memberObj }) {
     e.preventDefault();
     if (memberObj.firebaseKey) {
       updateMember(formInput)
-        .then(() => router.back);
+        .then(() => router.back());
     } else {
       const payload = { ...formInput, uid: user.uid };
       createMember(payload).then(({ name }) => {
@@ -55,7 +55,7 @@ function MemberForm({ memberObj }) {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <h1 className="text-white mt-5">{memberObj.firebaseKey ? 'Update' : 'New'} Member</h1>
+        <h1 className="text-black mt-5">{memberObj.firebaseKey ? 'Update' : 'New'} Member</h1>
 
         <FloatingLabel controlId="floatingInput1" label="Name" className="mb-3">
           <Form.Control
@@ -154,7 +154,7 @@ function MemberForm({ memberObj }) {
         >
           {memberObj.firebaseKey ? (
             <>
-              <Button className="view-btn" type="submit" onClick={() => router.back}>Update</Button>
+              <Button className="view-btn" type="submit">Update</Button>
               <Button type="btn" className="mx-2 red-btn" onClick={() => router.back()}>Cancel</Button>
             </>
           ) : (

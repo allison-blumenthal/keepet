@@ -36,10 +36,10 @@ export default function TaskForm({ taskObj }) {
     uid: taskObj.uid,
   });
   const router = useRouter();
-  const { uid } = useAuth();
+  const { user } = useAuth();
 
   const getWholeHousehold = () => {
-    getMemberByUID(uid).then((memberObj) => {
+    getMemberByUID(user.uid).then((memberObj) => {
       setMember(memberObj[0]);
       getPetsByHouseholdId(memberObj[0].householdId)
         .then((petArr) => {
@@ -57,7 +57,7 @@ export default function TaskForm({ taskObj }) {
 
     if (taskObj.firebaseKey) setFormInput(taskObj);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [uid, taskObj]);
+  }, [user, taskObj]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -74,7 +74,7 @@ export default function TaskForm({ taskObj }) {
       updateTask(formInput)
         .then(() => router.push(`/task/${taskObj.firebaseKey}`));
     } else {
-      const payload = { ...formInput, uid, householdId: member.householdId };
+      const payload = { ...formInput, uid: user.uid, householdId: member.householdId };
       createTask(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         console.warn(patchPayload);
@@ -89,7 +89,7 @@ export default function TaskForm({ taskObj }) {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <h1 className="text-white mt-5">{taskObj.firebaseKey ? 'Update' : 'New'} Task</h1>
+        <h1 className="text-black mt-5">{taskObj.firebaseKey ? 'Update' : 'New'} Task</h1>
 
         <FloatingLabel controlId="floatingInput1" label="Task Title" className="mb-3">
           <Form.Control

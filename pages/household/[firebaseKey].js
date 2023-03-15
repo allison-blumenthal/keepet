@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -15,14 +14,7 @@ import { useAuth } from '../../utils/context/authContext';
 function ViewHousehold() {
   const [member, setMember] = useState({});
   const [householdDetails, setHouseholdDetails] = useState([]);
-  const router = useRouter();
   const { user } = useAuth();
-
-  const { firebaseKey } = router.query;
-
-  const getHouseholdDetails = () => {
-    getSingleHousehold(firebaseKey).then(setHouseholdDetails);
-  };
 
   const getMemberInfo = () => {
     getMemberByUID(user.uid).then((memberObj) => {
@@ -30,11 +22,15 @@ function ViewHousehold() {
     });
   };
 
+  const getHouseholdDetails = () => {
+    getSingleHousehold(member.householdId).then(setHouseholdDetails);
+  };
+
   useEffect(() => {
     getMemberInfo();
     getHouseholdDetails();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [firebaseKey]);
+  }, [user, member]);
 
   return (
     <>
@@ -56,7 +52,7 @@ function ViewHousehold() {
         <img src={householdDetails?.imageUrl} alt={householdDetails?.householdName} style={{ width: '300px' }} />
       </div>
       {member.isAdmin === true ? (
-        <Link href={`/household/edit/${firebaseKey}`} passHref>
+        <Link href={`/household/edit/${member.householdId}`} passHref>
           <Button variant="info" className="edit-btn">EDIT</Button>
         </Link>
       ) : ''}

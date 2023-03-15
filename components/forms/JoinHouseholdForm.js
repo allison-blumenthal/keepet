@@ -20,7 +20,7 @@ function JoinHouseholdForm({ memberObj }) {
     uid: memberObj.uid,
   });
   const router = useRouter();
-  const { uid } = useAuth();
+  const { user } = useAuth();
 
   const displayHouseholds = () => {
     getHouseholds().then(setHouseholds);
@@ -28,12 +28,12 @@ function JoinHouseholdForm({ memberObj }) {
 
   useEffect(() => {
     displayHouseholds();
-    getMemberByUID(uid).then((memberInfo) => {
+    getMemberByUID(user.uid).then((memberInfo) => {
       setMember(memberInfo[0]);
     });
 
     if (memberObj.firebaseKey) setFormInput(memberObj);
-  }, [uid, memberObj]);
+  }, [user, memberObj]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
