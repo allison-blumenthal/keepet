@@ -30,10 +30,10 @@ function PetForm({ petObj }) {
     uid: petObj.memberId,
   });
   const router = useRouter();
-  const { uid } = useAuth();
+  const { user } = useAuth();
 
   const getMemberInfo = () => {
-    getMemberByUID(uid).then((memberObj) => {
+    getMemberByUID(user.uid).then((memberObj) => {
       setMember(memberObj[0]);
     });
   };
@@ -42,7 +42,7 @@ function PetForm({ petObj }) {
     getMemberInfo();
     if (petObj.firebaseKey) setFormInput(petObj);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [uid, petObj]);
+  }, [user, petObj]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -59,7 +59,7 @@ function PetForm({ petObj }) {
       updatePet(formInput)
         .then(() => router.push(`/pet/${petObj.firebaseKey}`));
     } else {
-      const payload = { ...formInput, uid, householdId: member.householdId };
+      const payload = { ...formInput, uid: user.uid, householdId: member.householdId };
       createPet(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
 
@@ -73,7 +73,7 @@ function PetForm({ petObj }) {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <h1 className="text-white mt-5">{petObj.firebaseKey ? 'Update' : 'New'} Pet</h1>
+        <h1 className="text-black mt-5">{petObj.firebaseKey ? 'Update' : 'New'} Pet</h1>
 
         <FloatingLabel controlId="floatingInput1" label="Pet's Name" className="mb-3">
           <Form.Control
