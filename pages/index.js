@@ -38,7 +38,9 @@ export default function Index() {
           margin: '0 auto',
         }}
       >
-        <h1>Welcome, {member.memberName}!</h1>
+        <h1>Welcome
+          <br /> {user.displayName}!
+        </h1>
 
         {member ? (
           <div>
