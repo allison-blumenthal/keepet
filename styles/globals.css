@@ -6,6 +6,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background: linear-gradient(white, #4D3F82, white);
 }
 
 a {
@@ -57,3 +58,13 @@ body {
 }
 
 
+/* HOUSEHOLD STYLES */
+
+.household-page-container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.household-menu-img {
+  border-radius: 30px;
+}

@@ -38,33 +38,25 @@ function ViewHousehold() {
         <title>{householdDetails?.householdName}</title>
       </Head>
 
-      <div className="text-black ms-5 details">
-        <h2>Your household:
-          {householdDetails?.householdName}
-        </h2>
-      </div>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-        }}
-      >
-        <img src={householdDetails?.imageUrl} alt={householdDetails?.householdName} style={{ width: '300px' }} />
-      </div>
-      {member.isAdmin === true ? (
-        <Link href={`/household/edit/${member.householdId}`} passHref>
-          <Button variant="info" className="edit-btn">EDIT</Button>
+      <div className="household-page-container text-center">
+        <h2>{householdDetails?.householdName}</h2>
+        <div className="ms-5 text-center">
+          {member.isAdmin === true ? (
+            <Link href={`/household/edit/${member.householdId}`} passHref>
+              <Button variant="info" className="edit-btn">EDIT</Button>
+            </Link>
+          ) : ''}
+        </div>
+        <Link passHref href="/members">
+          <Image className="household-menu-img" src={members} alt="Members" />
         </Link>
-      ) : ''}
-      <Link passHref href="/members">
-        <Image src={members} alt="Members" />
-      </Link>
-      <Link passHref href="/pets">
-        <Image src={pets} alt="Pets" />
-      </Link>
-      <Link passHref href="/tasks">
-        <Image src={tasks} alt="Tasks" />
-      </Link>
+        <Link passHref href="/pets">
+          <Image className="household-menu-img" src={pets} alt="Pets" />
+        </Link>
+        <Link passHref href="/tasks">
+          <Image className="household-menu-img" src={tasks} alt="Tasks" />
+        </Link>
+      </div>
     </>
   );
 }
