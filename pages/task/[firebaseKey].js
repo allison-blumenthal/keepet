@@ -37,7 +37,7 @@ export default function ViewTask() {
     if (window.confirm(`Log "${taskDetails.title}" as done?`)) {
       const payload = { lastDone: time, firebaseKey: taskDetails.firebaseKey };
       updateTask(payload)
-        .then(() => router.push(`/task/${taskDetails.firebaseKey}`));
+        .then(() => router.push('/tasks'));
     }
   };
 

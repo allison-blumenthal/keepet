@@ -4,14 +4,14 @@ import { useRouter } from 'next/router';
 import Button from 'react-bootstrap/Button';
 import Link from 'next/link';
 import Head from 'next/head';
-import { getSinglePet } from '../../api/petData';
-import { deletePetAndTasks } from '../../api/mergedData';
+import { deletePetAndTasks, getPetAndTasks } from '../../api/mergedData';
 import { useAuth } from '../../utils/context/authContext';
 import { getMemberByUID } from '../../api/memberData';
+import TaskCard from '../../components/cards/TaskCard';
 
 export default function ViewPet() {
   const [member, setMember] = useState({});
-  const [petDetails, setPetDetails] = useState({});
+  const [petDetails, setPetDetails] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
 
@@ -23,9 +23,13 @@ export default function ViewPet() {
     });
   };
 
+  const getPetDetails = () => {
+    getPetAndTasks(firebaseKey).then(setPetDetails);
+  };
+
   useEffect(() => {
     getMemberInfo();
-    getSinglePet(firebaseKey).then(setPetDetails);
+    getPetDetails();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, firebaseKey]);
 
@@ -61,6 +65,15 @@ export default function ViewPet() {
           <h3>{petDetails.color}</h3>
           <p>{petDetails.info}</p>
         </div>
+      </div>
+      <br />
+      <div>
+        <h1>Tasks for {petDetails.petName}:</h1>
+      </div>
+      <div className="d-flex flex-wrap">
+        {petDetails.tasks?.map((task) => (
+          <TaskCard key={task.firebaseKey} taskObj={task} onUpdate={getPetDetails} />
+        ))}
       </div>
     </>
   );

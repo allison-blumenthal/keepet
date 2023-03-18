@@ -55,11 +55,13 @@ export default function ViewMember() {
           <h3>{memberDetails.memberAge}</h3>
           <p>{memberDetails.description}</p>
         </div>
-        <div className="d-flex flex-wrap">
-          {memberDetails.tasks?.map((task) => (
-            <TaskCard key={task.firebaseKey} taskObj={task} onUpdate={getMemberDetails} />
-          ))}
-        </div>
+      </div>
+      <br />
+      <h1>Tasks assigned to {memberDetails.memberName}:</h1>
+      <div className="d-flex flex-wrap">
+        {memberDetails.tasks?.map((task) => (
+          <TaskCard key={task.firebaseKey} taskObj={task} onUpdate={getMemberDetails} />
+        ))}
       </div>
     </>
   );

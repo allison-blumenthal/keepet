@@ -3,7 +3,7 @@ import {
   getMemberByUID, updateMember, getSingleMember, getMemberTasks,
 } from './memberData';
 import { getTasksByPetId, deleteTask } from './taskData';
-import { deletePet } from './petData';
+import { deletePet, getPetTasks, getSinglePet } from './petData';
 import { getCommentsByTaskId, deleteComment } from './commentData';
 
 // Create household object, update member's householdId
@@ -55,9 +55,18 @@ const getMemberAndTasks = (memberFirebaseKey) => new Promise((resolve, reject) =
     }).catch((error) => reject(error));
 });
 
+// GET PET AND ASSOCIATED TASKS
+const getPetAndTasks = (petFirebaseKey) => new Promise((resolve, reject) => {
+  Promise.all([getSinglePet(petFirebaseKey), getPetTasks(petFirebaseKey)])
+    .then(([petObj, petTasksArray]) => {
+      resolve({ ...petObj, tasks: petTasksArray });
+    }).catch((error) => reject(error));
+});
+
 export {
   createHouseholdAndUpdateMember,
   deletePetAndTasks,
   deleteTaskAndComments,
   getMemberAndTasks,
+  getPetAndTasks,
 };
