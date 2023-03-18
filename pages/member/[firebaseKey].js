@@ -4,8 +4,10 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { Button } from 'react-bootstrap';
 import Link from 'next/link';
-import { getSingleMember, getMemberByUID } from '../../api/memberData';
+import { getMemberByUID } from '../../api/memberData';
 import { useAuth } from '../../utils/context/authContext';
+import TaskCard from '../../components/cards/TaskCard';
+import { getMemberAndTasks } from '../../api/mergedData';
 
 export default function ViewMember() {
   const [member, setMember] = useState({});
@@ -21,9 +23,13 @@ export default function ViewMember() {
     });
   };
 
+  const getMemberDetails = () => {
+    getMemberAndTasks(firebaseKey).then(setMemberDetails);
+  };
+
   useEffect(() => {
     getMemberInfo();
-    getSingleMember(firebaseKey).then(setMemberDetails);
+    getMemberDetails();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, firebaseKey]);
 
@@ -49,6 +55,13 @@ export default function ViewMember() {
           <h3>{memberDetails.memberAge}</h3>
           <p>{memberDetails.description}</p>
         </div>
+      </div>
+      <br />
+      <h1>Tasks assigned to {memberDetails.memberName}:</h1>
+      <div className="d-flex flex-wrap">
+        {memberDetails.tasks?.map((task) => (
+          <TaskCard key={task.firebaseKey} taskObj={task} onUpdate={getMemberDetails} />
+        ))}
       </div>
     </>
   );

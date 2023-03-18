@@ -1,5 +1,4 @@
 import { clientCredentials } from '../utils/client';
-import { deleteTask, getTasksByPetId } from './taskData';
 
 const endpoint = clientCredentials.databaseURL;
 
@@ -76,21 +75,26 @@ const deletePet = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// DELETE PET TASKS
-const deletePetTasks = (firebaseKey) => new Promise((resolve, reject) => {
-  getTasksByPetId(firebaseKey).then((petTasks) => {
-    const deleteTaskPromises = petTasks.map((task) => deleteTask(task.firebaseKey));
-
-    Promise.all(deleteTaskPromises).then(() => {
-      deleteTask(firebaseKey).then(resolve);
-    });
-  })
-    .catch(reject);
-});
-
 // GET PETS BY HOUSEHOLDID
 const getPetsByHouseholdId = (householdId) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/pets.json?orderBy="householdId"&equalTo="${householdId}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    }).catch(reject);
+});
+
+const getPetTasks = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/tasks.json?orderBy="petId"&equalTo="${firebaseKey}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -112,6 +116,6 @@ export {
   createPet,
   updatePet,
   deletePet,
-  deletePetTasks,
   getPetsByHouseholdId,
+  getPetTasks,
 };

@@ -4,10 +4,11 @@ import { useRouter } from 'next/router';
 import Button from 'react-bootstrap/Button';
 import Link from 'next/link';
 import Head from 'next/head';
-import { getSingleTask } from '../../api/taskData';
+import { getSingleTask, updateTask } from '../../api/taskData';
 import { getMemberByUID } from '../../api/memberData';
 import { useAuth } from '../../utils/context/authContext';
-import { deleteTaskAndComments, getCommentsByTaskId } from '../../api/commentData';
+import { getCommentsByTaskId } from '../../api/commentData';
+import { deleteTaskAndComments } from '../../api/mergedData';
 import CommentForm from '../../components/forms/CommentForm';
 import CommentCard from '../../components/cards/CommentCard';
 
@@ -23,9 +24,28 @@ export default function ViewTask() {
 
   const { firebaseKey } = router.query;
 
+  const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+  };
+
+  const time = new Date().toLocaleString('en-US', options);
+
   const deleteThisTask = () => {
     if (window.confirm(`Delete ${taskDetails.title}?`)) {
       deleteTaskAndComments(taskDetails.firebaseKey)
+        .then(() => router.push('/tasks'));
+    }
+  };
+
+  const logThisTask = () => {
+    if (window.confirm(`Log "${taskDetails.title}" as done?`)) {
+      const payload = { lastDone: time, firebaseKey: taskDetails.firebaseKey };
+      updateTask(payload)
         .then(() => router.push('/tasks'));
     }
   };
@@ -61,6 +81,8 @@ export default function ViewTask() {
       </Head>
       {member.isAdmin === true ? (
         <>
+          <Button variant="success" onClick={logThisTask} className="log-btn">LOG
+          </Button>
           <Link href={`/task/edit/${firebaseKey}`} passHref>
             <Button variant="info" className="edit-btn">EDIT</Button>
           </Link>
@@ -68,7 +90,10 @@ export default function ViewTask() {
           </Button>
         </>
       )
-        : '' }
+        : (
+          <Button variant="success" onClick={logThisTask} className="log-btn">LOG
+          </Button>
+        ) }
       <div className="mt-5 d-flex flex-wrap">
         <div className="d-flex flex-column">
           <img src={`/assets/images/taskAvatars/${taskDetails.taskAvatar}`} alt={taskDetails.title} style={{ width: '300px' }} />
