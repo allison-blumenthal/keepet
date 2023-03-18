@@ -1,5 +1,4 @@
 import { clientCredentials } from '../utils/client';
-import { deleteTask } from './taskData';
 
 const endpoint = clientCredentials.databaseURL;
 
@@ -76,23 +75,10 @@ const deleteComment = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// DELETE TASK AND COMMENTS
-const deleteTaskAndComments = (firebaseKey) => new Promise((resolve, reject) => {
-  getCommentsByTaskId(firebaseKey).then((taskComments) => {
-    const deleteCommentsPromises = taskComments.map((comment) => deleteComment(comment.firebaseKey));
-
-    Promise.all(deleteCommentsPromises).then(() => {
-      deleteTask(firebaseKey).then(resolve);
-    });
-  })
-    .catch(reject);
-});
-
 export {
   getCommentsByTaskId,
   getSingleComment,
   createComment,
   updateComment,
   deleteComment,
-  deleteTaskAndComments,
 };

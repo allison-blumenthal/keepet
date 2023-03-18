@@ -7,7 +7,8 @@ import Head from 'next/head';
 import { getSingleTask, updateTask } from '../../api/taskData';
 import { getMemberByUID } from '../../api/memberData';
 import { useAuth } from '../../utils/context/authContext';
-import { deleteTaskAndComments, getCommentsByTaskId } from '../../api/commentData';
+import { getCommentsByTaskId } from '../../api/commentData';
+import { deleteTaskAndComments } from '../../api/mergedData';
 import CommentForm from '../../components/forms/CommentForm';
 import CommentCard from '../../components/cards/CommentCard';
 
