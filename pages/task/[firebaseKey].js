@@ -4,10 +4,10 @@ import { useRouter } from 'next/router';
 import Button from 'react-bootstrap/Button';
 import Link from 'next/link';
 import Head from 'next/head';
-import { deleteTask, getSingleTask } from '../../api/taskData';
+import { getSingleTask } from '../../api/taskData';
 import { getMemberByUID } from '../../api/memberData';
 import { useAuth } from '../../utils/context/authContext';
-import { getCommentsByTaskId } from '../../api/commentData';
+import { deleteTaskAndComments, getCommentsByTaskId } from '../../api/commentData';
 import CommentForm from '../../components/forms/CommentForm';
 import CommentCard from '../../components/cards/CommentCard';
 
@@ -25,7 +25,7 @@ export default function ViewTask() {
 
   const deleteThisTask = () => {
     if (window.confirm(`Delete ${taskDetails.title}?`)) {
-      deleteTask(taskDetails.firebaseKey)
+      deleteTaskAndComments(taskDetails.firebaseKey)
         .then(() => router.push('/tasks'));
     }
   };
