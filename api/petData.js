@@ -77,12 +77,12 @@ const deletePet = (firebaseKey) => new Promise((resolve, reject) => {
 });
 
 // DELETE PET TASKS
-const deletePetTasks = (firebaseKey) => new Promise((resolve, reject) => {
+const deletePetAndTasks = (firebaseKey) => new Promise((resolve, reject) => {
   getTasksByPetId(firebaseKey).then((petTasks) => {
     const deleteTaskPromises = petTasks.map((task) => deleteTask(task.firebaseKey));
 
     Promise.all(deleteTaskPromises).then(() => {
-      deleteTask(firebaseKey).then(resolve);
+      deletePet(firebaseKey).then(resolve);
     });
   })
     .catch(reject);
@@ -112,6 +112,6 @@ export {
   createPet,
   updatePet,
   deletePet,
-  deletePetTasks,
+  deletePetAndTasks,
   getPetsByHouseholdId,
 };

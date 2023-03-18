@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import Button from 'react-bootstrap/Button';
 import Link from 'next/link';
 import Head from 'next/head';
-import { deletePet, getSinglePet } from '../../api/petData';
+import { deletePetAndTasks, getSinglePet } from '../../api/petData';
 import { useAuth } from '../../utils/context/authContext';
 import { getMemberByUID } from '../../api/memberData';
 
@@ -30,7 +30,7 @@ export default function ViewPet() {
 
   const deleteThisPet = () => {
     if (window.confirm(`Delete ${petDetails.petName}?`)) {
-      deletePet(petDetails.firebaseKey)
+      deletePetAndTasks(petDetails.firebaseKey)
         .then(() => router.push('/pets'));
     }
   };
