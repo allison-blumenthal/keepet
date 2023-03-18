@@ -24,7 +24,16 @@ export default function ViewTask() {
 
   const { firebaseKey } = router.query;
 
-  const time = new Date();
+  const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+  };
+
+  const time = new Date().toLocaleString('en-US', options);
 
   const deleteThisTask = () => {
     if (window.confirm(`Delete ${taskDetails.title}?`)) {

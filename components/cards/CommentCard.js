@@ -53,7 +53,7 @@ function CommentCard({ commentObj, onUpdate }) {
         <>
           <Card className="comment-card">
             <div className="comment-container">
-              <Card.Header>{commentObj.timestamp}</Card.Header>
+              <Card.Header>{(commentObj.madeComment)}</Card.Header>
               <Card.Body>
                 <blockquote className="blockquote mb-0">
                   <p>
@@ -115,6 +115,7 @@ CommentCard.propTypes = {
     taskId: PropTypes.string,
     memberId: PropTypes.string,
     timestamp: PropTypes.string,
+    madeComment: PropTypes.string,
     text: PropTypes.string,
     author: PropTypes.string,
   }).isRequired,
