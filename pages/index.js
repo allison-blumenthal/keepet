@@ -22,6 +22,7 @@ export default function Index() {
 
   useEffect(() => {
     getMemberInfo();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, member]);
 
   return (
@@ -29,18 +30,29 @@ export default function Index() {
       <Head>
         <title>Home</title>
       </Head>
-      <h1>Welcome to Keepet!</h1>
-      <h3>A place to keep your pets and people organized.</h3>
+      <div
+        className="text-center d-flex flex-column justify-content-center align-content-center"
+        style={{
+          height: '90vh',
+          padding: '30px',
+          maxWidth: '400px',
+          margin: '0 auto',
+        }}
+      >
+        <h1>Welcome
+          <br /> {user.displayName}!
+        </h1>
 
-      {member ? (
-        <div>
-          <Button type="btn" className="mx-2 primary" onClick={() => router.push(`/household/${member.householdId}`)}>Go to My Household</Button>
-        </div>
-      ) : (
-        <div>
-          <Button type="btn" className="mx-2 primary" onClick={() => router.push('/member/new')}>Get Started</Button>
-        </div>
-      ) }
+        {member ? (
+          <div>
+            <Button type="btn" className="mx-2 primary" onClick={() => router.push(`/household/${member.householdId}`)}>Go to My Household</Button>
+          </div>
+        ) : (
+          <div>
+            <Button type="btn" className="mx-2 primary" onClick={() => router.push('/member/new')}>Get Started</Button>
+          </div>
+        ) }
+      </div>
     </>
   );
 }

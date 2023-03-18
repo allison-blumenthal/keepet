@@ -25,9 +25,17 @@ export default function Home() {
       <Head>
         <title>Home</title>
       </Head>
-      <div>
+      <div
+        className="text-center d-flex flex-column justify-content-center align-content-center"
+        style={{
+          height: '90vh',
+          padding: '30px',
+          maxWidth: '400px',
+          margin: '0 auto',
+        }}
+      >
         <h1>Welcome to Keepet!</h1>
-        <h3>A place to keep your pets and people organized.</h3>
+
         <br />
         <h4>View my household</h4>
         <div>

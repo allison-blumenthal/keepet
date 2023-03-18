@@ -59,7 +59,9 @@ function PetForm({ petObj }) {
       updatePet(formInput)
         .then(() => router.push(`/pet/${petObj.firebaseKey}`));
     } else {
-      const payload = { ...formInput, uid: user.uid, householdId: member.householdId };
+      const payload = {
+        ...formInput, uid: user.uid, householdId: member.householdId, memberId: member.firebaseKey,
+      };
       createPet(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
 

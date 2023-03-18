@@ -76,8 +76,8 @@ const deleteComment = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// DELETE TASK COMMENTS
-const deleteTaskComments = (firebaseKey) => new Promise((resolve, reject) => {
+// DELETE TASK AND COMMENTS
+const deleteTaskAndComments = (firebaseKey) => new Promise((resolve, reject) => {
   getCommentsByTaskId(firebaseKey).then((taskComments) => {
     const deleteCommentsPromises = taskComments.map((comment) => deleteComment(comment.firebaseKey));
 
@@ -94,5 +94,5 @@ export {
   createComment,
   updateComment,
   deleteComment,
-  deleteTaskComments,
+  deleteTaskAndComments,
 };

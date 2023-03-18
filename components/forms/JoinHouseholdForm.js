@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, FloatingLabel } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import HouseholdCard from '../cards/HouseholdCard';
 import { getHouseholds } from '../../api/householdData';
 import { useAuth } from '../../utils/context/authContext';
 import { getMemberByUID, updateMember } from '../../api/memberData';
 
 const initialState = {
   householdId: '',
-  uid: '',
 };
 
 function JoinHouseholdForm({ memberObj }) {
@@ -35,42 +33,51 @@ function JoinHouseholdForm({ memberObj }) {
     if (memberObj.firebaseKey) setFormInput(memberObj);
   }, [user, memberObj]);
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormInput((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const payload = { householdId: formInput.householdId, firebaseKey: member.firebaseKey };
     updateMember(payload)
-      .then(() => {
-        router.push(`/household/${member.householdId}`);
+      .then((response) => {
+        router.push(`/household/${response.householdId}`);
       });
   };
 
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <div className="household-card-container">
-          {households.map((household) => (
-            <>
-              <Form.Group controlId="household-radios">
-                <Form.Check
-                  type="radio"
-                  name="household-radio-btn"
-                  label={household.householdName}
-                  value={formInput.householdId}
-                  checked={formInput.householdId}
-                  onChange={() => {
-                    setFormInput((prevState) => ({
-                      ...prevState,
-                      householdId: (household.firebaseKey),
-                    }));
-                  }}
-                  required
-                />
-                <HouseholdCard key={household.firebaseKey} householdObj={household} onUpdate={displayHouseholds} />
-              </Form.Group>
-            </>
-          ))}
-        </div>
+
+        <FloatingLabel controlId="floatingSelect" label="Household">
+          <Form.Select
+            aria-label="Household"
+            name="householdId"
+            onChange={handleChange}
+            className="mb-3"
+            value={formInput.householdId}
+            required
+          >
+            <option value="">Select a household:</option>
+            {
+            households.map((household) => (
+              <option
+                key={household.firebaseKey}
+                value={household.firebaseKey}
+              >
+                {household.householdName}
+              </option>
+            ))
+          }
+          </Form.Select>
+        </FloatingLabel>
+
         <Button type="submit">Join Selected Household</Button>
       </Form>
     </>
