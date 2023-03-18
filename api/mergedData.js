@@ -1,5 +1,7 @@
 import { createHousehold, updateHousehold } from './householdData';
-import { getMemberByUID, updateMember } from './memberData';
+import {
+  getMemberByUID, updateMember, getSingleMember, getMemberTasks,
+} from './memberData';
 import { getTasksByPetId, deleteTask } from './taskData';
 import { deletePet } from './petData';
 import { getCommentsByTaskId, deleteComment } from './commentData';
@@ -42,4 +44,20 @@ const deleteTaskAndComments = (firebaseKey) => new Promise((resolve, reject) => 
     .catch(reject);
 });
 
-export { createHouseholdAndUpdateMember, deletePetAndTasks, deleteTaskAndComments };
+// GET MEMBER AND ASSOCIATED TASKS
+const getMemberAndTasks = (memberFirebaseKey) => new Promise((resolve, reject) => {
+  getSingleMember(memberFirebaseKey)
+    .then((memberObj) => {
+      getMemberTasks(memberObj.uid)
+        .then((memberTasksArray) => {
+          resolve({ ...memberObj, tasks: memberTasksArray });
+        });
+    }).catch((error) => reject(error));
+});
+
+export {
+  createHouseholdAndUpdateMember,
+  deletePetAndTasks,
+  deleteTaskAndComments,
+  getMemberAndTasks,
+};
