@@ -46,8 +46,8 @@ function JoinHouseholdForm({ memberObj }) {
 
     const payload = { householdId: formInput.householdId, firebaseKey: member.firebaseKey };
     updateMember(payload)
-      .then(() => {
-        router.push(`/household/${member.householdId}`);
+      .then((response) => {
+        router.push(`/household/${response.householdId}`);
       });
   };
 
