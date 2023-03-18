@@ -27,7 +27,8 @@ export default function NavBar() {
 
   useEffect(() => {
     getMemberInfo();
-  }, [user, member]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   return (
     <>

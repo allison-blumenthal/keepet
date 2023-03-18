@@ -22,6 +22,7 @@ export default function Index() {
 
   useEffect(() => {
     getMemberInfo();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, member]);
 
   return (
