@@ -1,5 +1,6 @@
 @import 'bootstrap/dist/css/bootstrap.css';
 
+
 html,
 body {
   padding: 0;
@@ -22,8 +23,24 @@ body {
   background-color: white;
 }
 
-.page-header {
-  font-family: 
+.pc-font-xlg {
+  font-family: 'PetitCochon';
+  font-size: 100px;
+}
+
+.pc-font-lg {
+  font-family: 'PetitCochon';
+  font-size: 80px;
+}
+
+.pc-font-md {
+  font-family: 'PetitCochon';
+  font-size: 50px;
+}
+
+.pc-font-sm {
+  font-family: 'PetitCochon';
+  font-size: 30px;
 }
 
 /* NAVBAR, LOGO, SIGN OUT */

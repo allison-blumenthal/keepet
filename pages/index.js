@@ -33,15 +33,14 @@ export default function Index() {
       <div
         className="text-center d-flex flex-column justify-content-center align-content-center"
         style={{
-          height: '90vh',
+          height: '40vh',
           padding: '30px',
           maxWidth: '400px',
           margin: '0 auto',
         }}
       >
-        <h1>Welcome
-          <br /> {user.displayName}!
-        </h1>
+        <h1 className="pc-font-md">Welcome</h1>
+        <h1 className="pc-font-sm">{user.displayName}!</h1>
 
         {member ? (
           <div>

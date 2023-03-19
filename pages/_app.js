@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import '../styles/globals.css';
 import { AuthProvider } from '../utils/context/authContext';
 import ViewDirectorBasedOnUserAuthStatus from '../utils/ViewDirector';
+import '../public/fonts/styles.css';
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
