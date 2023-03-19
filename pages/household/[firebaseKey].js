@@ -39,8 +39,8 @@ function ViewHousehold() {
       </Head>
 
       <div className="household-page-container text-center">
-        <h2>{householdDetails?.householdName}</h2>
-        <div className="ms-5 text-center">
+        <h2 className="pc-font-md purple">{householdDetails?.householdName}</h2>
+        <div className="edit-btn">
           {member.isAdmin === true ? (
             <Link href={`/household/edit/${member.householdId}`} passHref>
               <Button variant="info" className="edit-btn">EDIT</Button>
