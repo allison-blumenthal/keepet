@@ -33,7 +33,7 @@ export default function ShowTasks() {
       <Head>
         <title>Tasks</title>
       </Head>
-      <h1>This is the tasks page.</h1>
+      <h1 className="page-header">Tasks</h1>
 
       {member.isAdmin === true ? (
         <>
