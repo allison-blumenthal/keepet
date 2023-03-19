@@ -17,8 +17,8 @@ function Signin() {
           }}
         >
           <TransparentBylineLogo />
-          <Button type="btn" className="red-btn pc-font-sm" onClick={signIn}>
-            Login
+          <Button type="btn" className="login-btn pc-font-sm" onClick={signIn}>
+            LOGIN
           </Button>
         </div>
         <div
@@ -30,7 +30,7 @@ function Signin() {
             margin: '0 auto',
           }}
         >
-          <h6 className="muller-light-xsm" style={{ color: 'white' }}>This app was inspired by and is dedicated to my sweet seven kitties and three-legged pittie.</h6>
+          <h6 className="muller-light-xsm" style={{ color: 'white' }}>This app is inspired by and dedicated to my sweet seven kitties and three-legged pittie.</h6>
         </div>
       </div>
     </>

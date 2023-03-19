@@ -23,13 +23,20 @@ body {
   background-color: white;
 }
 
-/* Backgrounds */
+/* FONT COLORS  */
+
+.purple {
+  color: #4D3F82;
+}
+
+
+/* BACKGROUNDS */
 
 .gradient-background {
   background: linear-gradient(#4D3F82, white, #4D3F82);
 }
 
-/* Petite Cochon Font Classes */
+/* PETITE COCHON FONT CLASSES */
 
 .pc-font-xlg {
   font-family: 'PetitCochon';
@@ -51,7 +58,12 @@ body {
   font-size: 30px;
 }
 
-/* Muller Font Classes */
+.pc-font-xsm {
+  font-family: 'PetitCochon';
+  font-size: 20px;
+}
+
+/* MULLER FONT CLASSES */
 
 .muller-bold-md {
   font-family: 'MullerBold';
@@ -110,21 +122,50 @@ body {
 
 /* BUTTONS */
 
-.red-btn {
+.login-btn {
   background-color: #D7263D;
   border-color: #D7263D;
   color: white;
-  border-radius: 30px;
+  border-radius: 24px;
   width: 200px;
   margin-left: auto;
   margin-right: auto;
+  padding-top: 10px;
+  padding-bottom: 0px;
 }
 
-.red-btn:hover {
+.login-btn:hover {
   background-color: #ac1e31;
   border-color: #ac1e31;
 }
 
+.logout-btn {
+  height: 40px;
+  width: 80px;
+  padding-top: 6px;
+  padding-bottom: 0px;
+  padding-left: 4px;
+  padding-right: 2px;
+  margin: 10px;
+  background-color: #D7263D;
+  border-color: #D7263D;
+  color: white;
+  border-radius: 15px;
+}
+
+.teal-btn {
+  background-color: #1B998B;
+  border-color: #1B998B;
+  color: white;
+  border-radius: 20px;
+  padding-bottom: 0px;
+  padding-top: 8px;
+}
+
+.teal-btn:hover {
+  background-color: #167a6f;
+  border-color: #167a6f;
+}
 
 /* NAVBAR, LOGO, SIGN OUT */
 
@@ -133,25 +174,19 @@ body {
   justify-content: space-between
 }
 
+.nav-bg {
+  background-color: #dbd9e6;
+}
+
 .logo {
-  height: 100px;
-  width: 100px;
+  height: 60px;
+  width: 60px;
   margin: 0px;
   padding: 0px;
 }
 
 .logo:hover {
   opacity: 0.5;
-}
-
-.logout-btn {
-  height: 40px;
-  width: 80px;
-  padding: 0px;
-  margin: 10px;
-  background-color: #D7263D;
-  border-color: #D7263D;
-  color: white;
 }
 
 .nav-icon {

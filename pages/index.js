@@ -33,18 +33,19 @@ export default function Index() {
       <div
         className="text-center d-flex flex-column justify-content-center align-content-center"
         style={{
-          height: '40vh',
+          height: '50vh',
           padding: '30px',
           maxWidth: '400px',
           margin: '0 auto',
         }}
       >
-        <h1 className="pc-font-md">Welcome to KEEPET,</h1>
-        <h1 className="pc-font-sm">{user.displayName}!</h1>
+        <h1 className="pc-font-md purple">Welcome to KEEPET,</h1>
+        <h1 className="pc-font-sm purple">{user.displayName}!</h1>
+        <br />
 
         {member ? (
           <div>
-            <Button type="btn" className="mx-2 primary" onClick={() => router.push(`/household/${member.householdId}`)}>Go to My Household</Button>
+            <Button type="btn" className="teal-btn pc-font-sm" onClick={() => router.push(`/household/${member.householdId}`)}>MY HOUSEHOLD</Button>
           </div>
         ) : (
           <div>

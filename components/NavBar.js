@@ -32,7 +32,9 @@ export default function NavBar() {
 
   return (
     <>
-      <div className="navbar-top">
+      <div
+        className="navbar-top nav-bg"
+      >
         <Link passHref href="/">
           <Navbar.Brand>
             <div className="logo">
@@ -40,11 +42,11 @@ export default function NavBar() {
             </div>
           </Navbar.Brand>
         </Link>
-        <Button className="logout-btn muller-bold-xsm" variant="danger" onClick={signOut}>Log Out</Button>
+        <Button className="logout-btn pc-font-xsm" variant="danger" onClick={signOut}>LOGOUT</Button>
       </div>
 
       {member ? (
-        <Navbar bg="light" variant="light" fixed="bottom">
+        <Navbar className="nav-bg" variant="light" fixed="bottom">
           <Container>
             <Nav className="flex-grow-1 justify-content-evenly">
               <Nav.Link href={`/household/${member.householdId}`}>
