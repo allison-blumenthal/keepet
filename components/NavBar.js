@@ -40,7 +40,7 @@ export default function NavBar() {
             </div>
           </Navbar.Brand>
         </Link>
-        <Button className="logout-btn" variant="danger" onClick={signOut}>Log Out</Button>
+        <Button className="logout-btn muller-bold-xsm" variant="danger" onClick={signOut}>Log Out</Button>
       </div>
 
       {member ? (

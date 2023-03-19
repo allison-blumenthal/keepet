@@ -60,7 +60,12 @@ body {
 
 .muller-bold-sm {
   font-family: 'MullerBold';
-  font-size: 30px;
+  font-size: 20px;
+}
+
+.muller-bold-xsm {
+  font-family: 'MullerBold';
+  font-size: 14px;
 }
 
 .muller-med-md {
@@ -71,6 +76,11 @@ body {
 .muller-med-sm {
   font-family: 'MullerMedium';
   font-size: 20px;
+}
+
+.muller-med-xsm {
+  font-family: 'MullerMedium';
+  font-size: 14px;
 }
 
 .muller-reg-md {
@@ -100,15 +110,19 @@ body {
 
 /* BUTTONS */
 
-.login-btn {
+.red-btn {
   background-color: #D7263D;
+  border-color: #D7263D;
   color: white;
   border-radius: 30px;
   width: 200px;
   margin-left: auto;
   margin-right: auto;
+}
 
-  
+.red-btn:hover {
+  background-color: #ac1e31;
+  border-color: #ac1e31;
 }
 
 
@@ -126,11 +140,18 @@ body {
   padding: 0px;
 }
 
+.logo:hover {
+  opacity: 0.5;
+}
+
 .logout-btn {
   height: 40px;
   width: 80px;
   padding: 0px;
   margin: 10px;
+  background-color: #D7263D;
+  border-color: #D7263D;
+  color: white;
 }
 
 .nav-icon {
@@ -138,6 +159,10 @@ body {
   width: 30px;
   margin: 0px;
   padding: 0px;
+}
+
+.nav-icon:hover {
+  opacity: 0.5;
 }
 
 /* FORMS  */

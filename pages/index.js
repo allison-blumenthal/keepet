@@ -39,7 +39,7 @@ export default function Index() {
           margin: '0 auto',
         }}
       >
-        <h1 className="pc-font-md">Welcome</h1>
+        <h1 className="pc-font-md">Welcome to KEEPET,</h1>
         <h1 className="pc-font-sm">{user.displayName}!</h1>
 
         {member ? (
