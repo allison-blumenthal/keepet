@@ -3,3 +3,27 @@
   src: local('PetitCochon'),
     url('PetitCochon.ttf') format('truetype');
 }
+
+@font-face {
+  font-family: 'MullerBold';
+  src: local('MullerBold'),
+    url('MullerBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'MullerLight';
+  src: local('MullerLight'),
+    url('MullerLight.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'MullerMedium';
+  src: local('MullerMedium'),
+    url('MullerMedium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'MullerRegular';
+  src: local('MullerRegular'),
+    url('MullerRegular.ttf') format('truetype');
+}
