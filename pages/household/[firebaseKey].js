@@ -39,11 +39,11 @@ function ViewHousehold() {
         <title>{householdDetails?.householdName}</title>
       </Head>
       <div
-        className="household-page-container text-center"
+        className="basic-page-container text-center"
         style={{
           height: '90vh',
           padding: '30px',
-          maxWidth: '500px',
+          maxWidth: '400px',
           margin: '0 auto',
         }}
       >

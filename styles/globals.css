@@ -29,6 +29,18 @@ body {
   color: #4D3F82;
 }
 
+.red {
+  color: #D7263D;
+}
+
+.orange {
+  color: #F46036;
+}
+
+.lime {
+  color: #b1c262;
+}
+
 
 /* BACKGROUNDS */
 
@@ -199,6 +211,20 @@ body {
   border-color: #9ead57;
 }
 
+.arrow-btn {
+  background-color: white;
+  border-color: white;
+  height: 60px;
+  width: 60px;
+  padding-top: 12px;
+}
+
+.arrow-btn:hover {
+  background-color: white;
+  border-color: white;
+  opacity: 0.5;
+}
+
 
 /* NAVBAR, LOGO, SIGN OUT */
 
@@ -249,11 +275,36 @@ body {
 
 /* HOUSEHOLD STYLES */
 
-.household-page-container {
+.basic-page-container {
   margin-left: auto;
   margin-right: auto;
 }
 
 .household-menu-img:hover {
   opacity: 0.5;
+}
+
+/* CARDS  */
+
+.card-avatar {
+  width: 30%;
+  height: 75px;
+  width: 75px;
+}
+
+.skinny-card {
+  width: 18rem;
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4px;
+  text-align: left;
+  margin: auto;
+}
+
+/* TEXT FORMATTING  */
+
+.center {
+  margin: auto;
 }

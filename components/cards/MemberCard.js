@@ -2,19 +2,23 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
+import Image from 'next/image';
+import view from '../../src/assets/images/arrow-icon.png';
 
 export default function MemberCard({ memberObj }) {
   return (
     <>
-      <Card style={{ width: '18rem', margin: '10px' }}>
-        <Card.Img variant="top" src={`/assets/images/memberAvatars/${memberObj.memberAvatar}`} alt="Member's Avatar" style={{ height: '200px' }} />
+      <Card className="skinny-card">
+        <Card.Img className="card-avatar" src={`/assets/images/memberAvatars/${memberObj.memberAvatar}`} alt="Member's Avatar" />
         <Card.Body>
-          <Card.Title>{memberObj.memberName}</Card.Title>
-          <h3 className="card-text bold">{memberObj.role}</h3>
-          <Link href={`/member/${memberObj.firebaseKey}`} passHref>
-            <Button variant="primary" className="view-btn">View Member</Button>
-          </Link>
+          <Card.Title className="muller-bold-sm center">{memberObj.memberName}</Card.Title>
+          <h3 className="muller-med-sm center">{memberObj.role}</h3>
         </Card.Body>
+        <Link href={`/member/${memberObj.firebaseKey}`} passHref>
+          <Button className="arrow-btn">
+            <Image src={view} alt="view member icon" />
+          </Button>
+        </Link>
       </Card>
     </>
   );

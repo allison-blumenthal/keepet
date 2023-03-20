@@ -27,11 +27,21 @@ export default function ShowMembers() {
       <Head>
         <title>Members</title>
       </Head>
-      <h1>This is the members page.</h1>
-      <div className="d-flex flex-wrap">
-        {householdMembers.map((householdMember) => (
-          <MemberCard key={householdMember.firebaseKey} memberObj={householdMember} onUpdate={getHouseholdMembers} />
-        ))}
+      <div
+        className="basic-page-container text-center"
+        style={{
+          height: '90vh',
+          padding: '30px',
+          maxWidth: '400px',
+          margin: '0 auto',
+        }}
+      >
+        <h1 className="red pc-font-md">MEMBERS</h1>
+        <div className="d-flex flex-wrap">
+          {householdMembers.map((householdMember) => (
+            <MemberCard key={householdMember.firebaseKey} memberObj={householdMember} onUpdate={getHouseholdMembers} />
+          ))}
+        </div>
       </div>
     </>
   );
