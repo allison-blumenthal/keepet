@@ -6,7 +6,7 @@ import TransparentBylineLogo from './logos/TransparentBylineLogo';
 function Signin() {
   return (
     <>
-      <div className="gradient-background">
+      <div className="gradient-background1">
         <div
           className="text-center d-flex flex-column justify-content-center align-content-center"
           style={{

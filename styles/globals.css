@@ -7,7 +7,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  background: white;
+    background: linear-gradient(#edecf3, #4D3F82)
 }
 
 a {
@@ -32,8 +32,12 @@ body {
 
 /* BACKGROUNDS */
 
-.gradient-background {
+.gradient-background1 {
   background: linear-gradient(#4D3F82, white, #4D3F82);
+}
+
+.gradient-background2 {
+  background: linear-gradient(white, #4D3F82);
 }
 
 /* PETITE COCHON FONT CLASSES */
@@ -117,7 +121,7 @@ body {
 
 .muller-light-xsm {
   font-family: 'MullerLight';
-  font-size: 14px;
+  font-size: 16px;
 }
 
 /* BUTTONS */
@@ -167,6 +171,35 @@ body {
   border-color: #167a6f;
 }
 
+.red-btn {
+  background-color: #D7263D;
+  border-color: #D7263D;
+  color: white;
+  border-radius: 20px;
+  padding-bottom: 0px;
+  padding-top: 8px;
+}
+
+.red-btn:hover {
+  background-color: #ac1e31;
+  border-color: #ac1e31;
+}
+
+.edit-btn {
+  height: 45px;
+  width: 45px;
+  padding: 4px;
+  border-radius: 12px;
+  background-color: #b1c262;
+  border-color: #b1c262;
+}
+
+.edit-btn:hover {
+  background-color: #9ead57;
+  border-color: #9ead57;
+}
+
+
 /* NAVBAR, LOGO, SIGN OUT */
 
 .navbar-top {
@@ -200,6 +233,12 @@ body {
   opacity: 0.5;
 }
 
+/* PAGE HEADERS */
+.household-header {
+  display: flex;
+  justify-content: space-between;
+}
+
 /* FORMS  */
 
 .image-list-container {
@@ -215,6 +254,6 @@ body {
   margin-right: auto;
 }
 
-.household-menu-img {
-  border-radius: 30px;
+.household-menu-img:hover {
+  opacity: 0.5;
 }

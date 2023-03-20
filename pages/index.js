@@ -33,15 +33,13 @@ export default function Index() {
       <div
         className="text-center d-flex flex-column justify-content-center align-content-center"
         style={{
-          height: '50vh',
+          height: '85vh',
           padding: '30px',
-          maxWidth: '400px',
+          maxWidth: '500px',
           margin: '0 auto',
         }}
       >
-        <h1 className="pc-font-md purple">Welcome to KEEPET,</h1>
-        <h1 className="pc-font-sm purple">{user.displayName}!</h1>
-        <br />
+        <h1 className="pc-font-md purple">Welcome to<br /> KEEPET!</h1>
 
         {member ? (
           <div>
@@ -49,7 +47,7 @@ export default function Index() {
           </div>
         ) : (
           <div>
-            <Button type="btn" className="mx-2 primary" onClick={() => router.push('/member/new')}>Get Started</Button>
+            <Button type="btn" className="teal-btn pc-font-sm" onClick={() => router.push('/member/new')}>GET STARTED</Button>
           </div>
         ) }
       </div>

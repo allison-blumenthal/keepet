@@ -45,11 +45,21 @@ function CreateEditHouseholdForm({ householdObj }) {
 
   return (
     <>
-      <Form onSubmit={handleSubmit}>
-        <h1 className="mt-5 mb-3">{householdObj.firebaseKey ? 'Update' : 'Create'} Household</h1>
+      <Form
+        className="text-center"
+        style={{
+          height: '90vh',
+          padding: '30px',
+          maxWidth: '400px',
+          margin: '0 auto',
+        }}
+        onSubmit={handleSubmit}
+      >
+        <h1 className="purple pc-font-md">{householdObj.firebaseKey ? 'UPDATE' : 'CREATE'} HOUSEHOLD</h1>
 
-        <FloatingLabel controlId="floatingInput2" label="Household Name" className="mb-3 text-black">
+        <FloatingLabel controlId="floatingInput1" label="Household Name" className="mb-3 muller-light-xsm">
           <Form.Control
+            className="muller-reg-sm"
             type="text"
             placeholder="Household name"
             name="householdName"
@@ -59,11 +69,11 @@ function CreateEditHouseholdForm({ householdObj }) {
           />
         </FloatingLabel>
 
-        <Button type="submit" className="blue-btn">
-          {householdObj.firebaseKey ? 'Update' : 'Create'} Household
+        <Button type="submit" className="teal-btn pc-font-xsm">
+          {householdObj.firebaseKey ? 'UPDATE' : 'CREATE'} HOUSEHOLD
         </Button>
 
-        <Button type="btn" className="mx-2 red-btn" onClick={() => router.back()}>Cancel</Button>
+        <Button type="btn" className="red-btn pc-font-xsm" onClick={() => router.back()}>CANCEL</Button>
 
       </Form>
     </>
