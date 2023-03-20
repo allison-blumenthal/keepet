@@ -43,7 +43,6 @@ body {
 
 
 /* BACKGROUNDS */
-
 .gradient-background1 {
   background: linear-gradient(#4D3F82, white, #4D3F82);
 }
@@ -53,7 +52,6 @@ body {
 }
 
 /* PETITE COCHON FONT CLASSES */
-
 .pc-font-xlg {
   font-family: 'PetitCochon';
   font-size: 100px;
@@ -80,7 +78,6 @@ body {
 }
 
 /* MULLER FONT CLASSES */
-
 .muller-bold-md {
   font-family: 'MullerBold';
   font-size: 50px;
@@ -137,7 +134,6 @@ body {
 }
 
 /* BUTTONS */
-
 .login-btn {
   background-color: #D7263D;
   border-color: #D7263D;
@@ -211,6 +207,20 @@ body {
   border-color: #9ead57;
 }
 
+.add-btn {
+  height: 45px;
+  width: 45px;
+  padding: 4px;
+  border-radius: 12px;
+  background-color: #1B998B;
+  border-color: #1B998B;
+}
+
+.add-btn:hover {
+  background-color: #167a6f;
+  border-color: #167a6f;
+}
+
 .arrow-btn {
   background-color: white;
   border-color: white;
@@ -225,9 +235,12 @@ body {
   opacity: 0.5;
 }
 
+.household-menu-img:hover {
+  opacity: 0.5;
+}
+
 
 /* NAVBAR, LOGO, SIGN OUT */
-
 .navbar-top {
   display: flex;
   justify-content: space-between
@@ -260,28 +273,20 @@ body {
 }
 
 /* PAGE HEADERS */
-.household-header {
+.double-header {
   display: flex;
   justify-content: space-between;
 }
 
-/* FORMS  */
-
+/* CONTAINERS */
 .image-list-container {
   display: flex;
   justify-content: center;
 }
 
-
-/* HOUSEHOLD STYLES */
-
 .basic-page-container {
   margin-left: auto;
   margin-right: auto;
-}
-
-.household-menu-img:hover {
-  opacity: 0.5;
 }
 
 /* CARDS  */

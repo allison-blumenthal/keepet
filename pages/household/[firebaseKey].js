@@ -47,7 +47,7 @@ function ViewHousehold() {
           margin: '0 auto',
         }}
       >
-        <div className="household-header">
+        <div className="double-header">
           <h2 className="pc-font-md purple">{householdDetails?.householdName}</h2>
           <div style={{ maxHeiht: '15px' }}>
             {member.isAdmin === true ? (
