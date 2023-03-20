@@ -2,19 +2,24 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
+import Image from 'next/image';
+import view from '../../src/assets/images/arrow-icon.png';
 
 export default function PetCard({ petObj }) {
   return (
     <>
-      <Card style={{ width: '18rem', margin: '10px' }}>
-        <Card.Img variant="top" src={`/assets/images/petAvatars/${petObj.petAvatar}`} alt="Pet's Avatar" style={{ height: '200px' }} />
+      <Card className="skinny-card">
+        <Card.Img className="card-avatar" src={`/assets/images/petAvatars/${petObj.petAvatar}`} alt="Pet's Avatar" />
         <Card.Body>
-          <Card.Title>{petObj.petName}</Card.Title>
-          <h3 className="card-text bold">{petObj.species}</h3>
-          <Link href={`/pet/${petObj.firebaseKey}`} passHref>
-            <Button variant="primary" className="view-btn">View Pet</Button>
-          </Link>
+          <Card.Title className="muller-bold-sm center">{petObj.petName}</Card.Title>
+          <h3 className="muller-med-sm center">{petObj.species}</h3>
         </Card.Body>
+        <Link href={`/pet/${petObj.firebaseKey}`} passHref>
+          <Button className="arrow-btn">
+            <Image src={view} alt="view pet icon" />
+          </Button>
+        </Link>
+
       </Card>
     </>
   );

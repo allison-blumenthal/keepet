@@ -1,25 +1,39 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 import { signIn } from '../utils/auth';
-import Logo from './Logo';
+import TransparentBylineLogo from './logos/TransparentBylineLogo';
 
 function Signin() {
   return (
-    <div
-      className="text-center d-flex flex-column justify-content-center align-content-center"
-      style={{
-        height: '90vh',
-        padding: '30px',
-        maxWidth: '400px',
-        margin: '0 auto',
-      }}
-    >
-      <h1>Welcome to Keepet!</h1>
-      <h4>A place to keep your pets and people organized.</h4>
-      <Logo />
-      <button type="button" className="btn btn-primary btn-lg copy-btn" onClick={signIn}>
-        Sign In
-      </button>
-    </div>
+    <>
+      <div className="gradient-background1">
+        <div
+          className="text-center d-flex flex-column justify-content-center align-content-center"
+          style={{
+            height: '90vh',
+            padding: '30px',
+            maxWidth: '400px',
+            margin: '0 auto',
+          }}
+        >
+          <TransparentBylineLogo />
+          <Button type="btn" className="login-btn pc-font-sm" onClick={signIn}>
+            LOGIN
+          </Button>
+        </div>
+        <div
+          className="text-center d-flex flex-column justify-content-center align-content-center"
+          style={{
+            height: '10vh',
+            padding: '30px',
+            maxWidth: '400px',
+            margin: '0 auto',
+          }}
+        >
+          <h6 className="muller-light-xsm" style={{ color: 'white' }}>This app is inspired by and dedicated to my sweet seven kitties and three-legged pittie.</h6>
+        </div>
+      </div>
+    </>
   );
 }
 

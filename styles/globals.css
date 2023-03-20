@@ -1,12 +1,13 @@
 @import 'bootstrap/dist/css/bootstrap.css';
 
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  background: linear-gradient(white, #4D3F82, white);
+    background: linear-gradient(#edecf3, #4D3F82)
 }
 
 a {
@@ -22,25 +23,242 @@ body {
   background-color: white;
 }
 
-/* NAVBAR, LOGO, SIGN OUT */
+/* FONT COLORS  */
 
-.navbar-top {
-  display: flex;
-  justify-content: space-between
+.purple {
+  color: #4D3F82;
 }
 
-.logo {
-  height: 100px;
-  width: 100px;
-  margin: 0px;
-  padding: 0px;
+.red {
+  color: #D7263D;
+}
+
+.orange {
+  color: #F46036;
+}
+
+.lime {
+  color: #b1c262;
+}
+
+
+/* BACKGROUNDS */
+.gradient-background1 {
+  background: linear-gradient(#4D3F82, white, #4D3F82);
+}
+
+.gradient-background2 {
+  background: linear-gradient(white, #4D3F82);
+}
+
+/* PETITE COCHON FONT CLASSES */
+.pc-font-xlg {
+  font-family: 'PetitCochon';
+  font-size: 100px;
+}
+
+.pc-font-lg {
+  font-family: 'PetitCochon';
+  font-size: 80px;
+}
+
+.pc-font-md {
+  font-family: 'PetitCochon';
+  font-size: 50px;
+}
+
+.pc-font-sm {
+  font-family: 'PetitCochon';
+  font-size: 30px;
+}
+
+.pc-font-xsm {
+  font-family: 'PetitCochon';
+  font-size: 20px;
+}
+
+/* MULLER FONT CLASSES */
+.muller-bold-md {
+  font-family: 'MullerBold';
+  font-size: 50px;
+}
+
+.muller-bold-sm {
+  font-family: 'MullerBold';
+  font-size: 20px;
+}
+
+.muller-bold-xsm {
+  font-family: 'MullerBold';
+  font-size: 14px;
+}
+
+.muller-med-md {
+  font-family: 'MullerMedium';
+  font-size: 50px;
+}
+
+.muller-med-sm {
+  font-family: 'MullerMedium';
+  font-size: 20px;
+}
+
+.muller-med-xsm {
+  font-family: 'MullerMedium';
+  font-size: 14px;
+}
+
+.muller-reg-md {
+  font-family: 'MullerRegular';
+  font-size: 50px;
+}
+
+.muller-reg-sm {
+  font-family: 'MullerRegular';
+  font-size: 20px;
+}
+
+.muller-light-md {
+  font-family: 'MullerLight';
+  font-size: 50px;
+}
+
+.muller-light-sm {
+  font-family: 'MullerLight';
+  font-size: 20px;
+}
+
+.muller-light-xsm {
+  font-family: 'MullerLight';
+  font-size: 16px;
+}
+
+/* BUTTONS */
+.login-btn {
+  background-color: #D7263D;
+  border-color: #D7263D;
+  color: white;
+  border-radius: 24px;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 10px;
+  padding-bottom: 0px;
+}
+
+.login-btn:hover {
+  background-color: #ac1e31;
+  border-color: #ac1e31;
 }
 
 .logout-btn {
   height: 40px;
   width: 80px;
-  padding: 0px;
+  padding-top: 6px;
+  padding-bottom: 0px;
+  padding-left: 4px;
+  padding-right: 2px;
   margin: 10px;
+  background-color: #D7263D;
+  border-color: #D7263D;
+  color: white;
+  border-radius: 15px;
+}
+
+.teal-btn {
+  background-color: #1B998B;
+  border-color: #1B998B;
+  color: white;
+  border-radius: 20px;
+  padding-bottom: 0px;
+  padding-top: 8px;
+}
+
+.teal-btn:hover {
+  background-color: #167a6f;
+  border-color: #167a6f;
+}
+
+.red-btn {
+  background-color: #D7263D;
+  border-color: #D7263D;
+  color: white;
+  border-radius: 20px;
+  padding-bottom: 0px;
+  padding-top: 8px;
+}
+
+.red-btn:hover {
+  background-color: #ac1e31;
+  border-color: #ac1e31;
+}
+
+.edit-btn {
+  height: 45px;
+  width: 45px;
+  padding: 4px;
+  border-radius: 12px;
+  background-color: #b1c262;
+  border-color: #b1c262;
+}
+
+.edit-btn:hover {
+  background-color: #9ead57;
+  border-color: #9ead57;
+}
+
+.add-btn {
+  height: 45px;
+  width: 45px;
+  padding: 4px;
+  border-radius: 12px;
+  background-color: #1B998B;
+  border-color: #1B998B;
+}
+
+.add-btn:hover {
+  background-color: #167a6f;
+  border-color: #167a6f;
+}
+
+.arrow-btn {
+  background-color: white;
+  border-color: white;
+  height: 60px;
+  width: 60px;
+  padding-top: 12px;
+}
+
+.arrow-btn:hover {
+  background-color: white;
+  border-color: white;
+  opacity: 0.5;
+}
+
+.household-menu-img:hover {
+  opacity: 0.5;
+}
+
+
+/* NAVBAR, LOGO, SIGN OUT */
+.navbar-top {
+  display: flex;
+  justify-content: space-between
+}
+
+.nav-bg {
+  background-color: #dbd9e6;
+}
+
+.logo {
+  height: 60px;
+  width: 60px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.logo:hover {
+  opacity: 0.5;
 }
 
 .nav-icon {
@@ -50,21 +268,48 @@ body {
   padding: 0px;
 }
 
-/* FORMS  */
+.nav-icon:hover {
+  opacity: 0.5;
+}
 
+/* PAGE HEADERS */
+.double-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* CONTAINERS */
 .image-list-container {
   display: flex;
   justify-content: center;
 }
 
-
-/* HOUSEHOLD STYLES */
-
-.household-page-container {
+.basic-page-container {
   margin-left: auto;
   margin-right: auto;
 }
 
-.household-menu-img {
-  border-radius: 30px;
+/* CARDS  */
+
+.card-avatar {
+  width: 30%;
+  height: 75px;
+  width: 75px;
+}
+
+.skinny-card {
+  width: 18rem;
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4px;
+  text-align: left;
+  margin: auto;
+}
+
+/* TEXT FORMATTING  */
+
+.center {
+  margin: auto;
 }

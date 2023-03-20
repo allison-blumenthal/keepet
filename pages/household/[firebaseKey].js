@@ -10,6 +10,7 @@ import pets from '../../src/assets/images/pets.png';
 import tasks from '../../src/assets/images/tasks.png';
 import { getMemberByUID } from '../../api/memberData';
 import { useAuth } from '../../utils/context/authContext';
+import edit from '../../src/assets/images/edit-icon.png';
 
 function ViewHousehold() {
   const [member, setMember] = useState({});
@@ -37,15 +38,26 @@ function ViewHousehold() {
       <Head>
         <title>{householdDetails?.householdName}</title>
       </Head>
-
-      <div className="household-page-container text-center">
-        <h2>{householdDetails?.householdName}</h2>
-        <div className="ms-5 text-center">
-          {member.isAdmin === true ? (
-            <Link href={`/household/edit/${member.householdId}`} passHref>
-              <Button variant="info" className="edit-btn">EDIT</Button>
-            </Link>
-          ) : ''}
+      <div
+        className="basic-page-container text-center"
+        style={{
+          height: '90vh',
+          padding: '30px',
+          maxWidth: '400px',
+          margin: '0 auto',
+        }}
+      >
+        <div className="double-header">
+          <h2 className="pc-font-md purple">{householdDetails?.householdName}</h2>
+          <div style={{ maxHeiht: '15px' }}>
+            {member.isAdmin === true ? (
+              <Link href={`/household/edit/${member.householdId}`} passHref>
+                <Button className="edit-btn">
+                  <Image src={edit} alt="edit icon" />
+                </Button>
+              </Link>
+            ) : ''}
+          </div>
         </div>
         <Link passHref href="/members">
           <Image className="household-menu-img" src={members} alt="Members" />

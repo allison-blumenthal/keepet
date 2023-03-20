@@ -6,7 +6,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import Image from 'next/image';
-import Logo from './Logo';
+import TransparentLogo from './logos/TransparentLogo';
 import { signOut } from '../utils/auth';
 import home from '../src/assets/images/home-icon.png';
 import members from '../src/assets/images/member-icon.png';
@@ -32,19 +32,21 @@ export default function NavBar() {
 
   return (
     <>
-      <div className="navbar-top">
+      <div
+        className="navbar-top nav-bg"
+      >
         <Link passHref href="/">
           <Navbar.Brand>
             <div className="logo">
-              <Logo />
+              <TransparentLogo />
             </div>
           </Navbar.Brand>
         </Link>
-        <Button className="logout-btn" variant="danger" onClick={signOut}>Log Out</Button>
+        <Button className="logout-btn pc-font-xsm" variant="danger" onClick={signOut}>LOGOUT</Button>
       </div>
 
       {member ? (
-        <Navbar bg="light" variant="light" fixed="bottom">
+        <Navbar className="nav-bg" variant="light" fixed="bottom">
           <Container>
             <Nav className="flex-grow-1 justify-content-evenly">
               <Nav.Link href={`/household/${member.householdId}`}>
