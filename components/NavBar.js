@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import TransparentLogo from './logos/TransparentLogo';
 import { signOut } from '../utils/auth';
 import home from '../src/assets/images/home-icon.png';
@@ -17,6 +18,7 @@ import { getMemberByUID } from '../api/memberData';
 export default function NavBar() {
   const [member, setMember] = useState({});
   const { user } = useAuth();
+  const router = useRouter();
 
   const getMemberInfo = () => {
     getMemberByUID(user.uid).then((memberObj) => {
@@ -41,7 +43,12 @@ export default function NavBar() {
             </div>
           </Navbar.Brand>
         </Link>
-        <button type="button" className="logout-btn pc-font-xsm" onClick={signOut}>LOGOUT</button>
+        <button
+          type="button"
+          className="logout-btn pc-font-xsm"
+          onClick={router.push('/').then(() => signOut)}
+        >LOGOUT
+        </button>
       </div>
 
       {member ? (
