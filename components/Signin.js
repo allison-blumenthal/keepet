@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
 import { signIn } from '../utils/auth';
 import TransparentBylineLogo from './logos/TransparentBylineLogo';
 
@@ -17,9 +16,9 @@ function Signin() {
           }}
         >
           <TransparentBylineLogo />
-          <Button type="btn" className="login-btn pc-font-sm" onClick={signIn}>
+          <button type="button" className="login-btn pc-font-sm" onClick={signIn}>
             LOGIN
-          </Button>
+          </button>
         </div>
         <div
           className="text-center d-flex flex-column justify-content-center align-content-center"

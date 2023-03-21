@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { getMemberByUID } from '../api/memberData';
@@ -44,12 +43,10 @@ export default function ShowPets() {
           margin: '0 auto',
         }}
       >
-        <div className="double-header">
-          <h1 className="orange pc-font-md">PETS</h1>
-          <Button type="btn" className="add-btn" onClick={() => router.push('/pet/new')}>
-            <Image src={add} alt="add pet icon" />
-          </Button>
-        </div>
+        <h1 className="orange pc-font-md">PETS</h1>
+        <button type="button" className="add-btn" onClick={() => router.push('/pet/new')}>
+          <Image src={add} alt="add pet icon" />
+        </button>
         <div className="d-flex flex-wrap">
           {householdPets.map((householdPet) => (
             <PetCard key={householdPet.firebaseKey} petObj={householdPet} onUpdate={getHouseholdPets} />

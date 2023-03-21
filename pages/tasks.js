@@ -1,11 +1,12 @@
 import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 import { getMemberByUID } from '../api/memberData';
 import { getTasksByHouseholdId } from '../api/taskData';
 import { useAuth } from '../utils/context/authContext';
 import TaskCard from '../components/cards/TaskCard';
+import add from '../src/assets/images/add-icon.png';
 
 export default function ShowTasks() {
   // eslint-disable-next-line no-unused-vars
@@ -33,18 +34,30 @@ export default function ShowTasks() {
       <Head>
         <title>Tasks</title>
       </Head>
-      <h1 className="page-header">Tasks</h1>
+      <div
+        className="basic-page-container text-center"
+        style={{
+          height: '90vh',
+          padding: '30px',
+          maxWidth: '400px',
+          margin: '0 auto',
+        }}
+      >
+        <h1 className="lime pc-font-md">TASKS</h1>
 
-      {member.isAdmin === true ? (
-        <>
-          <Button type="btn" className="mx-2 red-btn" onClick={() => router.push('/task/new')}>Add a Task</Button>
-        </>
-      )
-        : '' }
-      <div className="d-flex flex-wrap">
-        {householdTasks.map((householdTask) => (
-          <TaskCard key={householdTask.firebaseKey} taskObj={householdTask} onUpdate={getHouseholdTasks} />
-        ))}
+        {member.isAdmin === true ? (
+          <>
+            <button type="button" className="add-btn" onClick={() => router.push('/task/new')}>
+              <Image src={add} alt="add task icon" />
+            </button>
+          </>
+        )
+          : '' }
+        <div className="d-flex flex-wrap">
+          {householdTasks.map((householdTask) => (
+            <TaskCard key={householdTask.firebaseKey} taskObj={householdTask} onUpdate={getHouseholdTasks} />
+          ))}
+        </div>
       </div>
     </>
   );

@@ -15,7 +15,7 @@ export default function MemberCard({ memberObj }) {
           <h3 className="muller-med-sm center">{memberObj.role}</h3>
         </Card.Body>
         <Link href={`/member/${memberObj.firebaseKey}`} passHref>
-          <Button className="arrow-btn">
+          <Button variant="link" className="arrow-btn">
             <Image src={view} alt="view member icon" />
           </Button>
         </Link>

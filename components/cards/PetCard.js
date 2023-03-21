@@ -15,7 +15,7 @@ export default function PetCard({ petObj }) {
           <h3 className="muller-med-sm center">{petObj.species}</h3>
         </Card.Body>
         <Link href={`/pet/${petObj.firebaseKey}`} passHref>
-          <Button className="arrow-btn">
+          <Button variant="link" className="arrow-btn">
             <Image src={view} alt="view pet icon" />
           </Button>
         </Link>

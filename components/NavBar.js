@@ -4,7 +4,6 @@ import Link from 'next/link';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import Button from 'react-bootstrap/Button';
 import Image from 'next/image';
 import TransparentLogo from './logos/TransparentLogo';
 import { signOut } from '../utils/auth';
@@ -42,7 +41,7 @@ export default function NavBar() {
             </div>
           </Navbar.Brand>
         </Link>
-        <Button className="logout-btn pc-font-xsm" variant="danger" onClick={signOut}>LOGOUT</Button>
+        <button type="button" className="logout-btn pc-font-xsm" onClick={signOut}>LOGOUT</button>
       </div>
 
       {member ? (

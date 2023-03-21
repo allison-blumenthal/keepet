@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
-import { Form, FloatingLabel, Button } from 'react-bootstrap';
+import { Form, FloatingLabel } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { updateHousehold } from '../../api/householdData';
 import { useAuth } from '../../utils/context/authContext';
@@ -69,11 +69,10 @@ function CreateEditHouseholdForm({ householdObj }) {
           />
         </FloatingLabel>
 
-        <Button type="submit" className="teal-btn pc-font-xsm">
+        <button type="submit" className="teal-btn pc-font-xsm">
           {householdObj.firebaseKey ? 'UPDATE' : 'CREATE'} HOUSEHOLD
-        </Button>
-
-        <Button type="btn" className="red-btn pc-font-xsm" onClick={() => router.back()}>CANCEL</Button>
+        </button>
+        <button type="button" className="red-btn pc-font-xsm" onClick={() => router.back()}>CANCEL</button>
 
       </Form>
     </>

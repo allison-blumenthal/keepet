@@ -31,14 +31,17 @@ body {
 
 .red {
   color: #D7263D;
+  -webkit-text-stroke: .5px black;
 }
 
 .orange {
   color: #F46036;
+  -webkit-text-stroke: .5px black;
 }
 
 .lime {
   color: #b1c262;
+  -webkit-text-stroke: .5px black;
 }
 
 
@@ -165,13 +168,19 @@ body {
   border-radius: 15px;
 }
 
+.logout-btn:hover {
+  background-color: #ac1e31;
+  border-color: #ac1e31;
+}
+
 .teal-btn {
   background-color: #1B998B;
   border-color: #1B998B;
   color: white;
-  border-radius: 20px;
+  border-radius: 16px;
   padding-bottom: 0px;
   padding-top: 8px;
+  margin: 4px;
 }
 
 .teal-btn:hover {
@@ -183,9 +192,10 @@ body {
   background-color: #D7263D;
   border-color: #D7263D;
   color: white;
-  border-radius: 20px;
+  border-radius: 16px;
   padding-bottom: 0px;
   padding-top: 8px;
+  margin: 4px;
 }
 
 .red-btn:hover {
@@ -196,10 +206,11 @@ body {
 .edit-btn {
   height: 45px;
   width: 45px;
-  padding: 4px;
+  padding: 6px;
   border-radius: 12px;
   background-color: #b1c262;
   border-color: #b1c262;
+  margin: 10px;
 }
 
 .edit-btn:hover {
@@ -210,10 +221,11 @@ body {
 .add-btn {
   height: 45px;
   width: 45px;
-  padding: 4px;
+  padding: 6px;
   border-radius: 12px;
   background-color: #1B998B;
   border-color: #1B998B;
+  margin: 10px;
 }
 
 .add-btn:hover {
@@ -227,12 +239,17 @@ body {
   height: 60px;
   width: 60px;
   padding-top: 12px;
+  
 }
 
 .arrow-btn:hover {
   background-color: white;
   border-color: white;
   opacity: 0.5;
+}
+
+.menu-img-shadow {
+  box-shadow: 1.5px 1.5px black;
 }
 
 .household-menu-img:hover {
@@ -287,6 +304,7 @@ body {
 .basic-page-container {
   margin-left: auto;
   margin-right: auto;
+  overflow-y: ;
 }
 
 /* CARDS  */
@@ -299,17 +317,28 @@ body {
 
 .skinny-card {
   width: 18rem;
-  height: 80px;
+  height: 96px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 4px;
+  padding: 8px;
   text-align: left;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border-radius: 16px;
 }
 
 /* TEXT FORMATTING  */
 
 .center {
   margin: auto;
+}
+
+
+/* FORMS */
+
+.avatar-header {
+  color: black;
 }

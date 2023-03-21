@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Button } from 'react-bootstrap';
 import { getSingleHousehold } from '../../api/householdData';
 import members from '../../src/assets/images/members.png';
 import pets from '../../src/assets/images/pets.png';
@@ -41,23 +40,21 @@ function ViewHousehold() {
       <div
         className="basic-page-container text-center"
         style={{
-          height: '90vh',
+          height: '85vh',
           padding: '30px',
           maxWidth: '400px',
           margin: '0 auto',
         }}
       >
-        <div className="double-header">
-          <h2 className="pc-font-md purple">{householdDetails?.householdName}</h2>
-          <div style={{ maxHeiht: '15px' }}>
-            {member.isAdmin === true ? (
-              <Link href={`/household/edit/${member.householdId}`} passHref>
-                <Button className="edit-btn">
-                  <Image src={edit} alt="edit icon" />
-                </Button>
-              </Link>
-            ) : ''}
-          </div>
+        <h2 className="pc-font-md purple">{householdDetails?.householdName}</h2>
+        <div style={{ maxHeiht: '15px' }}>
+          {member.isAdmin === true ? (
+            <Link href={`/household/edit/${member.householdId}`} passHref>
+              <button type="button" className="edit-btn">
+                <Image src={edit} alt="edit icon" />
+              </button>
+            </Link>
+          ) : ''}
         </div>
         <Link passHref href="/members">
           <Image className="household-menu-img" src={members} alt="Members" />
