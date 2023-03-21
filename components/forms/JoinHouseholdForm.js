@@ -27,6 +27,7 @@ function JoinHouseholdForm({ memberObj }) {
   useEffect(() => {
     displayHouseholds();
     getMemberByUID(user.uid).then((memberInfo) => {
+      console.warn(memberInfo[0]);
       setMember(memberInfo[0]);
     });
 
@@ -86,7 +87,6 @@ function JoinHouseholdForm({ memberObj }) {
           }
           </Form.Select>
         </FloatingLabel>
-
         <button className="teal-btn pc-font-sm" type="submit">JOIN HOUSEHOLD</button>
       </Form>
     </>
