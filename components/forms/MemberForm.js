@@ -14,7 +14,6 @@ import { memberAvatars } from '../../utils/avatars';
 const initialState = {
   isAdmin: false,
   memberName: '',
-  memberAge: '',
   memberAvatar: '',
   role: '',
   description: '',
@@ -77,18 +76,7 @@ function MemberForm({ memberObj }) {
             />
           </FloatingLabel>
 
-          <FloatingLabel controlId="floatingInput2" label="Age" className="mb-3 muller-light-xsm">
-            <Form.Control
-              type="text"
-              placeholder="Age"
-              name="memberAge"
-              value={formInput.memberAge}
-              onChange={handleChange}
-              required
-            />
-          </FloatingLabel>
-
-          <FloatingLabel controlId="floatingInput3" label="Role" className="mb-3 muller-light-xsm">
+          <FloatingLabel controlId="floatingInput2" label="Role" className="mb-3 muller-light-xsm">
             <Form.Control
               type="text"
               placeholder="Role"
@@ -190,7 +178,6 @@ MemberForm.propTypes = {
     uid: PropTypes.string,
     isAdmin: PropTypes.bool,
     memberName: PropTypes.string,
-    memberAge: PropTypes.string,
     memberAvatar: PropTypes.string,
     role: PropTypes.string,
     description: PropTypes.string,

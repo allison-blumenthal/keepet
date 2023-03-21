@@ -344,10 +344,16 @@ body {
   border-radius: 16px;
 }
 
-/* TEXT FORMATTING  */
+/* TEXT/PLACE FORMATTING  */
 
 .center {
   margin: auto;
+}
+
+.right {
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
 }
 
 

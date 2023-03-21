@@ -2,12 +2,13 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { Button } from 'react-bootstrap';
 import Link from 'next/link';
+import Image from 'next/image';
 import { getMemberByUID } from '../../api/memberData';
 import { useAuth } from '../../utils/context/authContext';
 import TaskCard from '../../components/cards/TaskCard';
 import { getMemberAndTasks } from '../../api/mergedData';
+import edit from '../../src/assets/images/edit-icon.png';
 
 export default function ViewMember() {
   const [member, setMember] = useState({});
@@ -38,30 +39,36 @@ export default function ViewMember() {
       <Head>
         <title>{memberDetails?.title}</title>
       </Head>
-      {(memberDetails.uid === member.uid) || (member.isAdmin === true) ? (
-        <>
-          <Link href={`/member/edit/${firebaseKey}`} passHref>
-            <Button variant="info" className="edit-btn">EDIT</Button>
-          </Link>
-        </>
-      ) : ''}
-      <div className="mt-5 d-flex flex-wrap">
-        <div className="d-flex flex-column">
+      <div
+        className="basic-page-container text-center"
+        style={{
+          height: '90vh',
+          padding: '30px',
+          maxWidth: '400px',
+          margin: '0 auto',
+        }}
+      >
+        {(memberDetails.uid === member.uid) || (member.isAdmin === true) ? (
+          <>
+            <Link href={`/member/edit/${firebaseKey}`} passHref>
+              <button type="button" className="edit-btn">
+                <Image src={edit} alt="edit member icon" />
+              </button>
+            </Link>
+          </>
+        ) : ''}
+        <h1 className="purple pc-font-md">{memberDetails.memberName}</h1>
+        <h3 className="muller-bold-sm">{memberDetails.role}</h3>
+        <div>
           <img src={`/assets/images/memberAvatars/${memberDetails.memberAvatar}`} alt={memberDetails.memberName} style={{ width: '300px' }} />
         </div>
-        <div className="text-black ms-5 details">
-          <h2>{memberDetails.memberName}</h2>
-          <h3>{memberDetails.role}</h3>
-          <h3>{memberDetails.memberAge}</h3>
-          <p>{memberDetails.description}</p>
+        <h6 className="muller-light-sm">{memberDetails.description}</h6>
+        <h1 className="muller-med-sm">Tasks assigned:</h1>
+        <div className="d-flex flex-wrap">
+          {memberDetails.tasks?.map((task) => (
+            <TaskCard key={task.firebaseKey} taskObj={task} onUpdate={getMemberDetails} />
+          ))}
         </div>
-      </div>
-      <br />
-      <h1>Tasks assigned to {memberDetails.memberName}:</h1>
-      <div className="d-flex flex-wrap">
-        {memberDetails.tasks?.map((task) => (
-          <TaskCard key={task.firebaseKey} taskObj={task} onUpdate={getMemberDetails} />
-        ))}
       </div>
     </>
   );

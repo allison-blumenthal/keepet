@@ -51,7 +51,7 @@ function ViewHousehold() {
           {member.isAdmin === true ? (
             <Link href={`/household/edit/${member.householdId}`} passHref>
               <button type="button" className="edit-btn">
-                <Image src={edit} alt="edit icon" />
+                <Image src={edit} alt="edit household icon" />
               </button>
             </Link>
           ) : ''}
