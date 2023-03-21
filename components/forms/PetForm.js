@@ -144,7 +144,7 @@ function PetForm({ petObj }) {
 
           <FormControl>
             <FormLabel>
-              <h2 className="muller-med-sm">Choose an avatar:</h2>
+              <h2 className="muller-med-sm">Choose a pet avatar:</h2>
             </FormLabel>
 
             <div className="image-list-container">

@@ -93,7 +93,7 @@ body {
 
 .muller-bold-xsm {
   font-family: 'MullerBold';
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .muller-med-md {
@@ -108,7 +108,7 @@ body {
 
 .muller-med-xsm {
   font-family: 'MullerMedium';
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .muller-reg-md {
@@ -201,6 +201,21 @@ body {
 .red-btn:hover {
   background-color: #ac1e31;
   border-color: #ac1e31;
+}
+
+.orange-btn {
+  background-color: #F46036;
+  border-color: #F46036;
+  color: white;
+  border-radius: 16px;
+  padding-bottom: 0px;
+  padding-top: 8px;
+  margin: 4px;
+}
+
+.orange-btn:hover {
+  background-color: #c34d2b;
+  border-color: #c34d2b;
 }
 
 .edit-btn {
@@ -304,7 +319,6 @@ body {
 .basic-page-container {
   margin-left: auto;
   margin-right: auto;
-  overflow-y: ;
 }
 
 /* CARDS  */

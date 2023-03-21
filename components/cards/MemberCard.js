@@ -11,8 +11,8 @@ export default function MemberCard({ memberObj }) {
       <Card className="skinny-card">
         <Card.Img className="card-avatar" src={`/assets/images/memberAvatars/${memberObj.memberAvatar}`} alt="Member's Avatar" />
         <Card.Body>
-          <Card.Title className="muller-bold-sm center">{memberObj.memberName}</Card.Title>
-          <h3 className="muller-med-sm center">{memberObj.role}</h3>
+          <Card.Title className="muller-bold-xsm center">{memberObj.memberName}</Card.Title>
+          <Card.Title className="muller-med-xsm center">{memberObj.role}</Card.Title>
         </Card.Body>
         <Link href={`/member/${memberObj.firebaseKey}`} passHref>
           <Button variant="link" className="arrow-btn">

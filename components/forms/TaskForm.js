@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { Form, FloatingLabel, Button } from 'react-bootstrap';
+import { Form, FloatingLabel } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import {
   ImageList, ImageListItem, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio,
@@ -88,31 +88,40 @@ export default function TaskForm({ taskObj }) {
 
   return (
     <>
-      <Form onSubmit={handleSubmit}>
-        <h1 className="text-black mt-5">{taskObj.firebaseKey ? 'Update' : 'New'} Task</h1>
+      <div
+        className="basic-page-container text-center"
+        style={{
+          height: '160vh',
+          padding: '30px',
+          maxWidth: '400px',
+          margin: '0 auto',
+        }}
+      >
+        <Form onSubmit={handleSubmit}>
+          <h1 className="lime pc-font-md">{taskObj.firebaseKey ? 'UPDATE' : 'NEW'} Task</h1>
 
-        <FloatingLabel controlId="floatingInput1" label="Task Title" className="mb-3">
-          <Form.Control
-            type="text"
-            placeholder="Task Title"
-            name="title"
-            value={formInput.title}
-            onChange={handleChange}
-            required
-          />
-        </FloatingLabel>
+          <FloatingLabel controlId="floatingInput1" label="Task Title" className="mb-3 muller-light-xsm">
+            <Form.Control
+              type="text"
+              placeholder="Task Title"
+              name="title"
+              value={formInput.title}
+              onChange={handleChange}
+              required
+            />
+          </FloatingLabel>
 
-        <FloatingLabel controlId="floatingSelect" label="Pet">
-          <Form.Select
-            aria-label="Pet"
-            name="petId"
-            onChange={handleChange}
-            className="mb-3"
-            value={formInput.petId}
-            required
-          >
-            <option value="">Which pet is this task for?</option>
-            {
+          <FloatingLabel className="muller-light-xsm" controlId="floatingSelect1" label="Pet">
+            <Form.Select
+              aria-label="Pet"
+              name="petId"
+              onChange={handleChange}
+              className="mb-3 muller-light-xsm"
+              value={formInput.petId}
+              required
+            >
+              <option value="">Which pet is this task for?</option>
+              {
             householdPets.map((householdPet) => (
               <option
                 key={householdPet.firebaseKey}
@@ -122,71 +131,71 @@ export default function TaskForm({ taskObj }) {
               </option>
             ))
           }
-          </Form.Select>
-        </FloatingLabel>
+            </Form.Select>
+          </FloatingLabel>
 
-        <FloatingLabel controlId="floatingSelect" label="Time of Day">
-          <Form.Select
-            aria-label="Time of Day"
-            name="timeOfDay"
-            onChange={handleChange}
-            className="mb-3"
-            value={formInput.timeOfDay}
-            required
-          >
-            <option value="">Select the task time of day</option>
-            <option value="Breakfast time">Breakfast time</option>
-            <option value="Lunch time">Lunch time</option>
-            <option value="Dinner time">Dinner time</option>
-            <option value="Bed time">Bed time</option>
-          </Form.Select>
-        </FloatingLabel>
+          <FloatingLabel className="muller-light-xsm" controlId="floatingSelect2" label="Time of Day">
+            <Form.Select
+              aria-label="Time of Day"
+              name="timeOfDay"
+              onChange={handleChange}
+              className="mb-3 muller-light-xsm"
+              value={formInput.timeOfDay}
+              required
+            >
+              <option value="">Select the task time of day</option>
+              <option value="Breakfast time">Breakfast time</option>
+              <option value="Lunch time">Lunch time</option>
+              <option value="Dinner time">Dinner time</option>
+              <option value="Bed time">Bed time</option>
+            </Form.Select>
+          </FloatingLabel>
 
-        <FloatingLabel controlId="floatingInput1" label="Task Location" className="mb-3">
-          <Form.Control
-            type="text"
-            placeholder="Task Location"
-            name="location"
-            value={formInput.location}
-            onChange={handleChange}
-            required
-          />
-        </FloatingLabel>
+          <FloatingLabel controlId="floatingInput2" label="Task Location" className="mb-3 muller-light-xsm">
+            <Form.Control
+              type="text"
+              placeholder="Task Location"
+              name="location"
+              value={formInput.location}
+              onChange={handleChange}
+              required
+            />
+          </FloatingLabel>
 
-        <FloatingLabel controlId="floatingTextarea" label="Task Description" className="mb-3">
-          <Form.Control
-            as="textarea"
-            placeholder="Description"
-            style={{ height: '100px' }}
-            name="taskDescription"
-            value={formInput.taskDescription}
-            onChange={handleChange}
-            required
-          />
-        </FloatingLabel>
+          <FloatingLabel controlId="floatingTextarea" label="Task Description" className="mb-3 muller-light-xsm">
+            <Form.Control
+              as="textarea"
+              placeholder="Description"
+              style={{ height: '100px' }}
+              name="taskDescription"
+              value={formInput.taskDescription}
+              onChange={handleChange}
+              required
+            />
+          </FloatingLabel>
 
-        <FloatingLabel controlId="floatingInput1" label="When is task due? (e.g., daily, Tuesdays, every other day...)" className="mb-3">
-          <Form.Control
-            type="text"
-            placeholder="When is task due? (e.g., Daily, Tuesdays, Every other day, etc."
-            name="due"
-            value={formInput.due}
-            onChange={handleChange}
-            required
-          />
-        </FloatingLabel>
+          <FloatingLabel controlId="floatingInput3" label="When is this task due? (Daily, Weekly...)" className="mb-3 muller-light-xsm">
+            <Form.Control
+              type="text"
+              placeholder="When is task due? (e.g., Daily, Tuesdays, Every other day, etc."
+              name="due"
+              value={formInput.due}
+              onChange={handleChange}
+              required
+            />
+          </FloatingLabel>
 
-        <FloatingLabel controlId="floatingSelect" label="Member">
-          <Form.Select
-            aria-label="Member"
-            name="memberId"
-            onChange={handleChange}
-            className="mb-3"
-            value={formInput.memberId}
-            required
-          >
-            <option value="">Who is this task assigned to?</option>
-            {
+          <FloatingLabel className="muller-light-xsm" controlId="floatingSelect3" label="Member">
+            <Form.Select
+              aria-label="Member"
+              name="memberId"
+              onChange={handleChange}
+              className="mb-3 muller-light-xsm"
+              value={formInput.memberId}
+              required
+            >
+              <option value="">Who is this task assigned to?</option>
+              {
             householdMembers.map((householdMember) => (
               <option
                 key={householdMember.uid}
@@ -196,63 +205,67 @@ export default function TaskForm({ taskObj }) {
               </option>
             ))
           }
-          </Form.Select>
-        </FloatingLabel>
+            </Form.Select>
+          </FloatingLabel>
 
-        <FormControl>
-          <FormLabel>Choose a task avatar:</FormLabel>
+          <FormControl>
+            <FormLabel>
+              <h2 className="muller-med-sm">Choose a task avatar:
+              </h2>
+            </FormLabel>
 
-          <div className="image-list-container">
-            <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
-              {taskAvatars.map((avatar) => (
-                <RadioGroup
-                  aria-labelledby="avatar-radio-buttons-group"
-                  name="taskAvatar"
-                  value={formInput.taskAvatar}
-                  defaultValue="1.png"
-                  checked={formInput.taskAvatar}
-                  onClick={(e) => {
-                    setFormInput((prevState) => ({
-                      ...prevState,
-                      taskAvatar: e.target.value,
-                    }));
-                  }}
-                  required
-                >
-                  <FormControlLabel
-                    value={avatar}
-                    control={<Radio />}
-                    label=""
-                  />
-                  <ImageListItem
-                    key={avatar}
+            <div className="image-list-container">
+              <ImageList sx={{ width: 330, height: 650 }} cols={3} rowHeight={80}>
+                {taskAvatars.map((avatar) => (
+                  <RadioGroup
+                    aria-labelledby="avatar-radio-buttons-group"
                     name="taskAvatar"
+                    value={formInput.taskAvatar}
+                    defaultValue="1.png"
+                    checked={formInput.taskAvatar}
+                    onClick={(e) => {
+                      setFormInput((prevState) => ({
+                        ...prevState,
+                        taskAvatar: e.target.value,
+                      }));
+                    }}
+                    required
                   >
-                    <img
-                      src={`/assets/images/taskAvatars/${avatar}?w=164&h=164&fit=crop&auto=format`}
-                      srcSet={`/assets/images/taskAvatars/${avatar}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                      alt={`avatar ${avatar}`}
-                      loading="lazy"
+                    <FormControlLabel
+                      value={avatar}
+                      control={<Radio />}
+                      label=""
                     />
-                  </ImageListItem>
-                </RadioGroup>
-              ))}
-            </ImageList>
+                    <ImageListItem
+                      key={avatar}
+                      name="taskAvatar"
+                    >
+                      <img
+                        src={`/assets/images/taskAvatars/${avatar}?w=164&h=164&fit=crop&auto=format`}
+                        srcSet={`/assets/images/taskAvatars/${avatar}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                        alt={`avatar ${avatar}`}
+                        loading="lazy"
+                      />
+                    </ImageListItem>
+                  </RadioGroup>
+                ))}
+              </ImageList>
+            </div>
+
+          </FormControl>
+
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginBottom: '80px',
+            }}
+          >
+            <button className="teal-btn pc-font-xsm" type="submit">{taskObj.firebaseKey ? 'UPDATE' : 'ADD'} TASK</button>
+            <button type="button" className="red-btn pc-font-xsm" onClick={() => router.back()}>CANCEL</button>
           </div>
-
-        </FormControl>
-
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            marginBottom: '80px',
-          }}
-        >
-          <Button className="view-btn" type="submit">{taskObj.firebaseKey ? 'Update' : 'Add'} Task</Button>
-          <Button type="btn" className="mx-2 red-btn" onClick={() => router.back()}>Cancel</Button>
-        </div>
-      </Form>
+        </Form>
+      </div>
     </>
   );
 }

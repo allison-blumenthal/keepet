@@ -40,7 +40,7 @@ function ViewHousehold() {
       <div
         className="basic-page-container text-center"
         style={{
-          height: '85vh',
+          height: '90vh',
           padding: '30px',
           maxWidth: '400px',
           margin: '0 auto',

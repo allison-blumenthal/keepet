@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Form, Button, FloatingLabel } from 'react-bootstrap';
+import { Form, FloatingLabel } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { getHouseholds } from '../../api/householdData';
 import { useAuth } from '../../utils/context/authContext';
@@ -53,14 +53,23 @@ function JoinHouseholdForm({ memberObj }) {
 
   return (
     <>
-      <Form onSubmit={handleSubmit}>
+      <Form
+        className="text-center"
+        style={{
+          height: '90vh',
+          padding: '30px',
+          maxWidth: '400px',
+          margin: '0 auto',
+        }}
+        onSubmit={handleSubmit}
+      >
 
-        <FloatingLabel controlId="floatingSelect" label="Household">
+        <FloatingLabel className="muller-light-xsm" controlId="floatingSelect" label="Household">
           <Form.Select
             aria-label="Household"
             name="householdId"
             onChange={handleChange}
-            className="mb-3"
+            className="mb-3 muller-light-xsm"
             value={formInput.householdId}
             required
           >
@@ -78,7 +87,7 @@ function JoinHouseholdForm({ memberObj }) {
           </Form.Select>
         </FloatingLabel>
 
-        <Button type="submit">Join Selected Household</Button>
+        <button className="teal-btn pc-font-sm" type="submit">JOIN HOUSEHOLD</button>
       </Form>
     </>
   );
