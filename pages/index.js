@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useAuth } from '../utils/context/authContext';
 import { getMemberByUID } from '../api/memberData';
+import { signOut } from '../utils/auth';
 
 export default function Index() {
   const [member, setMember] = useState({});
@@ -49,6 +50,14 @@ export default function Index() {
             <button type="button" className="teal-btn pc-font-sm" onClick={() => router.push('/member/new')}>GET STARTED</button>
           </div>
         ) }
+        <div>
+          <button
+            type="button"
+            className="logout-btn pc-font-xsm"
+            onClick={signOut}
+          >LOGOUT
+          </button>
+        </div>
       </div>
     </>
   );
