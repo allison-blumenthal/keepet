@@ -1,9 +1,11 @@
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
+import { Button } from 'react-bootstrap';
 import { getMemberByUID } from '../../api/memberData';
+import view from '../../src/assets/images/arrow-icon.png';
 
 export default function TaskCard({ taskObj }) {
   const [taskMember, setTaskMember] = useState({});
@@ -21,17 +23,18 @@ export default function TaskCard({ taskObj }) {
 
   return (
     <>
-      <Card style={{ width: '18rem', margin: '10px' }}>
-        <Card.Img variant="top" src={`/assets/images/taskAvatars/${taskObj.taskAvatar}`} alt="Task Avatar" style={{ height: '200px' }} />
+      <Card className="skinny-card">
+        <Card.Img className="card-avatar" src={`/assets/images/taskAvatars/${taskObj.taskAvatar}`} alt="Task Avatar" />
         <Card.Body>
-          <Card.Title>{taskObj.title}</Card.Title>
-          <h5 className="card-text bold">Due: {taskObj.due}</h5>
-          <h6>Last done: {taskObj.lastDone}</h6>
-          <h5>Assigned to: {taskMember.memberName}</h5>
-          <Link href={`/task/${taskObj.firebaseKey}`} passHref>
-            <Button variant="primary" className="view-btn">View Task</Button>
-          </Link>
+          <Card.Title className="muller-bold-xsm center">{taskObj.title}</Card.Title>
+          <Card.Title className="muller-med-xsm center">{taskMember.memberName}</Card.Title>
         </Card.Body>
+        <Link href={`/task/${taskObj.firebaseKey}`} passHref>
+          <Button variant="link" className="arrow-btn">
+            <Image src={view} alt="view task icon" />
+          </Button>
+        </Link>
+
       </Card>
     </>
   );

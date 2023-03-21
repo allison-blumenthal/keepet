@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
-import { Button } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import { useAuth } from '../utils/context/authContext';
 import { getMemberByUID } from '../api/memberData';
@@ -31,9 +30,9 @@ export default function Index() {
         <title>Home</title>
       </Head>
       <div
-        className="text-center d-flex flex-column justify-content-center align-content-center"
+        className="text-center d-flex flex-column justify-content-top align-content-center"
         style={{
-          height: '85vh',
+          height: '90vh',
           padding: '30px',
           maxWidth: '500px',
           margin: '0 auto',
@@ -43,11 +42,11 @@ export default function Index() {
 
         {member ? (
           <div>
-            <Button type="btn" className="teal-btn pc-font-sm" onClick={() => router.push(`/household/${member.householdId}`)}>MY HOUSEHOLD</Button>
+            <button type="button" className="teal-btn pc-font-sm" onClick={() => router.push(`/household/${member.householdId}`)}>MY HOUSEHOLD</button>
           </div>
         ) : (
           <div>
-            <Button type="btn" className="teal-btn pc-font-sm" onClick={() => router.push('/member/new')}>GET STARTED</Button>
+            <button type="button" className="teal-btn pc-font-sm" onClick={() => router.push('/member/new')}>GET STARTED</button>
           </div>
         ) }
       </div>

@@ -2,7 +2,7 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { FloatingLabel, Form, Button } from 'react-bootstrap';
+import { FloatingLabel, Form } from 'react-bootstrap';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import {
   ImageList, ImageListItem, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio,
@@ -14,7 +14,6 @@ import { memberAvatars } from '../../utils/avatars';
 const initialState = {
   isAdmin: false,
   memberName: '',
-  memberAge: '',
   memberAvatar: '',
   role: '',
   description: '',
@@ -54,118 +53,120 @@ function MemberForm({ memberObj }) {
 
   return (
     <>
-      <Form onSubmit={handleSubmit}>
-        <h1 className="text-black mt-5">{memberObj.firebaseKey ? 'Update' : 'New'} Member</h1>
+      <div
+        className="basic-page-container text-center"
+        style={{
+          height: '240vh',
+          padding: '30px',
+          maxWidth: '400px',
+          margin: '0 auto',
+        }}
+      >
+        <Form onSubmit={handleSubmit}>
+          <h1 className="red pc-font-md">{memberObj.firebaseKey ? 'UPDATE' : 'NEW'} MEMBER</h1>
 
-        <FloatingLabel controlId="floatingInput1" label="Name" className="mb-3">
-          <Form.Control
-            type="text"
-            placeholder="Name"
-            name="memberName"
-            value={formInput.memberName}
-            onChange={handleChange}
-            required
-          />
-        </FloatingLabel>
+          <FloatingLabel controlId="floatingInput1" label="Name" className="mb-3 muller-light-xsm">
+            <Form.Control
+              type="text"
+              placeholder="Name"
+              name="memberName"
+              value={formInput.memberName}
+              onChange={handleChange}
+              required
+            />
+          </FloatingLabel>
 
-        <FloatingLabel controlId="floatingInput2" label="Age" className="mb-3">
-          <Form.Control
-            type="text"
-            placeholder="Age"
-            name="memberAge"
-            value={formInput.memberAge}
-            onChange={handleChange}
-            required
-          />
-        </FloatingLabel>
+          <FloatingLabel controlId="floatingInput2" label="Role" className="mb-3 muller-light-xsm">
+            <Form.Control
+              type="text"
+              placeholder="Role"
+              name="role"
+              value={formInput.role}
+              onChange={handleChange}
+              required
+            />
+          </FloatingLabel>
 
-        <FloatingLabel controlId="floatingInput3" label="Role" className="mb-3">
-          <Form.Control
-            type="text"
-            placeholder="Role"
-            name="role"
-            value={formInput.role}
-            onChange={handleChange}
-            required
-          />
-        </FloatingLabel>
+          <FloatingLabel controlId="floatingTextarea" label="Description" className="mb-3 muller-light-xsm">
+            <Form.Control
+              as="textarea"
+              placeholder="Description"
+              style={{ height: '100px' }}
+              name="description"
+              value={formInput.description}
+              onChange={handleChange}
+              required
+            />
+          </FloatingLabel>
 
-        <FloatingLabel controlId="floatingTextarea" label="Description" className="mb-3">
-          <Form.Control
-            as="textarea"
-            placeholder="Description"
-            style={{ height: '100px' }}
-            name="description"
-            value={formInput.description}
-            onChange={handleChange}
-            required
-          />
-        </FloatingLabel>
+          <FormControl>
+            <FormLabel>
+              <h2 className="muller-med-sm">Choose an avatar:
+              </h2>
+            </FormLabel>
 
-        <FormControl>
-          <FormLabel>Choose an avatar:</FormLabel>
-
-          <div className="image-list-container">
-            <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
-              {memberAvatars.map((avatar) => (
-                <RadioGroup
-                  aria-labelledby="avatar-radio-buttons-group"
-                  name="avatar-buttons"
-                  value={formInput.memberAvatar}
-                  defaultValue="1.png"
-                  checked={formInput.memberAvatar}
-                  onClick={(e) => {
-                    setFormInput((prevState) => ({
-                      ...prevState,
-                      memberAvatar: e.target.value,
-                    }));
-                  }}
-                  required
-                >
-                  <FormControlLabel
-                    value={avatar}
-                    control={<Radio />}
-                    label=""
-                  />
-                  <ImageListItem
-                    key={avatar}
-                    name="memberAvatar"
+            <div className="image-list-container">
+              <ImageList sx={{ width: 330, height: 1600 }} cols={3} rowHeight={80}>
+                {memberAvatars.map((avatar) => (
+                  <RadioGroup
+                    aria-labelledby="avatar-radio-buttons-group"
+                    name="avatar-buttons"
+                    value={formInput.memberAvatar}
+                    defaultValue="1.png"
+                    checked={formInput.memberAvatar}
+                    onClick={(e) => {
+                      setFormInput((prevState) => ({
+                        ...prevState,
+                        memberAvatar: e.target.value,
+                      }));
+                    }}
+                    required
                   >
-                    <img
-                      src={`/assets/images/memberAvatars/${avatar}?w=164&h=164&fit=crop&auto=format`}
-                      srcSet={`/assets/images/memberAvatars/${avatar}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                      alt={`avatar ${avatar}`}
-                      loading="lazy"
+                    <FormControlLabel
+                      value={avatar}
+                      control={<Radio />}
+                      label=""
                     />
-                  </ImageListItem>
-                </RadioGroup>
-              ))}
-            </ImageList>
+                    <ImageListItem
+                      key={avatar}
+                      name="memberAvatar"
+                    >
+                      <img
+                        src={`/assets/images/memberAvatars/${avatar}?w=164&h=164&fit=crop&auto=format`}
+                        srcSet={`/assets/images/memberAvatars/${avatar}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                        alt={`avatar ${avatar}`}
+                        loading="lazy"
+                      />
+                    </ImageListItem>
+                  </RadioGroup>
+                ))}
+              </ImageList>
+            </div>
+
+          </FormControl>
+
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginBottom: '80px',
+            }}
+          >
+            {memberObj.firebaseKey ? (
+              <>
+                <button className="teal-btn pc-font-xsm" type="submit">UPDATE</button>
+                <button type="button" className="red-btn pc-font-xsm" onClick={() => router.back()}>CANCEL</button>
+              </>
+            ) : (
+
+              <>
+                <button className="teal-btn pc-font-xsm" type="submit" onClick={() => router.push('/household/new')}>CREATE HOUSEHOLD</button>
+                <button className="orange-btn pc-font-xsm" type="submit" onClick={() => router.push('/join')}>JOIN HOUSEHOLD</button>
+              </>
+            )}
           </div>
-
-        </FormControl>
-
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            marginBottom: '80px',
-          }}
-        >
-          {memberObj.firebaseKey ? (
-            <>
-              <Button className="view-btn" type="submit">Update</Button>
-              <Button type="btn" className="mx-2 red-btn" onClick={() => router.back()}>Cancel</Button>
-            </>
-          ) : (
-
-            <>
-              <Button className="view-btn" type="submit" onClick={() => router.push('/household/new')}>Create A Household</Button>
-              <Button className="view-btn" type="submit" onClick={() => router.push('/join')}>Join A Household</Button>
-            </>
-          )}
-        </div>
-      </Form>
+        </Form>
+      </div>
     </>
   );
 }
@@ -177,7 +178,6 @@ MemberForm.propTypes = {
     uid: PropTypes.string,
     isAdmin: PropTypes.bool,
     memberName: PropTypes.string,
-    memberAge: PropTypes.string,
     memberAvatar: PropTypes.string,
     role: PropTypes.string,
     description: PropTypes.string,

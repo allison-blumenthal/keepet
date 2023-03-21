@@ -5,7 +5,6 @@
     "uid": "BMyczdHLgXfToPwvkolCXn0Ozso2",
     "isAdmin": true,
     "memberName": "Allison",
-    "age": 34,
     "memberAvatar": "",
     "role": "Pet Mom",
     "description": "Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.\n\nDuis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.\n\nDonec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque."
@@ -16,7 +15,6 @@
     "uid": "eQ8JNqdhbucnqJTYTnneWW9crj52",
     "isAdmin": false,
     "memberName": "Richard",
-    "age": 32,
     "memberAvatar": "",
     "role": "Pet Dad",
     "description": "Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.\n\nQuisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros."

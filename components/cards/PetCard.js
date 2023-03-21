@@ -11,11 +11,11 @@ export default function PetCard({ petObj }) {
       <Card className="skinny-card">
         <Card.Img className="card-avatar" src={`/assets/images/petAvatars/${petObj.petAvatar}`} alt="Pet's Avatar" />
         <Card.Body>
-          <Card.Title className="muller-bold-sm center">{petObj.petName}</Card.Title>
-          <h3 className="muller-med-sm center">{petObj.species}</h3>
+          <Card.Title className="muller-bold-xsm center">{petObj.petName}</Card.Title>
+          <Card.Title className="muller-med-xsm center">{petObj.species}</Card.Title>
         </Card.Body>
         <Link href={`/pet/${petObj.firebaseKey}`} passHref>
-          <Button className="arrow-btn">
+          <Button variant="link" className="arrow-btn">
             <Image src={view} alt="view pet icon" />
           </Button>
         </Link>
