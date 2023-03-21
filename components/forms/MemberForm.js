@@ -47,6 +47,8 @@ function MemberForm({ memberObj }) {
         const patchPayload = { firebaseKey: name };
 
         updateMember(patchPayload);
+      }).then(() => {
+        router.push('/choose');
       });
     }
   };
@@ -95,7 +97,6 @@ function MemberForm({ memberObj }) {
               name="description"
               value={formInput.description}
               onChange={handleChange}
-              required
             />
           </FloatingLabel>
 
@@ -158,10 +159,8 @@ function MemberForm({ memberObj }) {
                 <button type="button" className="red-btn pc-font-xsm" onClick={() => router.back()}>CANCEL</button>
               </>
             ) : (
-
               <>
-                <button className="teal-btn pc-font-xsm" type="submit" onClick={() => router.push('/household/new')}>CREATE HOUSEHOLD</button>
-                <button className="orange-btn pc-font-xsm" type="submit" onClick={() => router.push('/join')}>JOIN HOUSEHOLD</button>
+                <button type="submit" className="red-btn pc-font-xsm">CHOOSE HOUSEHOLD</button>
               </>
             )}
           </div>
