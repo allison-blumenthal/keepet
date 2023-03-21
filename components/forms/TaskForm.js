@@ -118,7 +118,6 @@ export default function TaskForm({ taskObj }) {
               onChange={handleChange}
               className="mb-3 muller-light-xsm"
               value={formInput.petId}
-              required
             >
               <option value="">Which pet is this task for?</option>
               {
@@ -141,7 +140,6 @@ export default function TaskForm({ taskObj }) {
               onChange={handleChange}
               className="mb-3 muller-light-xsm"
               value={formInput.timeOfDay}
-              required
             >
               <option value="">Select the task time of day</option>
               <option value="Breakfast time">Breakfast time</option>
@@ -158,7 +156,6 @@ export default function TaskForm({ taskObj }) {
               name="location"
               value={formInput.location}
               onChange={handleChange}
-              required
             />
           </FloatingLabel>
 
@@ -170,7 +167,6 @@ export default function TaskForm({ taskObj }) {
               name="taskDescription"
               value={formInput.taskDescription}
               onChange={handleChange}
-              required
             />
           </FloatingLabel>
 

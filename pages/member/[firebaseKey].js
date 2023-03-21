@@ -42,7 +42,7 @@ export default function ViewMember() {
       <div
         className="basic-page-container text-center"
         style={{
-          height: '90vh',
+          height: '150vh',
           padding: '30px',
           maxWidth: '400px',
           margin: '0 auto',
