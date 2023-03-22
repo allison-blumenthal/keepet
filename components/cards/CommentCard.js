@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import { Button, Form } from 'react-bootstrap';
+import Image from 'next/image';
 import { deleteComment, updateComment } from '../../api/commentData';
 import { useAuth } from '../../utils/context/authContext';
 import { getSingleTask } from '../../api/taskData';
+import trash from '../../src/assets/images/delete-icon.png';
 
 function CommentCard({ commentObj, onUpdate }) {
   const [show, setShow] = useState(false);
@@ -53,31 +55,35 @@ function CommentCard({ commentObj, onUpdate }) {
         <>
           <Card className="comment-card">
             <div className="comment-container">
-              <Card.Header>{(commentObj.madeComment)}</Card.Header>
+              <Card.Header className="muller-light-xsm">{(commentObj.madeComment)}</Card.Header>
               <Card.Body>
                 <blockquote className="blockquote mb-0">
-                  <p>
+                  <p className="muller-reg-sm">
                     {' '}
                     {commentObj.text}
                     {' '}
                   </p>
-                  <footer className="blockquote-footer">
+                  <footer className="blockquote-footer muller-light-sm">
                     {commentObj.author}
                     {commentObj.memberId === user.uid
                       ? (
                         <>
-                          <Button
-                            className="edit-comment-btn"
-                            onClick={handleShow}
-                          >
-                            Edit
-                          </Button>
-                          <Button
-                            className="delete-comment-btn"
-                            onClick={deleteThisComment}
-                          >
-                            Delete
-                          </Button>
+                          <div className="comment-btn-container">
+                            <button
+                              type="button"
+                              className="edit-btn pc-font-sm text-black"
+                              onClick={handleShow}
+                            >
+                              EDIT
+                            </button>
+                            <button
+                              type="button"
+                              className="delete-btn"
+                              onClick={deleteThisComment}
+                            >
+                              <Image src={trash} alt="delete comment icon" />
+                            </button>
+                          </div>
                           {show === true ? (
                             <>
                               <Form onSubmit={handleSubmit}>

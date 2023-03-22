@@ -358,6 +358,11 @@ body {
   margin-bottom: 30px;
 }
 
+.comment-btn-container {
+  display: flex;
+  justify-content: center;
+}
+
 /* CARDS  */
 
 .card-avatar {
@@ -379,6 +384,10 @@ body {
   margin-top: 4px;
   margin-bottom: 4px;
   border-radius: 16px;
+}
+
+.comment-card {
+  margin-bottom: 20px;
 }
 
 /* TEXT/PLACE FORMATTING  */

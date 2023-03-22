@@ -87,7 +87,7 @@ export default function CommentForm({ taskFirebaseKey, onUpdate }) {
         />
       </FloatingLabel>
 
-      <button type="submit" className="teal-btn pc-font-xsm">ADD COMMENT</button>
+      <button type="submit" className="teal-btn pc-font-xsm" style={{ marginBottom: '20px' }}>ADD COMMENT</button>
     </Form>
   );
 }

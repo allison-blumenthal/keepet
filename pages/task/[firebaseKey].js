@@ -84,7 +84,7 @@ export default function ViewTask() {
       <div
         className="basic-page-container text-center"
         style={{
-          height: '150vh',
+          height: '300vh',
           padding: '30px',
           maxWidth: '400px',
           margin: '0 auto',
@@ -126,6 +126,9 @@ export default function ViewTask() {
         <br />
         <h4 className="muller-med-sm">Last completed: <br />{taskDetails.lastDone}</h4>
         <br />
+        <div className="comment-form">
+          <CommentForm taskFirebaseKey={firebaseKey} onUpdate={displayComments} />
+        </div>
         <div>
           <div className="comment-cards-container">
             {sortedComments
@@ -134,9 +137,6 @@ export default function ViewTask() {
                 <CommentCard key={comment?.firebaseKey} commentObj={comment} onUpdate={displayComments} />
               ))}
           </div>
-        </div>
-        <div className="comment-form">
-          <CommentForm taskFirebaseKey={firebaseKey} onUpdate={displayComments} />
         </div>
       </div>
     </>
