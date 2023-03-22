@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { useAuth } from '../utils/context/authContext';
 import { getMemberByUID } from '../api/memberData';
 import { signOut } from '../utils/auth';
+import NavBar from '../components/NavBar';
 
 export default function Index() {
   const [member, setMember] = useState({});
@@ -30,8 +31,9 @@ export default function Index() {
       <Head>
         <title>Home</title>
       </Head>
+      <NavBar />
       <div
-        className="text-center d-flex flex-column justify-content-top align-content-center"
+        className="text-center d-flex flex-column justify-content-center align-content-center"
         style={{
           height: '100vh',
           padding: '30px',

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
-import { Button, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import Image from 'next/image';
 import { deleteComment, updateComment } from '../../api/commentData';
 import { useAuth } from '../../utils/context/authContext';
@@ -96,8 +96,8 @@ function CommentCard({ commentObj, onUpdate }) {
                                   onChange={handleChange}
                                   required
                                 />
-                                <Button className="submit-edit-btn" type="submit">Update Comment</Button>
-                                <Button type="btn" className="mx-2 red-btn" onClick={handleClose}>Cancel</Button>
+                                <button className="teal-btn pc-font-xsm" type="submit">UPDATE</button>
+                                <button type="button" className="red-btn pc-font-xsm" onClick={handleClose}>CANCEL</button>
                               </Form>
                             </>
                           ) : ''}

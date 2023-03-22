@@ -26,53 +26,62 @@ export default function NavBar() {
   useEffect(() => {
     getMemberInfo();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  }, [user, member]);
 
   return (
     <>
-      <div
-        className="navbar-top nav-bg"
-      >
-        <Link passHref href="/">
-          <Navbar.Brand>
-            <div className="logo">
-              <TransparentLogo />
-            </div>
-          </Navbar.Brand>
-        </Link>
-      </div>
-
       {member ? (
-        <Navbar className="nav-bg" variant="light" fixed="bottom">
+        <>
+          <Navbar className="nav-bg">
+            <Container>
+              <Link passHref href="/">
+                <Navbar.Brand>
+                  <div className="logo">
+                    <TransparentLogo />
+                  </div>
+                </Navbar.Brand>
+              </Link>
+              <Nav className="flex-grow-1 justify-content-evenly">
+                <Nav.Link href={`/household/${member.householdId}`}>
+                  <div className="nav-icon">
+                    <Image src={home} alt="home icon" />
+                  </div>
+                </Nav.Link>
+
+                <Nav.Link href="/members">
+                  <div className="nav-icon">
+                    <Image src={members} alt="member icon" />
+                  </div>
+                </Nav.Link>
+
+                <Nav.Link href="/pets">
+                  <div className="nav-icon">
+                    <Image src={pets} alt="pet icon" />
+                  </div>
+                </Nav.Link>
+
+                <Nav.Link href="/tasks">
+                  <div className="nav-icon">
+                    <Image src={tasks} alt="task icon" />
+                  </div>
+                </Nav.Link>
+              </Nav>
+            </Container>
+          </Navbar>
+        </>
+      ) : (
+        <Navbar className="navbar-top nav-bg">
           <Container>
-            <Nav className="flex-grow-1 justify-content-evenly">
-              <Nav.Link href={`/household/${member.householdId}`}>
-                <div className="nav-icon">
-                  <Image src={home} alt="home icon" />
+            <Link passHref href="/">
+              <Navbar.Brand>
+                <div className="logo">
+                  <TransparentLogo />
                 </div>
-              </Nav.Link>
-
-              <Nav.Link href="/members">
-                <div className="nav-icon">
-                  <Image src={members} alt="member icon" />
-                </div>
-              </Nav.Link>
-
-              <Nav.Link href="/pets">
-                <div className="nav-icon">
-                  <Image src={pets} alt="pet icon" />
-                </div>
-              </Nav.Link>
-
-              <Nav.Link href="/tasks">
-                <div className="nav-icon">
-                  <Image src={tasks} alt="task icon" />
-                </div>
-              </Nav.Link>
-            </Nav>
+              </Navbar.Brand>
+            </Link>
           </Container>
         </Navbar>
-      ) : ''}
+      )}
     </>
   );
 }

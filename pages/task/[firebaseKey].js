@@ -95,7 +95,7 @@ export default function ViewTask() {
       <div
         className="basic-page-container text-center"
         style={{
-          height: '300vh',
+          height: 'auto',
           padding: '30px',
           maxWidth: '400px',
           margin: '0 auto',
@@ -124,7 +124,7 @@ export default function ViewTask() {
             </div>
           ) }
         <h1 className="purple pc-font-md">{taskDetails.title}</h1>
-        <h3 className="muller-bold-sm">Pet: {pet.petName}</h3>
+        <h3 className="muller-bold-md">Pet: {pet.petName}</h3>
         <h3 className="muller-bold-sm">Due: {taskDetails.due}</h3>
         <div>
           <img src={`/assets/images/taskAvatars/${taskDetails.taskAvatar}`} alt={taskDetails.title} style={{ width: '300px' }} />

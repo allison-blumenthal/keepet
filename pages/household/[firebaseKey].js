@@ -9,6 +9,7 @@ import pets from '../../src/assets/images/pets.png';
 import tasks from '../../src/assets/images/tasks.png';
 import { getMemberByUID } from '../../api/memberData';
 import { useAuth } from '../../utils/context/authContext';
+import NavBar from '../../components/NavBar';
 
 function ViewHousehold() {
   const [member, setMember] = useState({});
@@ -36,6 +37,7 @@ function ViewHousehold() {
       <Head>
         <title>{householdDetails?.householdName}</title>
       </Head>
+      <NavBar />
       <div
         className="basic-page-container text-center"
         style={{

@@ -83,7 +83,7 @@ body {
 /* MULLER FONT CLASSES */
 .muller-bold-md {
   font-family: 'MullerBold';
-  font-size: 50px;
+  font-size: 36px;
 }
 
 .muller-bold-sm {
@@ -306,11 +306,15 @@ body {
 /* NAVBAR, LOGO, SIGN OUT */
 .navbar-top {
   display: flex;
-  justify-content: space-between
+  justify-content: space-between;
+  margin-right: 0;
 }
 
 .nav-bg {
   background-color: #dbd9e6;
+  margin-left: -12px;
+  margin-right: -12px;
+  padding: 0px; 
 }
 
 .logo {
