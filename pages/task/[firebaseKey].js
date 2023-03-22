@@ -13,6 +13,7 @@ import CommentForm from '../../components/forms/CommentForm';
 import CommentCard from '../../components/cards/CommentCard';
 import check from '../../src/assets/images/check-icon.jpg';
 import trash from '../../src/assets/images/delete-icon.png';
+import { getSinglePet } from '../../api/petData';
 
 export default function ViewTask() {
   const [taskDetails, setTaskDetails] = useState({});
@@ -21,6 +22,7 @@ export default function ViewTask() {
   // eslint-disable-next-line no-unused-vars
   const [sortedComments, setSortedComments] = useState([]);
   const [member, setMember] = useState({});
+  const [pet, setPet] = useState({});
   const router = useRouter();
   const { user } = useAuth();
 
@@ -68,10 +70,19 @@ export default function ViewTask() {
     });
   };
 
+  const getPet = () => {
+    getSingleTask(firebaseKey).then((taskObj) => {
+      getSinglePet(taskObj.petId).then((petObj) => {
+        setPet(petObj);
+      });
+    });
+  };
+
   useEffect(() => {
     getMemberInfo();
     getSingleTask(firebaseKey).then(setTaskDetails);
     displayComments();
+    getPet();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, firebaseKey]);
@@ -113,6 +124,7 @@ export default function ViewTask() {
             </div>
           ) }
         <h1 className="purple pc-font-md">{taskDetails.title}</h1>
+        <h3 className="muller-bold-sm">Pet: {pet.petName}</h3>
         <h3 className="muller-bold-sm">Due: {taskDetails.due}</h3>
         <div>
           <img src={`/assets/images/taskAvatars/${taskDetails.taskAvatar}`} alt={taskDetails.title} style={{ width: '300px' }} />

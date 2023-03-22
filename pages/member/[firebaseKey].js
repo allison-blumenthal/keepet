@@ -48,10 +48,12 @@ export default function ViewMember() {
       >
         {(memberDetails.uid === member.uid) || (member.isAdmin === true) ? (
           <>
-            <Link href={`/member/edit/${firebaseKey}`} passHref>
-              <button type="button" className="edit-btn pc-font-xsm">EDIT
-              </button>
-            </Link>
+            <div className="btn-margin">
+              <Link href={`/member/edit/${firebaseKey}`} passHref>
+                <button type="button" className="edit-btn pc-font-xsm">EDIT
+                </button>
+              </Link>
+            </div>
           </>
         ) : ''}
         <h1 className="purple pc-font-md">{memberDetails.memberName}</h1>

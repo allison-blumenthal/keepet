@@ -68,7 +68,7 @@ function CommentCard({ commentObj, onUpdate }) {
                     {commentObj.memberId === user.uid
                       ? (
                         <>
-                          <div className="comment-btn-container">
+                          <div className="btn-container">
                             <button
                               type="button"
                               className="edit-btn pc-font-sm text-black"
