@@ -30,7 +30,7 @@ export default function ShowMembers() {
       <div
         className="basic-page-container text-center"
         style={{
-          height: '90vh',
+          height: '120vh',
           padding: '30px',
           maxWidth: '400px',
           margin: '0 auto',

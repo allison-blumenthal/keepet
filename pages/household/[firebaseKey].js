@@ -9,7 +9,6 @@ import pets from '../../src/assets/images/pets.png';
 import tasks from '../../src/assets/images/tasks.png';
 import { getMemberByUID } from '../../api/memberData';
 import { useAuth } from '../../utils/context/authContext';
-import edit from '../../src/assets/images/edit-icon.png';
 
 function ViewHousehold() {
   const [member, setMember] = useState({});
@@ -40,7 +39,7 @@ function ViewHousehold() {
       <div
         className="basic-page-container text-center"
         style={{
-          height: '90vh',
+          height: '120vh',
           padding: '30px',
           maxWidth: '400px',
           margin: '0 auto',
@@ -50,8 +49,7 @@ function ViewHousehold() {
         <div style={{ maxHeiht: '15px' }}>
           {member.isAdmin === true ? (
             <Link href={`/household/edit/${member.householdId}`} passHref>
-              <button type="button" className="edit-btn">
-                <Image src={edit} alt="edit household icon" />
+              <button type="button" className="edit-btn pc-font-xsm">EDIT
               </button>
             </Link>
           ) : ''}

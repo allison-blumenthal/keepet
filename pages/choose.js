@@ -13,7 +13,7 @@ export default function Choose() {
       <div
         className="basic-page-container text-center"
         style={{
-          height: '160vh',
+          height: '100vh',
           padding: '30px',
           maxWidth: '400px',
           margin: '0 auto',

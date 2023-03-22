@@ -33,9 +33,9 @@ export default function Index() {
       <div
         className="text-center d-flex flex-column justify-content-top align-content-center"
         style={{
-          height: '90vh',
+          height: '100vh',
           padding: '30px',
-          maxWidth: '500px',
+          maxWidth: '400px',
           margin: '0 auto',
         }}
       >

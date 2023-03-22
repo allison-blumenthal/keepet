@@ -138,7 +138,6 @@ function PetForm({ petObj }) {
               name="info"
               value={formInput.info}
               onChange={handleChange}
-              required
             />
           </FloatingLabel>
 

@@ -3,12 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
-import Image from 'next/image';
 import { getMemberByUID } from '../../api/memberData';
 import { useAuth } from '../../utils/context/authContext';
 import TaskCard from '../../components/cards/TaskCard';
 import { getMemberAndTasks } from '../../api/mergedData';
-import edit from '../../src/assets/images/edit-icon.png';
 
 export default function ViewMember() {
   const [member, setMember] = useState({});
@@ -51,8 +49,7 @@ export default function ViewMember() {
         {(memberDetails.uid === member.uid) || (member.isAdmin === true) ? (
           <>
             <Link href={`/member/edit/${firebaseKey}`} passHref>
-              <button type="button" className="edit-btn">
-                <Image src={edit} alt="edit member icon" />
+              <button type="button" className="edit-btn pc-font-xsm">EDIT
               </button>
             </Link>
           </>

@@ -20,7 +20,7 @@ a {
 }
 
 body {
-  background-color: white;
+  background-color: linear-gradient(white, #4D3F82);
 }
 
 /* FONT COLORS  */
@@ -220,8 +220,8 @@ body {
 
 .edit-btn {
   height: 45px;
-  width: 45px;
-  padding: 6px;
+  padding-top: 7px;
+  padding-bottom: 0px;
   border-radius: 12px;
   background-color: #b1c262;
   border-color: #b1c262;
@@ -261,6 +261,37 @@ body {
   background-color: white;
   border-color: white;
   opacity: 0.5;
+}
+
+.log-btn {
+  height: 45px;
+  width: 45px;
+  padding: 3px;
+  border-radius: 12px;
+  background-color: white;
+  border-color: white;
+  margin: 10px;
+}
+
+.log-btn:hover {
+  background-color: white;
+  border-color: white;
+  opacity: 0.5;
+}
+
+.delete-btn {
+  height: 45px;
+  width: 45px;
+  padding: 3px;
+  border-radius: 12px;
+  background-color: #D7263D;
+  border-color: #D7263D;
+  margin: 10px;
+}
+
+.delete-btn:hover {
+  background-color: #ac1e31;
+  border-color: #ac1e31;
 }
 
 .menu-img-shadow {
@@ -319,6 +350,12 @@ body {
 .basic-page-container {
   margin-left: auto;
   margin-right: auto;
+}
+
+.task-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
 }
 
 /* CARDS  */
