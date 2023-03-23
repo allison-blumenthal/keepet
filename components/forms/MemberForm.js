@@ -58,7 +58,7 @@ function MemberForm({ memberObj }) {
       <div
         className="basic-page-container text-center"
         style={{
-          height: '280vh',
+          height: 'auto',
           padding: '30px',
           maxWidth: '400px',
           margin: '0 auto',

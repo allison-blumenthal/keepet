@@ -41,8 +41,8 @@ function ViewHousehold() {
       <div
         className="basic-page-container text-center"
         style={{
-          height: '120vh',
-          padding: '30px',
+          height: 'auto',
+          padding: '100px 30px',
           maxWidth: '400px',
           margin: '0 auto',
         }}
@@ -56,15 +56,21 @@ function ViewHousehold() {
             </Link>
           ) : ''}
         </div>
-        <Link passHref href="/members">
-          <Image className="household-menu-img" src={members} alt="Members" />
-        </Link>
-        <Link passHref href="/pets">
-          <Image className="household-menu-img" src={pets} alt="Pets" />
-        </Link>
-        <Link passHref href="/tasks">
-          <Image className="household-menu-img" src={tasks} alt="Tasks" />
-        </Link>
+        <div style={{ padding: '6px 0px' }}>
+          <Link passHref href="/members">
+            <Image className="household-menu-img" src={members} alt="Members" />
+          </Link>
+        </div>
+        <div style={{ padding: '6px 0px' }}>
+          <Link passHref href="/pets">
+            <Image className="household-menu-img" src={pets} alt="Pets" />
+          </Link>
+        </div>
+        <div style={{ padding: '6px 0px' }}>
+          <Link passHref href="/tasks">
+            <Image className="household-menu-img" src={tasks} alt="Tasks" />
+          </Link>
+        </div>
       </div>
     </>
   );

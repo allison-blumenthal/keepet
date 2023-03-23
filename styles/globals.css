@@ -7,7 +7,8 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    background: linear-gradient(#edecf3, #4D3F82)
+    background: linear-gradient(#edecf3, #4D3F82);
+    background-attachment: fixed;
 }
 
 a {
@@ -311,10 +312,9 @@ body {
 }
 
 .nav-bg {
-  background-color: #dbd9e6;
-  margin-left: -12px;
-  margin-right: -12px;
+  background-color: #edecf3;
   padding: 0px; 
+  
 }
 
 .logo {
@@ -393,6 +393,7 @@ body {
 .comment-card {
   margin-bottom: 20px;
 }
+
 
 /* TEXT/PLACE FORMATTING  */
 

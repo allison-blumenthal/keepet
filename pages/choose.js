@@ -11,7 +11,7 @@ export default function Choose() {
         <title>Create or Join A Household</title>
       </Head>
       <div
-        className="basic-page-container text-center"
+        className="text-center"
         style={{
           height: '100vh',
           padding: '30px',

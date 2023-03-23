@@ -7,6 +7,7 @@ import { getTasksByHouseholdId } from '../api/taskData';
 import { useAuth } from '../utils/context/authContext';
 import TaskCard from '../components/cards/TaskCard';
 import add from '../src/assets/images/add-icon.png';
+import NavBar from '../components/NavBar';
 
 export default function ShowTasks() {
   // eslint-disable-next-line no-unused-vars
@@ -34,11 +35,12 @@ export default function ShowTasks() {
       <Head>
         <title>Tasks</title>
       </Head>
+      <NavBar />
       <div
         className="basic-page-container text-center"
         style={{
-          height: '120vh',
-          padding: '30px',
+          height: 'auto',
+          padding: '100px 30px',
           maxWidth: '400px',
           margin: '0 auto',
         }}

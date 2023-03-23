@@ -32,7 +32,7 @@ export default function NavBar() {
     <>
       {member ? (
         <>
-          <Navbar className="nav-bg">
+          <Navbar fixed="top" className="nav-bg navbar-top">
             <Container>
               <Link passHref href="/">
                 <Navbar.Brand>
@@ -47,19 +47,16 @@ export default function NavBar() {
                     <Image src={home} alt="home icon" />
                   </div>
                 </Nav.Link>
-
                 <Nav.Link href="/members">
                   <div className="nav-icon">
                     <Image src={members} alt="member icon" />
                   </div>
                 </Nav.Link>
-
                 <Nav.Link href="/pets">
                   <div className="nav-icon">
                     <Image src={pets} alt="pet icon" />
                   </div>
                 </Nav.Link>
-
                 <Nav.Link href="/tasks">
                   <div className="nav-icon">
                     <Image src={tasks} alt="task icon" />
@@ -70,7 +67,7 @@ export default function NavBar() {
           </Navbar>
         </>
       ) : (
-        <Navbar className="navbar-top nav-bg">
+        <Navbar fixed="top" className="navbar-top nav-bg">
           <Container>
             <Link passHref href="/">
               <Navbar.Brand>
