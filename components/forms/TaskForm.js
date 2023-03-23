@@ -203,7 +203,7 @@ export default function TaskForm({ taskObj }) {
             </FormLabel>
 
             <div className="image-list-container">
-              <ImageList sx={{ width: 330, height: 650 }} cols={3} rowHeight={80}>
+              <ImageList sx={{ width: 330, height: 1400 }} cols={3} rowHeight={80}>
                 {taskAvatars.map((avatar) => (
                   <RadioGroup
                     aria-labelledby="avatar-radio-buttons-group"
