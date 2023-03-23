@@ -354,6 +354,10 @@ body {
 .basic-page-container {
   margin-left: auto;
   margin-right: auto;
+  height: auto;
+  padding: 100px 30px;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .task-btn-container {

@@ -9,6 +9,7 @@ import { useAuth } from '../../utils/context/authContext';
 import { getMemberByUID } from '../../api/memberData';
 import TaskCard from '../../components/cards/TaskCard';
 import trash from '../../src/assets/images/delete-icon.png';
+import NavBar from '../../components/NavBar';
 
 export default function ViewPet() {
   const [member, setMember] = useState({});
@@ -46,15 +47,8 @@ export default function ViewPet() {
       <Head>
         <title>{petDetails?.title}</title>
       </Head>
-      <div
-        className="basic-page-container text-center"
-        style={{
-          height: '150vh',
-          padding: '30px',
-          maxWidth: '400px',
-          margin: '0 auto',
-        }}
-      >
+      <NavBar />
+      <div className="basic-page-container text-center">
         {(petDetails.memberId === member.uid) || (member.isAdmin === true) ? (
           <>
             <div className="btn-container btn-margin">

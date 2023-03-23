@@ -36,15 +36,7 @@ export default function ShowPets() {
         <title>Pets</title>
       </Head>
       <NavBar />
-      <div
-        className="basic-page-container text-center"
-        style={{
-          height: 'auto',
-          padding: '100px 30px',
-          maxWidth: '400px',
-          margin: '0 auto',
-        }}
-      >
+      <div className="basic-page-container text-center">
         <h1 className="orange pc-font-md">PETS</h1>
         <button type="button" className="add-btn" onClick={() => router.push('/pet/new')}>
           <Image src={add} alt="add pet icon" />

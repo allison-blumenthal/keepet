@@ -7,6 +7,7 @@ import { getMemberByUID } from '../../api/memberData';
 import { useAuth } from '../../utils/context/authContext';
 import TaskCard from '../../components/cards/TaskCard';
 import { getMemberAndTasks } from '../../api/mergedData';
+import NavBar from '../../components/NavBar';
 
 export default function ViewMember() {
   const [member, setMember] = useState({});
@@ -37,15 +38,8 @@ export default function ViewMember() {
       <Head>
         <title>{memberDetails?.title}</title>
       </Head>
-      <div
-        className="basic-page-container text-center"
-        style={{
-          height: '150vh',
-          padding: '30px',
-          maxWidth: '400px',
-          margin: '0 auto',
-        }}
-      >
+      <NavBar />
+      <div className="basic-page-container text-center">
         {(memberDetails.uid === member.uid) || (member.isAdmin === true) ? (
           <>
             <div className="btn-margin">

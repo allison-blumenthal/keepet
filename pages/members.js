@@ -29,15 +29,7 @@ export default function ShowMembers() {
         <title>Members</title>
       </Head>
       <NavBar />
-      <div
-        className="basic-page-container text-center"
-        style={{
-          height: 'auto',
-          padding: '100px 30px',
-          maxWidth: '400px',
-          margin: '0 auto',
-        }}
-      >
+      <div className="basic-page-container text-center">
         <h1 className="red pc-font-md">MEMBERS</h1>
         <div className="d-flex flex-wrap">
           {householdMembers.map((householdMember) => (

@@ -33,13 +33,7 @@ export default function Index() {
       </Head>
       <NavBar />
       <div
-        className="text-center d-flex flex-column justify-content-center align-content-center"
-        style={{
-          height: '100vh',
-          padding: '30px',
-          maxWidth: '400px',
-          margin: '0 auto',
-        }}
+        className="basic-page-container text-center"
       >
         <h1 className="pc-font-md purple">Welcome to<br /> KEEPET!</h1>
 

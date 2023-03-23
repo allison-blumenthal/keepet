@@ -36,15 +36,7 @@ export default function ShowTasks() {
         <title>Tasks</title>
       </Head>
       <NavBar />
-      <div
-        className="basic-page-container text-center"
-        style={{
-          height: 'auto',
-          padding: '100px 30px',
-          maxWidth: '400px',
-          margin: '0 auto',
-        }}
-      >
+      <div className="basic-page-container text-center">
         <h1 className="lime pc-font-md">TASKS</h1>
 
         {member.isAdmin === true ? (
@@ -60,6 +52,7 @@ export default function ShowTasks() {
             <TaskCard key={householdTask.firebaseKey} taskObj={householdTask} onUpdate={getHouseholdTasks} />
           ))}
         </div>
+        <h2 className="muller-med-sm">Please note: <br /> Only household admin <br />can create tasks.</h2>
       </div>
     </>
   );

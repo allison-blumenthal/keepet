@@ -14,6 +14,7 @@ import CommentCard from '../../components/cards/CommentCard';
 import check from '../../src/assets/images/check-icon.jpg';
 import trash from '../../src/assets/images/delete-icon.png';
 import { getSinglePet } from '../../api/petData';
+import NavBar from '../../components/NavBar';
 
 export default function ViewTask() {
   const [taskDetails, setTaskDetails] = useState({});
@@ -92,15 +93,8 @@ export default function ViewTask() {
       <Head>
         <title>{taskDetails?.title}</title>
       </Head>
-      <div
-        className="basic-page-container text-center"
-        style={{
-          height: 'auto',
-          padding: '30px',
-          maxWidth: '400px',
-          margin: '0 auto',
-        }}
-      >
+      <NavBar />
+      <div className="basic-page-container text-center">
         {member.isAdmin === true ? (
           <>
             <div className="task-btn-container">
