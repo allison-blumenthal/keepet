@@ -9,7 +9,7 @@ import pets from '../../src/assets/images/pets.png';
 import tasks from '../../src/assets/images/tasks.png';
 import { getMemberByUID } from '../../api/memberData';
 import { useAuth } from '../../utils/context/authContext';
-import edit from '../../src/assets/images/edit-icon.png';
+import NavBar from '../../components/NavBar';
 
 function ViewHousehold() {
   const [member, setMember] = useState({});
@@ -37,11 +37,12 @@ function ViewHousehold() {
       <Head>
         <title>{householdDetails?.householdName}</title>
       </Head>
+      <NavBar />
       <div
         className="basic-page-container text-center"
         style={{
-          height: '90vh',
-          padding: '30px',
+          height: 'auto',
+          padding: '100px 30px',
           maxWidth: '400px',
           margin: '0 auto',
         }}
@@ -50,21 +51,26 @@ function ViewHousehold() {
         <div style={{ maxHeiht: '15px' }}>
           {member.isAdmin === true ? (
             <Link href={`/household/edit/${member.householdId}`} passHref>
-              <button type="button" className="edit-btn">
-                <Image src={edit} alt="edit household icon" />
+              <button type="button" className="edit-btn pc-font-xsm">EDIT
               </button>
             </Link>
           ) : ''}
         </div>
-        <Link passHref href="/members">
-          <Image className="household-menu-img" src={members} alt="Members" />
-        </Link>
-        <Link passHref href="/pets">
-          <Image className="household-menu-img" src={pets} alt="Pets" />
-        </Link>
-        <Link passHref href="/tasks">
-          <Image className="household-menu-img" src={tasks} alt="Tasks" />
-        </Link>
+        <div style={{ padding: '6px 0px' }}>
+          <Link passHref href="/members">
+            <Image className="household-menu-img" src={members} alt="Members" />
+          </Link>
+        </div>
+        <div style={{ padding: '6px 0px' }}>
+          <Link passHref href="/pets">
+            <Image className="household-menu-img" src={pets} alt="Pets" />
+          </Link>
+        </div>
+        <div style={{ padding: '6px 0px' }}>
+          <Link passHref href="/tasks">
+            <Image className="household-menu-img" src={tasks} alt="Tasks" />
+          </Link>
+        </div>
       </div>
     </>
   );

@@ -72,6 +72,7 @@ function JoinHouseholdForm({ memberObj }) {
             onChange={handleChange}
             className="mb-3 muller-light-xsm"
             value={formInput.householdId}
+            size="sm"
             required
           >
             <option value="">Select a household:</option>

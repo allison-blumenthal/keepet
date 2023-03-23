@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import Button from 'react-bootstrap/Button';
 import Link from 'next/link';
 import Head from 'next/head';
+import Image from 'next/image';
 import { getSingleTask, updateTask } from '../../api/taskData';
 import { getMemberByUID } from '../../api/memberData';
 import { useAuth } from '../../utils/context/authContext';
@@ -11,6 +11,10 @@ import { getCommentsByTaskId } from '../../api/commentData';
 import { deleteTaskAndComments } from '../../api/mergedData';
 import CommentForm from '../../components/forms/CommentForm';
 import CommentCard from '../../components/cards/CommentCard';
+import check from '../../src/assets/images/check-icon.jpg';
+import trash from '../../src/assets/images/delete-icon.png';
+import { getSinglePet } from '../../api/petData';
+import NavBar from '../../components/NavBar';
 
 export default function ViewTask() {
   const [taskDetails, setTaskDetails] = useState({});
@@ -19,6 +23,7 @@ export default function ViewTask() {
   // eslint-disable-next-line no-unused-vars
   const [sortedComments, setSortedComments] = useState([]);
   const [member, setMember] = useState({});
+  const [pet, setPet] = useState({});
   const router = useRouter();
   const { user } = useAuth();
 
@@ -66,10 +71,19 @@ export default function ViewTask() {
     });
   };
 
+  const getPet = () => {
+    getSingleTask(firebaseKey).then((taskObj) => {
+      getSinglePet(taskObj.petId).then((petObj) => {
+        setPet(petObj);
+      });
+    });
+  };
+
   useEffect(() => {
     getMemberInfo();
     getSingleTask(firebaseKey).then(setTaskDetails);
     displayComments();
+    getPet();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, firebaseKey]);
@@ -79,45 +93,57 @@ export default function ViewTask() {
       <Head>
         <title>{taskDetails?.title}</title>
       </Head>
-      {member.isAdmin === true ? (
-        <>
-          <Button variant="success" onClick={logThisTask} className="log-btn">LOG
-          </Button>
-          <Link href={`/task/edit/${firebaseKey}`} passHref>
-            <Button variant="info" className="edit-btn">EDIT</Button>
-          </Link>
-          <Button variant="danger" onClick={deleteThisTask} className="delete-btn">DELETE
-          </Button>
-        </>
-      )
-        : (
-          <Button variant="success" onClick={logThisTask} className="log-btn">LOG
-          </Button>
-        ) }
-      <div className="mt-5 d-flex flex-wrap">
-        <div className="d-flex flex-column">
+      <NavBar />
+      <div className="basic-page-container text-center">
+        {member.isAdmin === true ? (
+          <>
+            <div className="task-btn-container">
+              <button type="button" onClick={logThisTask} className="log-btn">
+                <Image src={check} alt="check icon" />
+              </button>
+              <Link href={`/task/edit/${firebaseKey}`} passHref>
+                <button type="button" className="edit-btn pc-font-xsm">EDIT</button>
+              </Link>
+              <button type="button" onClick={deleteThisTask} className="delete-btn">
+                <Image src={trash} alt="delete icon" />
+              </button>
+            </div>
+          </>
+        )
+          : (
+            <div className="task-btn-container">
+              <button type="button" onClick={logThisTask} className="log-btn">
+                <Image src={check} alt="check icon" />
+              </button>
+            </div>
+          ) }
+        <h1 className="purple pc-font-md">{taskDetails.title}</h1>
+        <h3 className="muller-bold-md">Pet: {pet.petName}</h3>
+        <h3 className="muller-bold-sm">Due: {taskDetails.due}</h3>
+        <div>
           <img src={`/assets/images/taskAvatars/${taskDetails.taskAvatar}`} alt={taskDetails.title} style={{ width: '300px' }} />
         </div>
-        <div className="text-black ms-5 details">
-          <h2>{taskDetails.title}</h2>
-          <h3>{taskDetails.location}</h3>
-          <h3>{taskDetails.timeOfDay}</h3>
-          <h3>{taskDetails.due}</h3>
-          <h3>{taskDetails.lastDone}</h3>
-          <p>{taskDetails.taskDescription}</p>
+        <br />
+        <h5 className="muller-reg-sm">Location: {taskDetails.location}</h5>
+        <br />
+        <h5 className="muller-reg-sm">Time of day: {taskDetails.timeOfDay}</h5>
+        <br />
+        <p className="muller-reg-sm">Description: {taskDetails.taskDescription}</p>
+        <br />
+        <h4 className="muller-med-sm">Last completed: <br />{taskDetails.lastDone}</h4>
+        <br />
+        <div className="comment-form">
+          <CommentForm taskFirebaseKey={firebaseKey} onUpdate={displayComments} />
         </div>
-      </div>
-      <div>
-        <div className="comment-cards-container">
-          {sortedComments
-            .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
-            .map((comment) => (
-              <CommentCard key={comment?.firebaseKey} commentObj={comment} onUpdate={displayComments} />
-            ))}
+        <div>
+          <div className="comment-cards-container">
+            {sortedComments
+              .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
+              .map((comment) => (
+                <CommentCard key={comment?.firebaseKey} commentObj={comment} onUpdate={displayComments} />
+              ))}
+          </div>
         </div>
-      </div>
-      <div className="comment-form">
-        <CommentForm taskFirebaseKey={firebaseKey} onUpdate={displayComments} />
       </div>
     </>
   );

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Button, FloatingLabel, Form } from 'react-bootstrap';
+import { FloatingLabel, Form } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
 import { createComment, updateComment } from '../../api/commentData';
 import { getMemberByUID } from '../../api/memberData';
@@ -73,9 +73,9 @@ export default function CommentForm({ taskFirebaseKey, onUpdate }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h4 className="mt-3 mb-3">Add A Comment</h4>
+      <h4 className="purple pc-font-sm" style={{ marginTop: '30px' }}>MAKE A COMMENT</h4>
 
-      <FloatingLabel controlId="floatingTextArea" label="Comment about this task..." className="mb-3 text-black">
+      <FloatingLabel controlId="floatingTextArea" label="Comment about this task..." className="mb-3 muller-light-sm text-black">
         <Form.Control
           type="textarea"
           aria-label="Comment text"
@@ -87,7 +87,7 @@ export default function CommentForm({ taskFirebaseKey, onUpdate }) {
         />
       </FloatingLabel>
 
-      <Button type="submit" className="blue-btn">Add Comment</Button>
+      <button type="submit" className="teal-btn pc-font-xsm" style={{ marginBottom: '20px' }}>ADD COMMENT</button>
     </Form>
   );
 }

@@ -1,13 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import Button from 'react-bootstrap/Button';
 import Link from 'next/link';
 import Head from 'next/head';
+import Image from 'next/image';
 import { deletePetAndTasks, getPetAndTasks } from '../../api/mergedData';
 import { useAuth } from '../../utils/context/authContext';
 import { getMemberByUID } from '../../api/memberData';
 import TaskCard from '../../components/cards/TaskCard';
+import trash from '../../src/assets/images/delete-icon.png';
+import NavBar from '../../components/NavBar';
 
 export default function ViewPet() {
   const [member, setMember] = useState({});
@@ -45,35 +47,40 @@ export default function ViewPet() {
       <Head>
         <title>{petDetails?.title}</title>
       </Head>
-      {(petDetails.memberId === member.uid) || (member.isAdmin === true) ? (
-        <>
-          <Link href={`/pet/edit/${firebaseKey}`} passHref>
-            <Button variant="info" className="edit-btn">EDIT</Button>
-          </Link>
-          <Button variant="danger" onClick={deleteThisPet} className="delete-btn">DELETE
-          </Button>
-        </>
-      ) : ''}
-      <div className="mt-5 d-flex flex-wrap">
-        <div className="d-flex flex-column">
+      <NavBar />
+      <div className="basic-page-container text-center">
+        {(petDetails.memberId === member.uid) || (member.isAdmin === true) ? (
+          <>
+            <div className="btn-container btn-margin">
+              <Link href={`/pet/edit/${firebaseKey}`} passHref>
+                <button type="button" className="edit-btn pc-font-xsm">EDIT
+                </button>
+              </Link>
+              <button type="button" onClick={deleteThisPet} className="delete-btn">
+                <Image src={trash} alt="delete pet icon" />
+              </button>
+            </div>
+          </>
+        ) : ''}
+        <h1 className="purple pc-font-md">{petDetails.petName}</h1>
+        <h3 className="muller-bold-sm">{petDetails.species}</h3>
+        <div>
           <img src={`/assets/images/petAvatars/${petDetails.petAvatar}`} alt={petDetails.petName} style={{ width: '300px' }} />
         </div>
-        <div className="text-black ms-5 details">
-          <h2>{petDetails.petName}</h2>
-          <h3>{petDetails.species}</h3>
-          <h3>{petDetails.petAge}</h3>
-          <h3>{petDetails.color}</h3>
-          <p>{petDetails.info}</p>
+        <br />
+        <h5 className="muller-reg-sm">Age: {petDetails.petAge}</h5>
+        <h5 className="muller-reg-sm">Color: {petDetails.color}</h5>
+        <br />
+        <h4 className="muller-reg-sm">Info: <br />{petDetails.info}</h4>
+        <br />
+        <div>
+          <h1 className="muller-med-sm">Tasks for {petDetails.petName}:</h1>
         </div>
-      </div>
-      <br />
-      <div>
-        <h1>Tasks for {petDetails.petName}:</h1>
-      </div>
-      <div className="d-flex flex-wrap">
-        {petDetails.tasks?.map((task) => (
-          <TaskCard key={task.firebaseKey} taskObj={task} onUpdate={getPetDetails} />
-        ))}
+        <div className="d-flex flex-wrap">
+          {petDetails.tasks?.map((task) => (
+            <TaskCard key={task.firebaseKey} taskObj={task} onUpdate={getPetDetails} />
+          ))}
+        </div>
       </div>
     </>
   );

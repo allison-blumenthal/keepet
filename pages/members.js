@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { getMemberByUID, getMembersByHouseholdId } from '../api/memberData';
 import MemberCard from '../components/cards/MemberCard';
 import { useAuth } from '../utils/context/authContext';
+import NavBar from '../components/NavBar';
 
 export default function ShowMembers() {
   // eslint-disable-next-line no-unused-vars
@@ -27,15 +28,8 @@ export default function ShowMembers() {
       <Head>
         <title>Members</title>
       </Head>
-      <div
-        className="basic-page-container text-center"
-        style={{
-          height: '90vh',
-          padding: '30px',
-          maxWidth: '400px',
-          margin: '0 auto',
-        }}
-      >
+      <NavBar />
+      <div className="basic-page-container text-center">
         <h1 className="red pc-font-md">MEMBERS</h1>
         <div className="d-flex flex-wrap">
           {householdMembers.map((householdMember) => (

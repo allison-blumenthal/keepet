@@ -3,6 +3,8 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useAuth } from '../utils/context/authContext';
 import { getMemberByUID } from '../api/memberData';
+import { signOut } from '../utils/auth';
+import NavBar from '../components/NavBar';
 
 export default function Index() {
   const [member, setMember] = useState({});
@@ -29,14 +31,9 @@ export default function Index() {
       <Head>
         <title>Home</title>
       </Head>
+      <NavBar />
       <div
-        className="text-center d-flex flex-column justify-content-top align-content-center"
-        style={{
-          height: '90vh',
-          padding: '30px',
-          maxWidth: '500px',
-          margin: '0 auto',
-        }}
+        className="basic-page-container text-center"
       >
         <h1 className="pc-font-md purple">Welcome to<br /> KEEPET!</h1>
 
@@ -49,6 +46,14 @@ export default function Index() {
             <button type="button" className="teal-btn pc-font-sm" onClick={() => router.push('/member/new')}>GET STARTED</button>
           </div>
         ) }
+        <div>
+          <button
+            type="button"
+            className="logout-btn pc-font-xsm"
+            onClick={signOut}
+          >LOGOUT
+          </button>
+        </div>
       </div>
     </>
   );

@@ -11,14 +11,15 @@ export default function Choose() {
         <title>Create or Join A Household</title>
       </Head>
       <div
-        className="basic-page-container text-center"
+        className="text-center"
         style={{
-          height: '160vh',
+          height: '100vh',
           padding: '30px',
           maxWidth: '400px',
           margin: '0 auto',
         }}
       >
+        <h1 className="purple pc-font-md">CHOOSE ONE:</h1>
         <button type="button" className="teal-btn pc-font-xsm" onClick={() => router.push('/household/new')}>CREATE HOUSEHOLD</button>
         <button type="button" className="orange-btn pc-font-xsm" onClick={() => router.push('/join')}>JOIN HOUSEHOLD</button>
       </div>

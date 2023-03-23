@@ -7,6 +7,7 @@ import { getTasksByHouseholdId } from '../api/taskData';
 import { useAuth } from '../utils/context/authContext';
 import TaskCard from '../components/cards/TaskCard';
 import add from '../src/assets/images/add-icon.png';
+import NavBar from '../components/NavBar';
 
 export default function ShowTasks() {
   // eslint-disable-next-line no-unused-vars
@@ -34,15 +35,8 @@ export default function ShowTasks() {
       <Head>
         <title>Tasks</title>
       </Head>
-      <div
-        className="basic-page-container text-center"
-        style={{
-          height: '90vh',
-          padding: '30px',
-          maxWidth: '400px',
-          margin: '0 auto',
-        }}
-      >
+      <NavBar />
+      <div className="basic-page-container text-center">
         <h1 className="lime pc-font-md">TASKS</h1>
 
         {member.isAdmin === true ? (
@@ -58,6 +52,7 @@ export default function ShowTasks() {
             <TaskCard key={householdTask.firebaseKey} taskObj={householdTask} onUpdate={getHouseholdTasks} />
           ))}
         </div>
+        <h2 className="muller-med-sm">Please note: <br /> Only household admin <br />can create tasks.</h2>
       </div>
     </>
   );

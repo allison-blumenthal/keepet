@@ -88,15 +88,7 @@ export default function TaskForm({ taskObj }) {
 
   return (
     <>
-      <div
-        className="basic-page-container text-center"
-        style={{
-          height: '160vh',
-          padding: '30px',
-          maxWidth: '400px',
-          margin: '0 auto',
-        }}
-      >
+      <div className="basic-page-container text-center">
         <Form onSubmit={handleSubmit}>
           <h1 className="lime pc-font-md">{taskObj.firebaseKey ? 'UPDATE' : 'NEW'} Task</h1>
 

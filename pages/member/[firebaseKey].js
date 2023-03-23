@@ -3,12 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
-import Image from 'next/image';
 import { getMemberByUID } from '../../api/memberData';
 import { useAuth } from '../../utils/context/authContext';
 import TaskCard from '../../components/cards/TaskCard';
 import { getMemberAndTasks } from '../../api/mergedData';
-import edit from '../../src/assets/images/edit-icon.png';
+import NavBar from '../../components/NavBar';
 
 export default function ViewMember() {
   const [member, setMember] = useState({});
@@ -39,22 +38,16 @@ export default function ViewMember() {
       <Head>
         <title>{memberDetails?.title}</title>
       </Head>
-      <div
-        className="basic-page-container text-center"
-        style={{
-          height: '150vh',
-          padding: '30px',
-          maxWidth: '400px',
-          margin: '0 auto',
-        }}
-      >
+      <NavBar />
+      <div className="basic-page-container text-center">
         {(memberDetails.uid === member.uid) || (member.isAdmin === true) ? (
           <>
-            <Link href={`/member/edit/${firebaseKey}`} passHref>
-              <button type="button" className="edit-btn">
-                <Image src={edit} alt="edit member icon" />
-              </button>
-            </Link>
+            <div className="btn-margin">
+              <Link href={`/member/edit/${firebaseKey}`} passHref>
+                <button type="button" className="edit-btn pc-font-xsm">EDIT
+                </button>
+              </Link>
+            </div>
           </>
         ) : ''}
         <h1 className="purple pc-font-md">{memberDetails.memberName}</h1>

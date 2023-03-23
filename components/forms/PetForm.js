@@ -74,15 +74,7 @@ function PetForm({ petObj }) {
 
   return (
     <>
-      <div
-        className="basic-page-container text-center"
-        style={{
-          height: '160vh',
-          padding: '30px',
-          maxWidth: '400px',
-          margin: '0 auto',
-        }}
-      >
+      <div className="basic-page-container text-center">
         <Form onSubmit={handleSubmit}>
           <h1 className="orange pc-font-md">{petObj.firebaseKey ? 'UPDATE' : 'NEW'} PET</h1>
 
@@ -138,7 +130,6 @@ function PetForm({ petObj }) {
               name="info"
               value={formInput.info}
               onChange={handleChange}
-              required
             />
           </FloatingLabel>
 
