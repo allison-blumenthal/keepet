@@ -24,6 +24,8 @@ export default function ViewTask() {
   const [sortedComments, setSortedComments] = useState([]);
   const [member, setMember] = useState({});
   const [pet, setPet] = useState({});
+  // eslint-disable-next-line no-unused-vars
+  const [taskDoer, setTaskDoer] = useState({});
   const router = useRouter();
   const { user } = useAuth();
 
@@ -79,11 +81,20 @@ export default function ViewTask() {
     });
   };
 
+  const getTaskDoer = () => {
+    getSingleTask(firebaseKey).then((taskObj) => {
+      getMemberByUID(taskObj.memberId).then((taskDoerObj) => {
+        setTaskDoer(taskDoerObj[0]);
+      });
+    });
+  };
+
   useEffect(() => {
     getMemberInfo();
     getSingleTask(firebaseKey).then(setTaskDetails);
     displayComments();
     getPet();
+    getTaskDoer();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, firebaseKey]);
@@ -120,6 +131,7 @@ export default function ViewTask() {
         <h1 className="purple pc-font-md">{taskDetails.title}</h1>
         <h3 className="muller-bold-md">Pet: {pet.petName}</h3>
         <h3 className="muller-bold-sm">Due: {taskDetails.due}</h3>
+        <h3 className="muller-bold-sm">Currently assigned to: <br />{taskDoer.memberName}</h3>
         <div>
           <img src={`/assets/images/taskAvatars/${taskDetails.taskAvatar}`} alt={taskDetails.title} style={{ width: '300px' }} />
         </div>
