@@ -27,7 +27,6 @@ function JoinHouseholdForm({ memberObj }) {
   useEffect(() => {
     displayHouseholds();
     getMemberByUID(user.uid).then((memberInfo) => {
-      console.warn(memberInfo[0]);
       setMember(memberInfo[0]);
     });
 
