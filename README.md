@@ -52,11 +52,15 @@ export default function TaskForm({ taskObj }) {
 ```
 
 ## Project Screenshots <!-- These can be inside of your project. Look at the repos from class and see how the images are included in the readme -->
-<img width="1148" alt="home page" src="householdHomePage.png">
-<img width="1148" alt="member details page" src="memberDetailsPage.png">
-<img width="1148" alt="pet details page" src="petDetailsPage.png">
-<img width="1148" alt="task details page" src="taskDetailsPage.png">
-<img width="1148" alt="comments" src="comments.png">
+<img width="250" alt="home page" src="./src/assets/readmeScreenshots/householdHomePage.png">
+<img width="250" alt="member details page" src="./src/assets/readmeScreenshots/memberDetailsPage.png">
+<img width="250" alt="pet form p.1" src="./src/assets/readmeScreenshots/petForm1.png">
+<img width="250" alt="pet form p.2" src="./src/assets/readmeScreenshots/petForm2.png">
+<img width="250" alt="pet details page" src="./src/assets/readmeScreenshots/petDetailsPage.png">
+<img width="250" alt="task form p.1" src="./src/assets/readmeScreenshots/taskForm1.png">
+<img width="250" alt="task form p.2" src="./src/assets/readmeScreenshots/taskForm2.png">
+<img width="250" alt="task details page" src="./src/assets/readmeScreenshots/taskDetailsPage.png">
+<img width="250" alt="comments" src="./src/assets/readmeScreenshots/comments.png">
 
 ## Contributors
 - [Allison Blumenthal](https://github.com/allison-blumenthal)
