@@ -52,7 +52,7 @@ export default function ShowTasks() {
             <TaskCard key={householdTask.firebaseKey} taskObj={householdTask} onUpdate={getHouseholdTasks} />
           ))}
         </div>
-        <h2 className="muller-med-sm">Please note: <br /> Only household admin <br />can create tasks.</h2>
+        <h2 className="muller-med-sm" style={{ padding: '10px' }}>Please note: <br /> Only household admin <br />can create tasks.</h2>
       </div>
     </>
   );
