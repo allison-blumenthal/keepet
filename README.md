@@ -16,7 +16,7 @@
 - Loads of colorful avatars and artwork to make tracking and doing pet chores more fun. 
 
 ## Video Walkthrough of KEEPET <!-- A loom link is sufficient -->
-tbd
+[Keepet Loom Video](https://www.loom.com/share/724a658a76b446cbbe9106aa8c57c664)
 
 ## Relevant Links <!-- Link to all the things that are required outside of the ones that have their own section -->
 - [Check out the deployed site](https://keepet-app.netlify.app/)
