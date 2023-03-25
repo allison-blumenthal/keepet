@@ -10,7 +10,7 @@
 
 ## Features <!-- List your app features using bullets! Do NOT use a paragraph. No one will read that! -->
 - When a user logs in, they are prompted to create their member profile and can either create a household or join an existing one.
-- If a user creates a household, they can CRUD all pets, all tasks, their own comments on tasks, and assign tasks to other members of the household. They can also edit their member profile and  household, but cannot delete them. 
+- If a user creates a household, they can CRUD all pets, all tasks, all comments, and assign tasks to other members of the household. They can also edit their member profile and  household, but cannot delete them. 
 - If a user is joining an existing household, they can only CRUD their own pets and comments on tasks. They can "check off" any task, logging the time of last completion on the task card, but cannot re-assign it to another member. They can edit their member profile, but cannot delete it. 
 - Designed to be mobile friendly so you can reference pet and task info on your phone and update as needed on the spot.
 - Loads of colorful avatars and artwork to make tracking and doing pet chores more fun. 

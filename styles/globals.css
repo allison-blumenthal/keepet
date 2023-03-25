@@ -97,6 +97,11 @@ body {
   font-size: 16px;
 }
 
+.muller-bold-xxsm {
+  font-family: 'MullerBold';
+  font-size: 11px;
+}
+
 .muller-med-md {
   font-family: 'MullerMedium';
   font-size: 50px;
@@ -112,6 +117,11 @@ body {
   font-size: 16px;
 }
 
+.muller-med-xxsm {
+  font-family: 'MullerMedium';
+  font-size: 11px;
+}
+
 .muller-reg-md {
   font-family: 'MullerRegular';
   font-size: 50px;
@@ -120,6 +130,16 @@ body {
 .muller-reg-sm {
   font-family: 'MullerRegular';
   font-size: 20px;
+}
+
+.muller-reg-xsm {
+  font-family: 'MullerRegular';
+  font-size: 16px;
+}
+
+.muller-reg-xxsm {
+  font-family: 'MullerRegular';
+  font-size: 11px;
 }
 
 .muller-light-md {
@@ -135,6 +155,11 @@ body {
 .muller-light-xsm {
   font-family: 'MullerLight';
   font-size: 16px;
+}
+
+.muller-light-xxsm {
+  font-family: 'MullerLight';
+  font-size: 11px;
 }
 
 /* BUTTONS */
@@ -236,12 +261,15 @@ body {
 
 .add-btn {
   height: 45px;
-  width: 45px;
-  padding: 6px;
+  width: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 4px;
   border-radius: 12px;
   background-color: #1B998B;
   border-color: #1B998B;
-  margin: 10px;
+  margin-top: 10px;
 }
 
 .add-btn:hover {
@@ -265,13 +293,17 @@ body {
 }
 
 .log-btn {
-  height: 45px;
-  width: 45px;
-  padding: 3px;
+  height: 50px;
+  width: 135px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   border-radius: 12px;
   background-color: white;
   border-color: white;
-  margin: 10px;
+  padding-top: 4px;
+  color: #62BD12;
+  margin-top: 10px;
 }
 
 .log-btn:hover {
@@ -381,7 +413,7 @@ body {
 
 .skinny-card {
   width: 18rem;
-  height: 96px;
+  height: auto;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -411,8 +443,16 @@ body {
   margin-right: 0;
 }
 
+.text-left {
+  text-align: left;
+}
+
 .btn-margin {
   margin-bottom: 20px;
+}
+
+.left {
+  margin-right:auto;
 }
 
 

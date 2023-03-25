@@ -26,8 +26,9 @@ export default function TaskCard({ taskObj }) {
       <Card className="skinny-card">
         <Card.Img className="card-avatar" src={`/assets/images/taskAvatars/${taskObj.taskAvatar}`} alt="Task Avatar" />
         <Card.Body>
-          <Card.Title className="muller-bold-xsm center">{taskObj.title}</Card.Title>
-          <Card.Title className="muller-med-xsm center">{taskMember.memberName}</Card.Title>
+          <Card.Title className="muller-med-xsm center">{taskObj.title}</Card.Title>
+          <Card.Title className="muller-bold-xxsm center">Assigned to: {taskMember.memberName}</Card.Title>
+          <Card.Title className="muller-reg-xxsm center">Last completed: {taskObj.lastDone}</Card.Title>
         </Card.Body>
         <Link href={`/task/${taskObj.firebaseKey}`} passHref>
           <Button variant="link" className="arrow-btn">

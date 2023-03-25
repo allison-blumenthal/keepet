@@ -139,7 +139,7 @@ function PetForm({ petObj }) {
             </FormLabel>
 
             <div className="image-list-container">
-              <ImageList sx={{ width: 330, height: 2000 }} cols={3} rowHeight={80}>
+              <ImageList sx={{ width: 330, height: 2300 }} cols={3} rowHeight={80}>
                 {petAvatars.map((avatar) => (
                   <RadioGroup
                     aria-labelledby="avatar-radio-buttons-group"

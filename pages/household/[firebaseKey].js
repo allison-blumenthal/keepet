@@ -48,14 +48,6 @@ function ViewHousehold() {
         }}
       >
         <h2 className="pc-font-md purple">{householdDetails?.householdName}</h2>
-        <div style={{ maxHeiht: '15px' }}>
-          {member.isAdmin === true ? (
-            <Link href={`/household/edit/${member.householdId}`} passHref>
-              <button type="button" className="edit-btn pc-font-xsm">EDIT
-              </button>
-            </Link>
-          ) : ''}
-        </div>
         <div style={{ padding: '6px 0px' }}>
           <Link passHref href="/members">
             <Image className="household-menu-img" src={members} alt="Members" />
@@ -70,6 +62,14 @@ function ViewHousehold() {
           <Link passHref href="/tasks">
             <Image className="household-menu-img" src={tasks} alt="Tasks" />
           </Link>
+          <div>
+            {member.isAdmin === true ? (
+              <Link href={`/household/edit/${member.householdId}`} passHref>
+                <button type="button" className="edit-btn pc-font-xsm">EDIT
+                </button>
+              </Link>
+            ) : ''}
+          </div>
         </div>
       </div>
     </>

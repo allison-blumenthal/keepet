@@ -51,9 +51,9 @@ export default function ViewTask() {
 
   const logThisTask = () => {
     if (window.confirm(`Log "${taskDetails.title}" as done?`)) {
-      const payload = { lastDone: time, firebaseKey: taskDetails.firebaseKey };
+      const payload = { lastDone: time, firebaseKey: taskDetails.firebaseKey, lastDoer: member.memberName };
       updateTask(payload)
-        .then(() => router.push('/tasks'));
+        .then(() => window.location.reload(false));
     }
   };
 
@@ -106,12 +106,27 @@ export default function ViewTask() {
       </Head>
       <NavBar />
       <div className="basic-page-container text-center">
+        <h1 className="purple pc-font-md">{taskDetails.title}</h1>
+        <h3 className="muller-bold-sm">Pet: {pet.petName}</h3>
+        <h3 className="muller-light-xsm">Due: {taskDetails.due}</h3>
+        <h3 className="muller-light-xsm">Currently assigned to: {taskDoer.memberName}</h3>
+        <h5 className="muller-med-xsm">Last done by: {taskDetails.lastDoer}</h5>
+        <h4 className="muller-med-xsm">Last completed: <br /> {taskDetails.lastDone}</h4>
+        <div className="task-btn-container">
+          <button type="button" onClick={logThisTask} className="log-btn pc-font-xsm">
+            <Image src={check} alt="check icon" width="40px" height="40px" />LOG TASK
+          </button>
+        </div>
+        <div>
+          <img src={`/assets/images/taskAvatars/${taskDetails.taskAvatar}`} alt={taskDetails.title} style={{ width: '300px' }} />
+        </div>
+        <br />
+        <h5 className="muller-med-xsm">Location: {taskDetails.location}</h5>
+        <h5 className="muller-med-xsm">Time of day: {taskDetails.timeOfDay}</h5>
+        <p className="muller-med-xsm">Description: {taskDetails.taskDescription}</p>
         {member.isAdmin === true ? (
           <>
             <div className="task-btn-container">
-              <button type="button" onClick={logThisTask} className="log-btn">
-                <Image src={check} alt="check icon" />
-              </button>
               <Link href={`/task/edit/${firebaseKey}`} passHref>
                 <button type="button" className="edit-btn pc-font-xsm">EDIT</button>
               </Link>
@@ -121,29 +136,7 @@ export default function ViewTask() {
             </div>
           </>
         )
-          : (
-            <div className="task-btn-container">
-              <button type="button" onClick={logThisTask} className="log-btn">
-                <Image src={check} alt="check icon" />
-              </button>
-            </div>
-          ) }
-        <h1 className="purple pc-font-md">{taskDetails.title}</h1>
-        <h3 className="muller-bold-md">Pet: {pet.petName}</h3>
-        <h3 className="muller-bold-sm">Due: {taskDetails.due}</h3>
-        <h3 className="muller-bold-sm">Currently assigned to: <br />{taskDoer.memberName}</h3>
-        <div>
-          <img src={`/assets/images/taskAvatars/${taskDetails.taskAvatar}`} alt={taskDetails.title} style={{ width: '300px' }} />
-        </div>
-        <br />
-        <h5 className="muller-reg-sm">Location: {taskDetails.location}</h5>
-        <br />
-        <h5 className="muller-reg-sm">Time of day: {taskDetails.timeOfDay}</h5>
-        <br />
-        <p className="muller-reg-sm">Description: {taskDetails.taskDescription}</p>
-        <br />
-        <h4 className="muller-med-sm">Last completed: <br />{taskDetails.lastDone}</h4>
-        <br />
+          : '' }
         <div className="comment-form">
           <CommentForm taskFirebaseKey={firebaseKey} onUpdate={displayComments} />
         </div>

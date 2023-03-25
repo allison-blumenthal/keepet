@@ -41,18 +41,23 @@ export default function ShowTasks() {
 
         {member.isAdmin === true ? (
           <>
-            <button type="button" className="add-btn" onClick={() => router.push('/task/new')}>
-              <Image src={add} alt="add task icon" />
-            </button>
+            <div className="task-btn-container">
+              <button type="button" className="add-btn pc-font-xsm" onClick={() => router.push('/task/new')}>
+                <Image src={add} alt="add task icon" height="30px" width="30px" />
+                ADD A TASK
+              </button>
+            </div>
           </>
         )
-          : '' }
+          : (
+            <h2 className="muller-light-xsm" style={{ padding: '10px' }}>Please note: Only the head of household may create, edit, and delete tasks.</h2>
+          )}
         <div className="d-flex flex-wrap">
           {householdTasks.map((householdTask) => (
             <TaskCard key={householdTask.firebaseKey} taskObj={householdTask} onUpdate={getHouseholdTasks} />
           ))}
         </div>
-        <h2 className="muller-med-sm" style={{ padding: '10px' }}>Please note: <br /> Only household admin <br />can create tasks.</h2>
+
       </div>
     </>
   );
