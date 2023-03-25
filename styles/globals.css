@@ -97,6 +97,11 @@ body {
   font-size: 16px;
 }
 
+.muller-bold-xxsm {
+  font-family: 'MullerBold';
+  font-size: 11px;
+}
+
 .muller-med-md {
   font-family: 'MullerMedium';
   font-size: 50px;
@@ -265,13 +270,17 @@ body {
 }
 
 .log-btn {
-  height: 45px;
-  width: 45px;
-  padding: 3px;
+  height: 50px;
+  width: 135px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   border-radius: 12px;
   background-color: white;
   border-color: white;
-  margin: 10px;
+  padding-top: 4px;
+  color: #62BD12;
+  margin-top: 10px;
 }
 
 .log-btn:hover {
@@ -411,8 +420,16 @@ body {
   margin-right: 0;
 }
 
+.text-left {
+  text-align: left;
+}
+
 .btn-margin {
   margin-bottom: 20px;
+}
+
+.left {
+  margin-right:auto;
 }
 
 

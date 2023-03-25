@@ -46,13 +46,15 @@ export default function ShowTasks() {
             </button>
           </>
         )
-          : '' }
+          : (
+            <h2 className="muller-light-xsm" style={{ padding: '10px' }}>Please note: Only the head of household may create, edit, and delete tasks.</h2>
+          )}
         <div className="d-flex flex-wrap">
           {householdTasks.map((householdTask) => (
             <TaskCard key={householdTask.firebaseKey} taskObj={householdTask} onUpdate={getHouseholdTasks} />
           ))}
         </div>
-        <h2 className="muller-med-sm" style={{ padding: '10px' }}>Please note: <br /> Only household admin <br />can create tasks.</h2>
+
       </div>
     </>
   );

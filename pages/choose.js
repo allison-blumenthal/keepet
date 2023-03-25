@@ -22,6 +22,9 @@ export default function Choose() {
         <h1 className="purple pc-font-md">CHOOSE ONE:</h1>
         <button type="button" className="teal-btn pc-font-xsm" onClick={() => router.push('/household/new')}>CREATE HOUSEHOLD</button>
         <button type="button" className="orange-btn pc-font-xsm" onClick={() => router.push('/join')}>JOIN HOUSEHOLD</button>
+        <div style={{ padding: '20px' }}>
+          <h3 className="muller-light-xsm">Please note: You may only belong to one household, so choose wisely!</h3>
+        </div>
       </div>
     </>
   );

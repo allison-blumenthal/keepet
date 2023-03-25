@@ -66,6 +66,9 @@ function MemberForm({ memberObj }) {
       >
         <Form onSubmit={handleSubmit}>
           <h1 className="red pc-font-md">{memberObj.firebaseKey ? 'UPDATE' : 'NEW'} MEMBER</h1>
+          <div>
+            <h3 className="muller-light-xsm">{memberObj.firebaseKey ? '' : 'Please enter your personal profile information.'}</h3>
+          </div>
 
           <FloatingLabel controlId="floatingInput1" label="Name" className="mb-3 muller-light-xsm">
             <Form.Control
