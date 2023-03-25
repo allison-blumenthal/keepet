@@ -28,7 +28,8 @@ export default function TaskCard({ taskObj }) {
         <Card.Body>
           <Card.Title className="muller-med-xsm center">{taskObj.title}</Card.Title>
           <Card.Title className="muller-bold-xxsm center">Assigned to: {taskMember.memberName}</Card.Title>
-          <Card.Title className="muller-reg-xxsm center">Last completed: {taskObj.lastDone}</Card.Title>
+          <Card.Title className="muller-reg-xxsm center">Due: {taskObj.due}</Card.Title>
+          <Card.Title className="muller-med-xxsm center">Last completed:<br />{taskObj.lastDone}</Card.Title>
         </Card.Body>
         <Link href={`/task/${taskObj.firebaseKey}`} passHref>
           <Button variant="link" className="arrow-btn">
@@ -49,5 +50,6 @@ TaskCard.propTypes = {
     lastDone: PropTypes.string,
     taskAvatar: PropTypes.string,
     memberId: PropTypes.string,
+    timeOfDay: PropTypes.string,
   }).isRequired,
 };

@@ -14,6 +14,7 @@ export default function PetCard({ petObj }) {
           <Card.Title className="muller-med-xsm center">{petObj.petName}</Card.Title>
           <Card.Title className="muller-bold-xxsm center">Species: {petObj.species}</Card.Title>
           <Card.Title className="muller-reg-xxsm center">Color: {petObj.color}</Card.Title>
+          <Card.Title className="muller-reg-xxsm center">Age: {petObj.petAge}</Card.Title>
         </Card.Body>
         <Link href={`/pet/${petObj.firebaseKey}`} passHref>
           <Button variant="link" className="arrow-btn">
@@ -33,5 +34,6 @@ PetCard.propTypes = {
     species: PropTypes.string,
     petAvatar: PropTypes.string,
     color: PropTypes.string,
+    petAge: PropTypes.string,
   }).isRequired,
 };
