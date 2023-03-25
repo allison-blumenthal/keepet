@@ -110,13 +110,20 @@ export default function ViewTask() {
         <h3 className="muller-bold-sm">Pet: {pet.petName}</h3>
         <h3 className="muller-light-xsm">Due: {taskDetails.due}</h3>
         <h3 className="muller-light-xsm">Currently assigned to: {taskDoer.memberName}</h3>
-        <h5 className="muller-bold-xsm">Last completed by: {taskDetails.lastDoer}</h5>
-        <h4 className="muller-bold-xsm">Last completed: <br /> {taskDetails.lastDone}</h4>
+        <h5 className="muller-med-xsm">Last done by: {taskDetails.lastDoer}</h5>
+        <h4 className="muller-med-xsm">Last completed: <br /> {taskDetails.lastDone}</h4>
         <div className="task-btn-container">
           <button type="button" onClick={logThisTask} className="log-btn pc-font-xsm">
             <Image src={check} alt="check icon" width="40px" height="40px" />LOG TASK
           </button>
         </div>
+        <div>
+          <img src={`/assets/images/taskAvatars/${taskDetails.taskAvatar}`} alt={taskDetails.title} style={{ width: '300px' }} />
+        </div>
+        <br />
+        <h5 className="muller-med-xsm">Location: {taskDetails.location}</h5>
+        <h5 className="muller-med-xsm">Time of day: {taskDetails.timeOfDay}</h5>
+        <p className="muller-med-xsm">Description: {taskDetails.taskDescription}</p>
         {member.isAdmin === true ? (
           <>
             <div className="task-btn-container">
@@ -130,13 +137,6 @@ export default function ViewTask() {
           </>
         )
           : '' }
-        <div>
-          <img src={`/assets/images/taskAvatars/${taskDetails.taskAvatar}`} alt={taskDetails.title} style={{ width: '300px' }} />
-        </div>
-        <br />
-        <h5 className="muller-reg-sm">Location: {taskDetails.location}</h5>
-        <h5 className="muller-reg-sm">Time of day: {taskDetails.timeOfDay}</h5>
-        <p className="muller-reg-sm">Description: {taskDetails.taskDescription}</p>
         <div className="comment-form">
           <CommentForm taskFirebaseKey={firebaseKey} onUpdate={displayComments} />
         </div>

@@ -49,6 +49,15 @@ export default function ViewPet() {
       </Head>
       <NavBar />
       <div className="basic-page-container text-center">
+        <h1 className="purple pc-font-md">{petDetails.petName}</h1>
+        <h3 className="muller-bold-sm">Species: {petDetails.species}</h3>
+        <h5 className="muller-med-xsm">Age: {petDetails.petAge}</h5>
+        <h5 className="muller-med-xsm">Color: {petDetails.color}</h5>
+        <h4 className="muller-light-xsm">Info: {petDetails.info}</h4>
+        <div>
+          <img src={`/assets/images/petAvatars/${petDetails.petAvatar}`} alt={petDetails.petName} style={{ width: '300px' }} />
+        </div>
+        <br />
         {(petDetails.memberId === member.uid) || (member.isAdmin === true) ? (
           <>
             <div className="btn-container btn-margin">
@@ -62,17 +71,6 @@ export default function ViewPet() {
             </div>
           </>
         ) : ''}
-        <h1 className="purple pc-font-md">{petDetails.petName}</h1>
-        <h3 className="muller-bold-sm">{petDetails.species}</h3>
-        <div>
-          <img src={`/assets/images/petAvatars/${petDetails.petAvatar}`} alt={petDetails.petName} style={{ width: '300px' }} />
-        </div>
-        <br />
-        <h5 className="muller-reg-sm">Age: {petDetails.petAge}</h5>
-        <h5 className="muller-reg-sm">Color: {petDetails.color}</h5>
-        <br />
-        <h4 className="muller-reg-sm">Info: <br />{petDetails.info}</h4>
-        <br />
         <div>
           <h1 className="muller-med-sm">Tasks for {petDetails.petName}:</h1>
         </div>
