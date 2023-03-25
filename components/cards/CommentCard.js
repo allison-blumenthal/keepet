@@ -7,10 +7,12 @@ import { deleteComment, updateComment } from '../../api/commentData';
 import { useAuth } from '../../utils/context/authContext';
 import { getSingleTask } from '../../api/taskData';
 import trash from '../../src/assets/images/delete-icon.png';
+import { getMemberByUID } from '../../api/memberData';
 
 function CommentCard({ commentObj, onUpdate }) {
   const [show, setShow] = useState(false);
   const [formInput, setFormInput] = useState({});
+  const [member, setMember] = useState({});
 
   const { user } = useAuth();
   // eslint-disable-next-line no-unused-vars
@@ -25,7 +27,14 @@ function CommentCard({ commentObj, onUpdate }) {
     }
   };
 
+  const getMemberInfo = () => {
+    getMemberByUID(user.uid).then((memberObj) => {
+      setMember(memberObj[0]);
+    });
+  };
+
   useEffect(() => {
+    getMemberInfo();
     getSingleTask(commentObj.taskId).then(setTask);
 
     if (commentObj.firebaseKey) setFormInput(commentObj);
@@ -65,7 +74,7 @@ function CommentCard({ commentObj, onUpdate }) {
                   </p>
                   <footer className="blockquote-footer muller-light-sm">
                     {commentObj.author}
-                    {commentObj.memberId === user.uid
+                    {(commentObj.memberId === user.uid) || (member.isAdmin === true)
                       ? (
                         <>
                           <div className="btn-container">

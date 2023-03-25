@@ -12,7 +12,7 @@ export default function MemberCard({ memberObj }) {
         <Card.Img className="card-avatar" src={`/assets/images/memberAvatars/${memberObj.memberAvatar}`} alt="Member's Avatar" />
         <Card.Body>
           <Card.Title className="muller-med-xsm center">{memberObj.memberName}</Card.Title>
-          <Card.Title className="muller-light-xsm center">{memberObj.role}</Card.Title>
+          <Card.Title className="muller-reg-xxsm center">{memberObj.role}</Card.Title>
 
           {memberObj.isAdmin === true ? (
             <Card.Title className="muller-bold-xxsm center">Head of Household</Card.Title>

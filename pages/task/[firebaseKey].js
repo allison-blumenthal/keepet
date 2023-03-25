@@ -111,7 +111,7 @@ export default function ViewTask() {
         <h3 className="muller-light-xsm">Due: {taskDetails.due}</h3>
         <h3 className="muller-light-xsm">Currently assigned to: {taskDoer.memberName}</h3>
         <h5 className="muller-bold-xsm">Last completed by: {taskDetails.lastDoer}</h5>
-        <h4 className="muller-bold-xsm">Last completed at: <br /> {taskDetails.lastDone}</h4>
+        <h4 className="muller-bold-xsm">Last completed: <br /> {taskDetails.lastDone}</h4>
         <div className="task-btn-container">
           <button type="button" onClick={logThisTask} className="log-btn pc-font-xsm">
             <Image src={check} alt="check icon" width="40px" height="40px" />LOG TASK
@@ -129,13 +129,7 @@ export default function ViewTask() {
             </div>
           </>
         )
-          : (
-            <div className="task-btn-container">
-              <button type="button" onClick={logThisTask} className="log-btn">
-                <Image src={check} alt="check icon" />
-              </button>
-            </div>
-          ) }
+          : '' }
         <div>
           <img src={`/assets/images/taskAvatars/${taskDetails.taskAvatar}`} alt={taskDetails.title} style={{ width: '300px' }} />
         </div>
