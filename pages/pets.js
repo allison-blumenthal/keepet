@@ -38,9 +38,12 @@ export default function ShowPets() {
       <NavBar />
       <div className="basic-page-container text-center">
         <h1 className="orange pc-font-md">PETS</h1>
-        <button type="button" className="add-btn" onClick={() => router.push('/pet/new')}>
-          <Image src={add} alt="add pet icon" />
-        </button>
+        <div className="task-btn-container">
+          <button type="button" className="add-btn pc-font-xsm" onClick={() => router.push('/pet/new')}>
+            <Image src={add} alt="add pet icon" height="30px" width="30px" />
+            ADD A PET
+          </button>
+        </div>
         <div className="d-flex flex-wrap">
           {householdPets.map((householdPet) => (
             <PetCard key={householdPet.firebaseKey} petObj={householdPet} onUpdate={getHouseholdPets} />

@@ -38,7 +38,8 @@ function CommentCard({ commentObj, onUpdate }) {
     getSingleTask(commentObj.taskId).then(setTask);
 
     if (commentObj.firebaseKey) setFormInput(commentObj);
-  }, [commentObj]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user, commentObj]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

@@ -261,12 +261,15 @@ body {
 
 .add-btn {
   height: 45px;
-  width: 45px;
-  padding: 6px;
+  width: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 4px;
   border-radius: 12px;
   background-color: #1B998B;
   border-color: #1B998B;
-  margin: 10px;
+  margin-top: 10px;
 }
 
 .add-btn:hover {
