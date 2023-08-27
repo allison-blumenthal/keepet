@@ -1,5 +1,9 @@
 # Keepet  [![Netlify Status](https://api.netlify.com/api/v1/badges/f5436447-7662-4a3c-9534-5f22029f53e1/deploy-status)](https://app.netlify.com/sites/keepet-app/deploys)
 
+## Check Out the App with Demo Credentials:
+- email: keepet.app.creds@gmail.com
+- password: ```keepetapp```
+
 <img width="250" alt="login page" src="./src/assets/readmeScreenshots/loginPage.png">
 
 [View App](https://keepet-app.netlify.app/)
